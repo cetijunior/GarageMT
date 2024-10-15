@@ -1,0 +1,22 @@
+/* src/styles/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* Custom global styles */
+body {
+  @apply bg-gray-100 text-gray-800;
+}
+
+
+/* Remove webkit scrollbars */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* src/styles/index.css */
+html {
+  scroll-behavior: smooth;
+}
