@@ -1,15 +1,24 @@
+// src/content/testimonialsContent.js
 export const testimonialsData = [
-    {
-      name: 'John Doe',
-      quote: 'Excellent service and friendly staff! Highly recommend.',
-    },
-    {
-      name: 'Jane Smith',
-      quote: 'They fixed my car quickly and at a great price.',
-    },
-    {
-      name: 'Mike Johnson',
-      quote: 'Best garage in town! Trustworthy and professional.',
-    },
-  ];
+  {
+      quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      name: "Bradford B. Pounds",
+      location: "Santa Cruz, CA",
+      image: "/assets/images/ts1.png"
+  },
+  {
+      quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      name: "Catherine Lopez",
+      location: "Santa Cruz, CA",
+      image: "/assets/images/ts2.png"
+  },
+  {
+    quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    name: "John Doe",
+    location: "New York, NY",
+    image: "/assets/images/ts2.png"
+  },
   
+
+  // Add more testimonials as needed
+];

@@ -5,6 +5,9 @@ const images = [
 	"/assets/images/gallery1.jpg",
 	"/assets/images/gallery2.jpg",
 	"/assets/images/gallery3.jpg",
+	"/assets/images/gallery3.jpg",
+	"/assets/images/gallery2.jpg",
+	"/assets/images/gallery1.jpg",
 	// Add more image paths
 ];
 
@@ -18,14 +21,14 @@ function GalleryPage() {
 				{images.map((img, index) => (
 					<motion.div
 						key={index}
-						className="cursor-pointer px-10"
+						className="cursor-pointer"
 						onClick={() => setSelectedImage(img)}
 						whileHover={{ scale: 1.05 }}
 					>
 						<img
 							src={img}
 							alt={`Gallery ${index + 1}`}
-							className="rounded shadow-lg"
+							className="rounded shadow-lg w-full h-64 object-cover"
 						/>
 					</motion.div>
 				))}

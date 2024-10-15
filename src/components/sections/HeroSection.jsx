@@ -4,9 +4,9 @@ import { CogIcon } from "@heroicons/react/24/outline";
 function HeroSection() {
 	return (
 		<section
-			id="home"
-			className="relative w-screen sm:ml-0 -ml-2 h-screen bg-cover bg-center"
-			style={{ backgroundImage: "url(/assets/images/hero.jpg)" }}
+			id="hero"
+			className="relative sm:-mx-2 -mx-4 h-screen bottom-16 bg-cover bg-right"
+			style={{ backgroundImage: "url(/assets/images/Hero.png)" }}
 		>
 			{/* Background Overlay */}
 			<div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-70"></div>
@@ -55,6 +55,54 @@ function HeroSection() {
 						Explore <span className="text-yellow-500">Our Services</span>
 					</a>
 				</motion.p>
+
+				{/* Contact Us Link */}
+				<motion.p
+					className="text-lg md:text-xl cursor-pointer text-gray-200 font-semibold"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 1, delay: 0.5 }}
+				>
+					<a href="#contact">
+						<span className="text-yellow-500">Contact</span> Us
+					</a>
+				</motion.p>
+
+				{/* Blue Section visible only on large screens */}
+				<motion.div className="hidden lg:flex absolute bottom-0 w-screen bg-[#1E5DBC] h-72 sm:h-28 items-center justify-evenly">
+					<div className="w-auto space-x-4 flex flex-row items-start">
+						<img src="/assets/images/hands.png" alt="Hands Icon" />
+						<div className="flex flex-col space-y-1 items-start justify-start">
+							<h1 className="text-xl text-white font-bold">Best Prices</h1>
+							<h3 className="text-start text-gray-300 w-[250px]">
+								All mechanical repairs and services are available at affordable
+								rates
+							</h3>
+						</div>
+					</div>
+
+					<div className="w-auto space-x-4 flex flex-row items-start">
+						<img src="/assets/images/thumbs-up.png" alt="Thumbs Up Icon" />
+						<div className="flex flex-col space-y-1 items-start justify-start">
+							<h1 className="text-xl text-white font-bold">100% Guarantee</h1>
+							<h3 className="text-start text-gray-300 w-[250px]">
+								All of our repairs and services come with a guarantee period
+							</h3>
+						</div>
+					</div>
+
+					<div className="w-auto space-x-4 flex flex-row items-start">
+						<img src="/assets/images/certificate.png" alt="Certificate Icon" />
+						<div className="flex flex-col space-y-1 items-start justify-start">
+							<h1 className="text-xl text-white font-bold">
+								Certified Mechanics
+							</h1>
+							<h3 className="text-start text-gray-300 w-[250px]">
+								All of our mechanics are qualified and are regularly trained.
+							</h3>
+						</div>
+					</div>
+				</motion.div>
 			</div>
 		</section>
 	);

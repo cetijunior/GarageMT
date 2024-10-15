@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 
 function HomePage() {
 	return (
-		<div className=" sm:px-2 px-4">
+		<div className="w-screen sm:px-2 px-4">
 			<Helmet>
 				<title>Brother`s Garage | Quality Automotive Services</title>
 				<meta
@@ -16,7 +16,7 @@ function HomePage() {
 					content="Top-notch automotive services at Brother's Garage. Serving you at two convenient locations."
 				/>
 			</Helmet>
-			<div className="-ml-2">
+			<div className="w-full">
 				<HeroSection />
 			</div>
 			<ServicesSection />
