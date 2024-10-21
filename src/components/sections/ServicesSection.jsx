@@ -9,6 +9,7 @@ import {
 	FaSearch,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 // Work Gallery Data (Add this below)
 const workData = [
@@ -148,12 +149,15 @@ function ServicesSection() {
 						Our Work
 					</motion.h2>
 					{/* Toggle Button */}
+
 					<motion.button
-						onClick={() => window.location.href = '/gallery'}
+
 						className="px-6 py-3 mt-2 bg-red-500 text-white font-semibold rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all"
 						whileHover="hover"
 					>
-						Gallery
+						<Link onClick={() => window.location.href = '/gallery'}>
+							Gallery
+						</Link>
 					</motion.button>
 				</div>
 

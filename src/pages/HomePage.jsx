@@ -10,7 +10,7 @@ function HomePage() {
 	return (
 		<div className="relative w-screen ">
 			<Helmet>
-				<title>Brother`s Garage | Quality Automotive Services</title>
+				<title>Garage MT| Quality Automotive Services</title>
 				<meta
 					name="description"
 					content="Top-notch automotive services at Brother's Garage. Serving you at two convenient locations."
