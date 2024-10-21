@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import { CogIcon } from "@heroicons/react/24/outline";
+import { ArrowDownCircleIcon } from "@heroicons/react/20/solid";
 
 function HeroSection() {
 	return (
 		<section
 			id="hero"
-			className="relative sm:-mx-2 -mx-4 h-screen bottom-16 bg-cover bg-center"
-			style={{ backgroundImage: "url(/assets/images/hero.jpg)" }}
+			className="relative w-screen h-screen bottom-16 bg-cover bg-center"
+			style={{ backgroundImage: "url(/assets/images/entry3.jpg)" }}
 		>
 			{/* Background Overlay for better text readability */}
 			<div className="absolute inset-0 bg-black bg-opacity-60"></div>
@@ -14,7 +15,7 @@ function HeroSection() {
 			<div className="container mx-auto h-full flex flex-col justify-center items-center text-center relative z-10 space-y-8 px-4">
 				{/* Hero Heading */}
 				<motion.h1
-					className="text-4xl md:text-6xl text-white font-extrabold leading-tight tracking-wide"
+					className="text-4xl md:text-6xl sm:mt-16 mt-32 text-white font-extrabold leading-tight tracking-wide"
 					initial={{ opacity: 0, y: -50 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1 }}
@@ -36,17 +37,29 @@ function HeroSection() {
 				</motion.p>
 
 				{/* Contact Button - With Cog Icon */}
-				<motion.a
-					href="#contact"
-					className="relative flex items-center justify-center bg-red-500 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition duration-300"
+				<motion.div
 					initial={{ scale: 0 }}
 					animate={{ scale: 1 }}
-					whileHover={{ rotate: 360, scale: 1.1 }}
-					transition={{ duration: 0.7, delay: 1 }}
+					className="relative flex items-center justify-center bg-red-500 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition duration-300"
 				>
-					<CogIcon className="h-6 w-6 mr-2" />
-					Contact Us Now
-				</motion.a>
+					<motion.a
+						href="#contact"
+					>
+
+						Contact Us Now
+					</motion.a>
+					<motion.a
+						href="#contact"
+
+						className="relative flex items-center ml-3 -mr-3 transition duration-300"
+						initial={{ scale: 0 }}
+						animate={{ scale: 1 }}
+						whileHover={{ scale: 1.3, }}
+
+					>
+						<ArrowDownCircleIcon className="h-6 w-6 mr-2" />
+					</motion.a>
+				</motion.div>
 
 				{/* Services Button */}
 				<motion.p

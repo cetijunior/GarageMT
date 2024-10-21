@@ -10,6 +10,26 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 
+// Work Gallery Data (Add this below)
+const workData = [
+	{
+		title: "Engine Repair",
+		description: "A comprehensive engine repair for a vintage car.",
+		image: "/assets/images/work1.jpg", // Replace with actual image paths
+	},
+	{
+		title: "Brake Service",
+		description: "Brake replacement and inspection.",
+		image: "/assets/images/work6.jpg",
+	},
+	{
+		title: "Battery Replacement",
+		description: "Quick and efficient battery replacement service.",
+		image: "/assets/images/work3.jpg",
+	},
+	// Add more works as necessary
+];
+
 function ServicesSection() {
 	const [showAll, setShowAll] = useState(false);
 
@@ -68,16 +88,29 @@ function ServicesSection() {
 	};
 
 	return (
-		<section id="services" className="py-16 px-6 bg-gray-100">
+		<section id="services" className="bg-gray-100 py-16 px-6">
 			<div className="container mx-auto text-center">
-				<motion.h2
-					className="text-4xl font-extrabold mb-12 text-gray-800"
-					initial={{ opacity: 0, y: -30 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6 }}
-				>
-					Our Services
-				</motion.h2>
+
+				<div className="flex flex-row items-center space-x-3 mb-12 justify-center">
+					{/* Services Section */}
+					<motion.h2
+						className="text-4xl font-extrabold text-gray-800"
+						initial={{ opacity: 0, y: -30 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6 }}
+					>
+						Our Services
+					</motion.h2>
+					{/* Toggle Button */}
+					<motion.button
+						onClick={() => setShowAll(!showAll)}
+						className="px-6 py-3 mt-2 bg-red-500 text-white font-semibold rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all"
+						whileHover="hover"
+						variants={buttonVariants}
+					>
+						{showAll ? "Show Less" : "Show More"}
+					</motion.button>
+				</div>
 				<div className="grid md:grid-cols-3 gap-8">
 					{servicesToDisplay.map((service, index) => (
 						<motion.div
@@ -100,17 +133,56 @@ function ServicesSection() {
 						</motion.div>
 					))}
 				</div>
-				{/* Toggle Button */}
-				<motion.button
-					onClick={() => setShowAll(!showAll)}
-					className="mt-8 px-6 py-3 bg-red-500 text-white font-semibold rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all"
-					whileHover="hover"
-					variants={buttonVariants}
-				>
-					{showAll ? "Show Less" : "Show More"}
-				</motion.button>
+
 			</div>
-		</section>
+
+			{/* Our Work Section */}
+			<div className="container mx-auto mt-20 text-center">
+				<div className="flex flex-row items-center space-x-3 mb-12 justify-center">
+					<motion.h2
+						className="text-4xl font-extrabold text-gray-800"
+						initial={{ opacity: 0, y: -30 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6 }}
+					>
+						Our Work
+					</motion.h2>
+					{/* Toggle Button */}
+					<motion.button
+						onClick={() => window.location.href = '/gallery'}
+						className="px-6 py-3 mt-2 bg-red-500 text-white font-semibold rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all"
+						whileHover="hover"
+					>
+						Gallery
+					</motion.button>
+				</div>
+
+				<div className="grid md:grid-cols-3 gap-8">
+					{workData.map((work, index) => (
+						<motion.div
+							key={index}
+							className="bg-white p-6 rounded-lg shadow-lg transition-all group relative overflow-hidden"
+							initial={{ opacity: 0, y: 30 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.5, ease: "easeOut" }}
+							whileHover={{ scale: 1.05 }}
+						>
+							<img
+								src={work.image}
+								alt={work.title}
+								className="rounded-lg shadow-md w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+							/>
+							<div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+								<div className="text-center text-white p-4">
+									<h3 className="text-2xl font-bold mb-2">{work.title}</h3>
+									<p>{work.description}</p>
+								</div>
+							</div>
+						</motion.div>
+					))}
+				</div>
+			</div>
+		</section >
 	);
 }
 

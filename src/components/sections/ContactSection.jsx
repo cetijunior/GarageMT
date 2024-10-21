@@ -52,7 +52,7 @@ function ContactSection() {
 	};
 
 	// Create mailto link for submission
-	const mailtoLink = `mailto:contact@brothersgarage.com?subject=Appointment Request from ${user_name}&body=Name: ${user_name}%0APhone: ${user_phone}%0AEmail: ${user_email}%0AMessage: ${message}`;
+	const mailtoLink = `mailto:info@garage.mt?subject=Appointment Request from ${user_name}&body=Name: ${user_name}%0APhone: ${user_phone}%0AEmail: ${user_email}%0AMessage: ${message}`;
 
 	// Handle form submission
 	const handleSubmit = (e) => {
@@ -67,7 +67,7 @@ function ContactSection() {
 	return (
 		<section
 			id="contact"
-			className="py-20 bg-gradient-to-r -mx-4 sm:-mx-2 from-red-600 via-red-800 to-black text-white"
+			className="py-20 bg-gradient-to-r  from-red-600 via-red-800 to-black text-white"
 		>
 			<div className="container mx-auto flex flex-col lg:flex-row items-start gap-12 px-6 lg:px-12">
 				{/* Left Side - Contact Details */}
@@ -81,7 +81,7 @@ function ContactSection() {
 					<h4 className="text-yellow-300 text-sm font-semibold tracking-widest uppercase mb-4">
 						Make an Appointment
 					</h4>
-					<h2 className="text-4xl font-bold mb-6 leading-snug">
+					<h2 className="text-4xl font-bold mb-2 leading-snug">
 						We’re Here to Help You Get Back on the Road!
 					</h2>
 					<p className="mb-8 text-gray-200">
@@ -91,17 +91,38 @@ function ContactSection() {
 					</p>
 
 					<div className="space-y-6">
-						<div className="flex items-center space-x-4">
-							<HiOutlineLocationMarker className="text-3xl text-yellow-300" />
-							<p>123 Main St, Cityville, ST 12345</p>
-						</div>
+
 						<div className="flex items-center space-x-4">
 							<HiOutlineMail className="text-3xl text-yellow-300" />
-							<p>support@brothersgarage.com</p>
+							<a href="mailto:info@garage.mt" className="text-white hover:text-yellow-300">
+								info@garage.mt
+							</a>
 						</div>
 						<div className="flex items-center space-x-4">
 							<HiOutlinePhone className="text-3xl text-yellow-300" />
-							<p>(123) 456-7890</p>
+							<p>+356 770 88 222</p>
+						</div>
+
+						{/* New Location - Valletta Garage */}
+						<div className="mt-6">
+							<h4 className="text-xl font-semibold text-yellow-300 mb-4">
+								Valletta Garage Location
+							</h4>
+							<div className="flex items-center space-x-4">
+								<HiOutlineLocationMarker className="text-3xl text-yellow-300" />
+								<p>12 Triq Sant' Ursola, Valletta, Malta</p>
+							</div>
+							{/* Embedded Google Map */}
+							<div className="mt-4 mr-32">
+								<iframe
+									src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.121492949705!2d14.511999725601962!3d35.89703242251843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e452b73df5997%3A0x5f6e73f9cbd0877d!2s272%20St%20Paul%20St%2C%20Valletta%2C%20Malta!5e1!3m2!1sde!2sus!4v1729021463779!5m2!1sde!2sus"
+									width="100%"
+									height="200"
+									style={{ border: 0 }}
+									allowFullScreen=""
+									loading="lazy"
+								></iframe>
+							</div>
 						</div>
 					</div>
 				</motion.div>
@@ -133,9 +154,8 @@ function ContactSection() {
 								value={user_name}
 								onChange={handleChange}
 								placeholder="John Doe"
-								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${
-									errors.user_name ? "border-red-500" : "border-gray-300"
-								}`}
+								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${errors.user_name ? "border-red-500" : "border-gray-300"
+									}`}
 							/>
 							{errors.user_name && (
 								<p className="text-red-500 text-xs mt-1">{errors.user_name}</p>
@@ -156,9 +176,8 @@ function ContactSection() {
 								value={user_phone}
 								onChange={handleChange}
 								placeholder="(123) 456-7890"
-								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${
-									errors.user_phone ? "border-red-500" : "border-gray-300"
-								}`}
+								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${errors.user_phone ? "border-red-500" : "border-gray-300"
+									}`}
 							/>
 							{errors.user_phone && (
 								<p className="text-red-500 text-xs mt-1">{errors.user_phone}</p>
@@ -179,9 +198,9 @@ function ContactSection() {
 								value={user_email}
 								onChange={handleChange}
 								placeholder="you@example.com"
-								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${
-									errors.user_email ? "border-red-500" : "border-gray-300"
-								}`}
+								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${errors.user_email ? "border-red-500" : "border-gray-300"
+
+									}`}
 							/>
 							{errors.user_email && (
 								<p className="text-red-500 text-xs mt-1">{errors.user_email}</p>
@@ -201,9 +220,8 @@ function ContactSection() {
 								value={message}
 								onChange={handleChange}
 								placeholder="Describe your issue..."
-								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${
-									errors.message ? "border-red-500" : "border-gray-300"
-								}`}
+								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${errors.message ? "border-red-500" : "border-gray-300"
+									}`}
 								rows="4"
 							></textarea>
 							{errors.message && (

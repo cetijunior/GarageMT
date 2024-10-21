@@ -62,9 +62,8 @@ function Navbar() {
 
 	return (
 		<nav
-			className={`fixed w-full z-20 top-0 left-0 shadow-lg transition-colors duration-300 ${
-				navbarBg ? "bg-red-700" : "bg-transparent"
-			} border-b-4 sm:rounded-b-full rounded-b-2xl border-red-500`}
+			className={`fixed w-full z-20 top-0 left-0 shadow-lg transition-colors duration-300 ${navbarBg ? "bg-red-700" : "bg-transparent"
+				} border-b-4 sm:rounded-b-full rounded-b-2xl border-red-500`}
 		>
 			<div className="container mx-auto flex items-center justify-between px-10 py-3">
 				<Link
@@ -79,7 +78,7 @@ function Navbar() {
 					{/* Logo with gradient background and rounded shape */}
 					<div className="h-12 w-36 md:h-12 lg:h-14 lg:w-44 lg:ml-10 bg-white border-2 border-red-600 rounded-lg flex items-center justify-center">
 						<img
-							src="/assets/images/logo.png"
+							src="/assets/icons/logo.png"
 							alt="Brother's Garage Logo"
 							className="h-10 md:h-12 lg:h-14 object-contain" // Ensure proper scaling for responsiveness
 						/>

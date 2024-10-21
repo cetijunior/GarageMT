@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { FiMapPin } from "react-icons/fi";
 
 function TestimonialsSection() {
 	return (
@@ -52,7 +53,10 @@ function TestimonialsSection() {
 											{testimonial.name}
 										</p>
 										<p className="text-sm text-gray-500">
-											{testimonial.location}
+											<div className="flex items-center">
+												<FiMapPin className="h-5 w-5 mr-2 text-gray-500" />
+												{testimonial.location}
+											</div>
 										</p>
 									</div>
 								</div>

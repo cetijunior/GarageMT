@@ -90,7 +90,7 @@ function AboutUsSection() {
 			id="about"
 			className="relative py-20 bg-gradient-to-br from-gray-100 to-gray-50 overflow-hidden"
 		>
-			{/* Background Canvas Animation */}
+			{/* Background Particle Animation */}
 			<CanvasAnimation />
 
 			<div className="container mx-auto px-6 lg:px-12 relative z-10">
@@ -101,10 +101,10 @@ function AboutUsSection() {
 					transition={{ duration: 0.8 }}
 					className="text-center mb-12"
 				>
-					<h4 className="text-red-500 text-lg font-semibold tracking-widest uppercase mb-4">
+					<h4 className="text-red-500 text-lg md:text-xl font-semibold tracking-widest uppercase mb-4">
 						Who We Are
 					</h4>
-					<h2 className="text-5xl lg:text-6xl font-extrabold text-gray-800 mb-6 leading-tight">
+					<h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 mb-6 leading-tight">
 						Expert Car Repairs & Maintenance
 					</h2>
 					<p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
@@ -116,28 +116,36 @@ function AboutUsSection() {
 				</motion.div>
 
 				{/* Content Layout */}
-				<div className="flex flex-col lg:flex-row items-start gap-16 relative z-10">
+				<div className="flex flex-col lg:flex-row lg:items-start gap-16 relative z-10">
 					{/* Left Side */}
 					<motion.div
-						className="lg:w-1/2 relative"
+						className="lg:w-1/2 w-full relative flex flex-col items-center"
 						initial={{ opacity: 0, x: -50 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8 }}
 						viewport={{ once: true }}
 					>
 						{/* Floating Background Accent */}
-						<div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-b from-red-200 to-transparent rounded-full -z-10 rotate-45 transform"></div>
+						<div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-tr from-red-600 to-transparent rounded-full -z-10 rotate-45 transform"></div>
 
-						{/* Main Image */}
-						<motion.img
-							src="/assets/images/about-us.jpg"
-							alt="Car Service"
-							className="rounded-xl shadow-2xl object-cover w-full h-auto transition-transform duration-500 ease-in-out hover:scale-105"
-						/>
+						{/* Image Row */}
+						<div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 items-center justify-center">
+							<motion.img
+								src="/assets/images/work1.jpg"
+								alt="Car Service"
+								className="rounded-xl shadow-2xl object-cover w-full md:w-1/2 h-auto max-h-96 transition-transform duration-500 ease-in-out hover:scale-105"
+							/>
+
+							<motion.img
+								src="/assets/images/entry2.jpg"
+								alt="Car Service"
+								className="rounded-xl shadow-2xl object-cover w-full md:w-1/2 h-auto max-h-96 transition-transform duration-500 ease-in-out hover:scale-105"
+							/>
+						</div>
 
 						{/* Description */}
 						<motion.p
-							className="text-gray-600 mt-6 leading-relaxed text-lg"
+							className="text-gray-600 mt-6 leading-relaxed text-lg text-center md:text-left"
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.8, delay: 0.2 }}
@@ -152,7 +160,7 @@ function AboutUsSection() {
 
 					{/* Right Side */}
 					<motion.div
-						className="lg:w-1/2 flex flex-col space-y-6"
+						className="lg:w-1/2 w-full flex flex-col space-y-6 items-center"
 						initial={{ opacity: 0, x: 50 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8, staggerChildren: 0.3 }}
@@ -160,7 +168,7 @@ function AboutUsSection() {
 					>
 						{/* Description */}
 						<motion.p
-							className="text-gray-600 leading-relaxed text-lg"
+							className="text-gray-600 leading-relaxed text-lg text-center md:text-left"
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.8, delay: 0.2 }}
@@ -172,20 +180,15 @@ function AboutUsSection() {
 						</motion.p>
 
 						{/* Secondary Image */}
-						<motion.img
-							src="/assets/images/about-us2.png"
-							alt="Car Lift"
-							className="rounded-xl shadow-2xl object-cover w-full h-auto transition-transform duration-500 ease-in-out hover:scale-105"
-							whileHover={{ scale: 1.1 }}
-						/>
+						<div className="flex items-center justify-center">
+							<motion.img
+								src="/assets/images/work4.jpg"
+								alt="Car Service"
+								className="rounded-xl shadow-2xl object-cover w-full h-auto max-h-[500px] transition-transform duration-500 ease-in-out hover:scale-105"
+							/>
+						</div>
 					</motion.div>
 				</div>
-
-				{/* Decorative Element
-				<div className="relative mt-12">
-					{/* Floating Abstract Shape 
-					<div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-red-600 via-red-200 to-red-600 rounded-full opacity-100 -z-10 transform translate-x-16 -translate-y-32"></div>
-				</div> */}
 			</div>
 		</section>
 	);
