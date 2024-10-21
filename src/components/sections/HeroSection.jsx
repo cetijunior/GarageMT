@@ -6,7 +6,7 @@ function HeroSection() {
 	return (
 		<section
 			id="hero"
-			className="relative w-screen h-screen bottom-16 bg-cover bg-center"
+			className="relative w-screen h-screen  bottom-16 bg-cover bg-center"
 			style={{ backgroundImage: "url(/assets/images/entry3.jpg)" }}
 		>
 			{/* Background Overlay for better text readability */}

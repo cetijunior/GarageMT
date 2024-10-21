@@ -6,6 +6,24 @@ import {
 	HiOutlinePhone,
 } from "react-icons/hi";
 
+// Business locations as constants
+const businessLocations = {
+	valletta: {
+		name: "Valletta Garage",
+		address: "12 Triq Sant' Ursola, Valletta, Malta",
+		mapSrc:
+			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.121492949705!2d14.511999725601962!3d35.89703242251843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e452b73df5997%3A0x5f6e73f9cbd0877d!2s272%20St%20Paul%20St%2C%20Valletta%2C%20Malta!5e1!3m2!1sde!2sus!4v1729021463779!5m2!1sde!2sus",
+	},
+	mosta: {
+		name: "Garage",
+		address: "Vjal Il-25 Novembru",
+		mapSrc:
+			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d768.450843147797!2d14.523961669602306!3d35.853672598283296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e5b3e0628b271%3A0x705b09517ef44cfa!2sRenAuto%20Garage!5e1!3m2!1sde!2sus!4v1729533125012!5m2!1sde!2sus",
+	},
+};
+
+<iframe src="" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
 function ContactSection() {
 	const [formData, setFormData] = useState({
 		user_name: "",
@@ -91,7 +109,6 @@ function ContactSection() {
 					</p>
 
 					<div className="space-y-6">
-
 						<div className="flex items-center space-x-4">
 							<HiOutlineMail className="text-3xl text-yellow-300" />
 							<a href="mailto:info@garage.mt" className="text-white hover:text-yellow-300">
@@ -103,19 +120,42 @@ function ContactSection() {
 							<p>+356 770 88 222</p>
 						</div>
 
-						{/* New Location - Valletta Garage */}
+						{/* Valletta Garage Location
 						<div className="mt-6">
 							<h4 className="text-xl font-semibold text-yellow-300 mb-4">
-								Valletta Garage Location
+								{businessLocations.valletta.name}
 							</h4>
 							<div className="flex items-center space-x-4">
 								<HiOutlineLocationMarker className="text-3xl text-yellow-300" />
-								<p>12 Triq Sant' Ursola, Valletta, Malta</p>
+								<p>{businessLocations.valletta.address}</p>
+							</div>
+							{/* Embedded Google Map 
+							<div className="mt-4 mr-32">
+								<iframe
+									src={businessLocations.valletta.mapSrc}
+									width="100%"
+									height="200"
+									style={{ border: 0 }}
+									allowFullScreen=""
+									loading="lazy"
+								></iframe>
+							</div>
+						</div> */}
+
+
+						{/* Mosta Garage Location */}
+						<div className="mt-6">
+							<h4 className="text-xl font-semibold text-yellow-300 mb-4">
+								{businessLocations.mosta.name}
+							</h4>
+							<div className="flex items-center space-x-4">
+								<HiOutlineLocationMarker className="text-3xl text-yellow-300" />
+								<p>{businessLocations.mosta.address}</p>
 							</div>
 							{/* Embedded Google Map */}
 							<div className="mt-4 mr-32">
 								<iframe
-									src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.121492949705!2d14.511999725601962!3d35.89703242251843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e452b73df5997%3A0x5f6e73f9cbd0877d!2s272%20St%20Paul%20St%2C%20Valletta%2C%20Malta!5e1!3m2!1sde!2sus!4v1729021463779!5m2!1sde!2sus"
+									src={businessLocations.mosta.mapSrc}
 									width="100%"
 									height="200"
 									style={{ border: 0 }}
