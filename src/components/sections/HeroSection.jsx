@@ -12,7 +12,7 @@ function HeroSection() {
 			{/* Background Overlay for better text readability */}
 			<div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
-			<div className="container mx-auto h-full flex flex-col justify-center items-center text-center relative z-10 space-y-8 px-4">
+			<div className="container overflow-hidden mx-auto h-full flex flex-col justify-center items-center text-center relative z-10 space-y-8 px-4">
 				{/* Hero Heading */}
 				<motion.h1
 					className="text-4xl md:text-6xl sm:mt-16 mt-32 text-white font-extrabold leading-tight tracking-wide"
@@ -20,9 +20,20 @@ function HeroSection() {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1 }}
 				>
-					Stuck on the Road? <br />{" "}
-					<span className="text-red-500">Contact Brother&apos;s Garage</span>{" "}
-					Today!
+					<span className="text-red-500">
+						Stuck{" "}
+					</span>
+					on the Road
+					<span className="text-red-500">
+						?
+					</span>
+					<br />{" "}
+
+					Contact<span className="text-red-500"> Garage MT</span>{" "}
+					Today
+					<span className="text-red-500">
+						!
+					</span>
 				</motion.h1>
 
 				{/* Subheading */}
