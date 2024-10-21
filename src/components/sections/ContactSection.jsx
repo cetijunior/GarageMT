@@ -1,10 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-	HiOutlineLocationMarker,
-	HiOutlineMail,
-	HiOutlinePhone,
-} from "react-icons/hi";
+import { HiOutlineLocationMarker, HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 
 // Business locations as constants
 const businessLocations = {
@@ -22,8 +18,6 @@ const businessLocations = {
 	},
 };
 
-<iframe src="" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
 function ContactSection() {
 	const [formData, setFormData] = useState({
 		user_name: "",
@@ -32,6 +26,7 @@ function ContactSection() {
 		message: "",
 	});
 	const [errors, setErrors] = useState({});
+	const [isLoaded, setIsLoaded] = useState(false); // Track when the animations are done loading
 
 	const { user_name, user_phone, user_email, message } = formData;
 
@@ -69,18 +64,25 @@ function ContactSection() {
 		return isValid;
 	};
 
-	// Create mailto link for submission
-	const mailtoLink = `mailto:info@garage.mt?subject=Appointment Request from ${user_name}&body=Name: ${user_name}%0APhone: ${user_phone}%0AEmail: ${user_email}%0AMessage: ${message}`;
-
 	// Handle form submission
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		if (validateForm()) {
-			// Submit the form
+			const mailtoLink = `mailto:info@garage.mt?subject=Appointment Request from ${user_name}&body=Name: ${user_name}%0APhone: ${user_phone}%0AEmail: ${user_email}%0AMessage: ${message}`;
 			window.location.href = mailtoLink;
 		}
 	};
+
+	useEffect(() => {
+		// Disable body overflow during the load
+		document.body.style.overflowX = isLoaded ? "auto" : "hidden";
+
+		// Cleanup on unmount
+		return () => {
+			document.body.style.overflowX = "auto";
+		};
+	}, [isLoaded]);
 
 	return (
 		<section
@@ -92,9 +94,9 @@ function ContactSection() {
 				<motion.div
 					className="lg:w-1/2"
 					initial={{ opacity: 0, x: -50 }}
-					whileInView={{ opacity: 1, x: 0 }}
+					animate={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.8 }}
-					viewport={{ once: true }}
+					onAnimationComplete={() => setIsLoaded(true)} // Once animation is complete, mark loaded
 				>
 					<h4 className="text-yellow-300 text-sm font-semibold tracking-widest uppercase mb-4">
 						Make an Appointment
@@ -111,7 +113,10 @@ function ContactSection() {
 					<div className="space-y-6">
 						<div className="flex items-center space-x-4">
 							<HiOutlineMail className="text-3xl text-yellow-300" />
-							<a href="mailto:info@garage.mt" className="text-white hover:text-yellow-300">
+							<a
+								href="mailto:info@garage.mt"
+								className="text-white hover:text-yellow-300"
+							>
 								info@garage.mt
 							</a>
 						</div>
@@ -120,7 +125,7 @@ function ContactSection() {
 							<p>+356 770 88 222</p>
 						</div>
 
-						{/* Valletta Garage Location
+						{/* Valletta Garage Location */}
 						<div className="mt-6">
 							<h4 className="text-xl font-semibold text-yellow-300 mb-4">
 								{businessLocations.valletta.name}
@@ -129,33 +134,10 @@ function ContactSection() {
 								<HiOutlineLocationMarker className="text-3xl text-yellow-300" />
 								<p>{businessLocations.valletta.address}</p>
 							</div>
-							{/* Embedded Google Map 
-							<div className="mt-4 mr-32">
-								<iframe
-									src={businessLocations.valletta.mapSrc}
-									width="100%"
-									height="200"
-									style={{ border: 0 }}
-									allowFullScreen=""
-									loading="lazy"
-								></iframe>
-							</div>
-						</div> */}
-
-
-						{/* Mosta Garage Location */}
-						<div className="mt-6">
-							<h4 className="text-xl font-semibold text-yellow-300 mb-4">
-								{businessLocations.mosta.name}
-							</h4>
-							<div className="flex items-center space-x-4">
-								<HiOutlineLocationMarker className="text-3xl text-yellow-300" />
-								<p>{businessLocations.mosta.address}</p>
-							</div>
 							{/* Embedded Google Map */}
 							<div className="mt-4 mr-32">
 								<iframe
-									src={businessLocations.mosta.mapSrc}
+									src={businessLocations.valletta.mapSrc}
 									width="100%"
 									height="200"
 									style={{ border: 0 }}
@@ -171,20 +153,15 @@ function ContactSection() {
 				<motion.div
 					className="lg:w-1/2 w-full bg-white text-gray-800 rounded-xl shadow-lg p-10"
 					initial={{ opacity: 0, x: 50 }}
-					whileInView={{ opacity: 1, x: 0 }}
+					animate={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.8 }}
-					viewport={{ once: true }}
+					onAnimationComplete={() => setIsLoaded(true)} // Mark the form as loaded
 				>
-					<h3 className="text-2xl font-bold mb-6 text-center">
-						How Can We Help?
-					</h3>
+					<h3 className="text-2xl font-bold mb-6 text-center">How Can We Help?</h3>
 					<form onSubmit={handleSubmit}>
 						{/* Name Input */}
 						<div className="mb-4">
-							<label
-								htmlFor="user_name"
-								className="block text-sm font-medium mb-2"
-							>
+							<label htmlFor="user_name" className="block text-sm font-medium mb-2">
 								Your Name
 							</label>
 							<input
@@ -203,10 +180,7 @@ function ContactSection() {
 						</div>
 						{/* Phone Number Input */}
 						<div className="mb-4">
-							<label
-								htmlFor="user_phone"
-								className="block text-sm font-medium mb-2"
-							>
+							<label htmlFor="user_phone" className="block text-sm font-medium mb-2">
 								Phone Number
 							</label>
 							<input
@@ -225,10 +199,7 @@ function ContactSection() {
 						</div>
 						{/* Email Input */}
 						<div className="mb-4">
-							<label
-								htmlFor="user_email"
-								className="block text-sm font-medium mb-2"
-							>
+							<label htmlFor="user_email" className="block text-sm font-medium mb-2">
 								Email Address
 							</label>
 							<input
@@ -239,7 +210,6 @@ function ContactSection() {
 								onChange={handleChange}
 								placeholder="you@example.com"
 								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${errors.user_email ? "border-red-500" : "border-gray-300"
-
 									}`}
 							/>
 							{errors.user_email && (
@@ -248,10 +218,7 @@ function ContactSection() {
 						</div>
 						{/* Message Input */}
 						<div className="mb-6">
-							<label
-								htmlFor="message"
-								className="block text-sm font-medium mb-2"
-							>
+							<label htmlFor="message" className="block text-sm font-medium mb-2">
 								Your Message
 							</label>
 							<textarea

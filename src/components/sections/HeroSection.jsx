@@ -1,18 +1,17 @@
 import { motion } from "framer-motion";
-import { CogIcon } from "@heroicons/react/24/outline";
 import { ArrowDownCircleIcon } from "@heroicons/react/20/solid";
 
 function HeroSection() {
 	return (
 		<section
 			id="hero"
-			className="relative w-screen h-screen  bottom-16 bg-cover bg-center"
+			className="relative w-screen h-screen bottom-16 bg-cover bg-center overflow-x-hidden"
 			style={{ backgroundImage: "url(/assets/images/entry3.jpg)" }}
 		>
 			{/* Background Overlay for better text readability */}
 			<div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
-			<div className="container overflow-hidden mx-auto h-full flex flex-col justify-center items-center text-center relative z-10 space-y-8 px-4">
+			<div className="container mx-auto h-full flex flex-col justify-center items-center text-center relative z-10 space-y-8 px-4">
 				{/* Hero Heading */}
 				<motion.h1
 					className="text-4xl md:text-6xl sm:mt-16 mt-32 text-white font-extrabold leading-tight tracking-wide"
@@ -20,20 +19,12 @@ function HeroSection() {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1 }}
 				>
-					<span className="text-red-500">
-						Stuck{" "}
-					</span>
+					<span className="text-red-500">Stuck </span>
 					on the Road
-					<span className="text-red-500">
-						?
-					</span>
+					<span className="text-red-500">?</span>
 					<br />{" "}
-
-					Contact<span className="text-red-500"> Garage MT</span>{" "}
-					Today
-					<span className="text-red-500">
-						!
-					</span>
+					Contact<span className="text-red-500"> Garage MT</span> Today
+					<span className="text-red-500">!</span>
 				</motion.h1>
 
 				{/* Subheading */}
@@ -47,26 +38,19 @@ function HeroSection() {
 					get back on the road quickly and safely.
 				</motion.p>
 
-				{/* Contact Button - With Cog Icon */}
+				{/* Contact Button - With Arrow Icon */}
 				<motion.div
 					initial={{ scale: 0 }}
 					animate={{ scale: 1 }}
 					className="relative flex items-center justify-center bg-red-500 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition duration-300"
 				>
+					<motion.a href="#contact">Contact Us Now</motion.a>
 					<motion.a
 						href="#contact"
-					>
-
-						Contact Us Now
-					</motion.a>
-					<motion.a
-						href="#contact"
-
 						className="relative flex items-center ml-3 -mr-3 transition duration-300"
 						initial={{ scale: 0 }}
 						animate={{ scale: 1 }}
-						whileHover={{ scale: 1.3, }}
-
+						whileHover={{ scale: 1.3 }}
 					>
 						<ArrowDownCircleIcon className="h-6 w-6 mr-2" />
 					</motion.a>

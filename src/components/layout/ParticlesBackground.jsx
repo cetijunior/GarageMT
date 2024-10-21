@@ -12,13 +12,15 @@ const ParticlesBackground = () => {
         const particleColor = "rgba(255, 0, 0, 0.5)"; // Red particles
 
         // Set canvas size
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        const setCanvasSize = () => {
+            canvas.width = Math.min(window.innerWidth, 800) - 20; // Set max width
+            canvas.height = Math.min(window.innerHeight, 600); // Set max height
+        };
+        setCanvasSize(); // Initial size setting
 
         // Resize canvas when window size changes
         const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            setCanvasSize(); // Update size on resize
         };
         window.addEventListener("resize", resizeCanvas);
 

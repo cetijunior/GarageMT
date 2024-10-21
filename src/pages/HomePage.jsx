@@ -18,9 +18,8 @@ function HomePage() {
 			</Helmet>
 
 			{/* Global Particle Effect */}
-			<div className="z-0">
-				<ParticlesBackground />
-			</div>
+			<ParticlesBackground />
+
 
 			<div className="relative w-full z-10">
 				<HeroSection />
