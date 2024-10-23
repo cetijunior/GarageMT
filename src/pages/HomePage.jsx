@@ -2,7 +2,7 @@ import HeroSection from "../components/sections/HeroSection";
 import ServicesSection from "../components/sections/ServicesSection";
 import AboutUsSection from "../components/sections/AboutUsSection";
 import TestimonialsSection from "../components/sections/TestimonialsSection";
-import LocationsSection from "../components/sections/LocationsSection";
+//import LocationsSection from "../components/sections/LocationsSection";
 import ContactSection from "../components/sections/ContactSection";
 import { Helmet } from "react-helmet";
 import ParticlesBackground from "../components/layout/ParticlesBackground";
