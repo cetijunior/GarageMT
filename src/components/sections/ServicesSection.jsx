@@ -91,7 +91,6 @@ function ServicesSection() {
 	return (
 		<section id="services" className="bg-gray-100 py-16 px-6">
 			<div className="container mx-auto text-center">
-
 				<div className="flex flex-row items-center space-x-3 mb-12 justify-center">
 					{/* Services Section */}
 					<motion.h2
@@ -134,7 +133,6 @@ function ServicesSection() {
 						</motion.div>
 					))}
 				</div>
-
 			</div>
 
 			{/* Our Work Section */}
@@ -151,13 +149,10 @@ function ServicesSection() {
 					{/* Toggle Button */}
 
 					<motion.button
-
 						className="px-6 py-3 mt-2 bg-red-500 text-white font-semibold rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all"
 						whileHover="hover"
 					>
-						<Link onClick={() => window.location.href = '/gallery'}>
-							Gallery
-						</Link>
+						<Link to="/gallery">Gallery</Link>
 					</motion.button>
 				</div>
 
@@ -186,7 +181,7 @@ function ServicesSection() {
 					))}
 				</div>
 			</div>
-		</section >
+		</section>
 	);
 }
 

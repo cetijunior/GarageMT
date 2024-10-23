@@ -5,7 +5,7 @@ import TestimonialsSection from "../components/sections/TestimonialsSection";
 import LocationsSection from "../components/sections/LocationsSection";
 import ContactSection from "../components/sections/ContactSection";
 import { Helmet } from "react-helmet";
-import ParticlesBackground from "../components/layout/ParticlesBackground"
+import ParticlesBackground from "../components/layout/ParticlesBackground";
 function HomePage() {
 	return (
 		<div className="relative w-screen ">
@@ -20,13 +20,12 @@ function HomePage() {
 			{/* Global Particle Effect */}
 			<ParticlesBackground />
 
-
 			<div className="relative w-full z-10">
 				<HeroSection />
 			</div>
 			<ServicesSection />
-			<TestimonialsSection />
 			<AboutUsSection />
+			<TestimonialsSection />
 			{/* <LocationsSection /> */}
 			<ContactSection />
 		</div>

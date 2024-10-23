@@ -62,8 +62,9 @@ function Navbar() {
 
 	return (
 		<nav
-			className={`fixed w-full z-20 top-0 left-0 shadow-lg transition-colors duration-300 ${navbarBg ? "bg-red-700" : "bg-transparent"
-				} border-b-4 sm:rounded-b-full rounded-b-2xl border-red-500`}
+			className={`fixed w-full z-20 top-0 left-0 shadow-lg transition-colors duration-300 ${
+				navbarBg ? "bg-red-700" : "bg-transparent"
+			} border-b-4 sm:rounded-b-full rounded-b-2xl border-red-500`}
 		>
 			<div className="container mx-auto flex items-center justify-between px-10 py-3">
 				<Link
@@ -110,13 +111,13 @@ function Navbar() {
 					>
 						Services
 					</Link>
-					<Link
+					{/* <Link
 						to="/#locations"
 						smooth
 						className="text-white hover:text-yellow-500"
 					>
 						Locations
-					</Link>
+					</Link> */}
 					<Link to="/gallery" className="text-white hover:text-yellow-500">
 						Gallery
 					</Link>
