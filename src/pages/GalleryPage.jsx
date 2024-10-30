@@ -35,7 +35,9 @@ function GalleryPage() {
 
 	// Utility function to check if the media is a video
 	const isVideo = (file) => {
-		return file.endsWith(".mp4") || file.endsWith(".webm") || file.endsWith(".ogg");
+		return (
+			file.endsWith(".mp4") || file.endsWith(".webm") || file.endsWith(".ogg")
+		);
 	};
 
 	return (
@@ -50,10 +52,11 @@ function GalleryPage() {
 				{Object.keys(categories).map((category) => (
 					<button
 						key={category}
-						className={`px-6 py-2 rounded-full font-semibold text-white ${selectedCategory === category
-							? "bg-red-500"
-							: "bg-gray-400 hover:bg-gray-500"
-							}`}
+						className={`px-6 py-2 rounded-full font-semibold text-white ${
+							selectedCategory === category
+								? "bg-red-500"
+								: "bg-gray-400 hover:bg-gray-500"
+						}`}
 						onClick={() => setSelectedCategory(category)}
 					>
 						{category}
@@ -78,6 +81,7 @@ function GalleryPage() {
 								muted
 								loop
 								autoPlay
+								playsInline
 							/>
 						) : (
 							<img
