@@ -5,20 +5,21 @@ import {
 	HiOutlineMail,
 	HiOutlinePhone,
 } from "react-icons/hi";
+import { MapIcon, MapPinIcon } from "@heroicons/react/20/solid";
 
 // Business locations as constants
 const businessLocations = {
 	valletta: {
-		name: "Valletta Garage",
+		name: "Garage 1",
 		address: "12 Triq Sant' Ursola, Valletta, Malta",
 		mapSrc:
-			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.121492949705!2d14.511999725601962!3d35.89703242251843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e452b73df5997%3A0x5f6e73f9cbd0877d!2s272%20St%20Paul%20St%2C%20Valletta%2C%20Malta!5e1!3m2!1sde!2sus!4v1729021463779!5m2!1sde!2sus",
+			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.121492949705!2d14.511999725601962!3d35.89703242251843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e452b73df5997%3A0x5f6e73f9cbd0877d!2s272%20St%20Paul%20St%2C%20Valletta%2C%20Malta!5e1!3m2!1sde!2sus!4v1729021463779!5m2!1sen!2sus",
 	},
 	mosta: {
-		name: "Garage",
+		name: "Garage 2",
 		address: "Vjal Il-25 Novembru, Mosta, Malta",
 		mapSrc:
-			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248.69393882937254!2d14.524665593205865!3d35.853644799951276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e5b3e0628b271%3A0x705b09517ef44cfa!2sRenAuto%20Garage!5e1!3m2!1sde!2sus!4v1729684105982!5m2!1sde!2sus",
+			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248.69393882937254!2d14.524665593205865!3d35.853644799951276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e5b3e0628b271%3A0x705b09517ef44cfa!2sRenAuto%20Garage!5e1!3m2!1sde!2sus!4v1729684105982!5m2!1sen!2sus",
 	},
 };
 
@@ -31,6 +32,7 @@ function ContactSection() {
 	});
 	const [errors, setErrors] = useState({});
 	const [isLoaded, setIsLoaded] = useState(false); // Track when the animations are done loading
+	const [selectedLocation, setSelectedLocation] = useState("mosta"); // Track the selected location and set Mosta as default
 
 	const { user_name, user_phone, user_email, message } = formData;
 
@@ -129,33 +131,53 @@ function ContactSection() {
 							<p>+356 770 88 222</p>
 						</div>
 
-						{/* Valletta Garage Location */}
-						<div className="mt-6">
-							<h4 className="text-xl font-semibold text-yellow-300 mb-4">
-								{businessLocations.mosta.name}
-							</h4>
-							<div className="flex items-center space-x-4">
-								<HiOutlineLocationMarker className="text-3xl text-yellow-300" />
-								<p>{businessLocations.mosta.address}</p>
-							</div>
-							{/* Embedded Google Map */}
-							<div className="mt-4 sm:mr-32 md:mr-2 mr-2">
-								<iframe
-									src={businessLocations.mosta.mapSrc}
-									width="100%"
-									height="200"
-									style={{ border: 0 }}
-									allowFullScreen=""
-									loading="lazy"
-								></iframe>
-							</div>
+						{/* Location Selection */}
+						<div className="mt-6 flex space-x-4">
+							<button
+								onClick={() => setSelectedLocation("valletta")}
+								className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === "valletta" ? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black" : ""}`}
+							>
+								Garage 1
+								<MapPinIcon className="w-4 h-4" />
+							</button>
+							<button
+								onClick={() => setSelectedLocation("mosta")}
+								className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === "mosta" ? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black" : ""}`}
+							>
+								Garage 2
+								<MapPinIcon className="w-4 h-4" />
+							</button>
 						</div>
+
+						{/* Display selected location */}
+						{selectedLocation && (
+							<div className="mt-4 sm:mr-32 md:mr-2 mr-2">
+								<h4 className="text-xl font-semibold text-yellow-300 mb-4">
+									{businessLocations[selectedLocation].name}
+								</h4>
+								<div className="flex items-center space-x-4">
+									<HiOutlineLocationMarker className="text-3xl text-yellow-300" />
+									<p>{businessLocations[selectedLocation].address}</p>
+								</div>
+								{/* Embedded Google Map */}
+								<div className="mt-4 sm:mr-32 md:mr-2 mr-2">
+									<iframe
+										src={businessLocations[selectedLocation].mapSrc}
+										width="100%"
+										height="200"
+										style={{ border: 0 }}
+										allowFullScreen=""
+										loading="lazy"
+									></iframe>
+								</div>
+							</div>
+						)}
 					</div>
 				</motion.div>
 
 				{/* Right Side - Contact Form */}
 				<motion.div
-					className="lg:w-1/2 w-full bg-white text-gray-800 rounded-xl shadow-lg p-10"
+					className="lg:w-1/2 sm:mx-0 -mx-1 w-full bg-white text-gray-800 rounded-xl shadow-lg p-10 py-16"
 					initial={{ opacity: 0, x: 50 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.8 }}
