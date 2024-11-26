@@ -17,25 +17,10 @@ function LocationsSection() {
 	];
 
 
-	const businessLocations = {
-		valletta: {
-			name: "Valletta Garage",
-			address: "12 Triq Sant' Ursola, Valletta, Malta",
-			mapSrc:
-				"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.121492949705!2d14.511999725601962!3d35.89703242251843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e452b73df5997%3A0x5f6e73f9cbd0877d!2s272%20St%20Paul%20St%2C%20Valletta%2C%20Malta!5e1!3m2!1sde!2sus!4v1729021463779!5m2!1sde!2sus",
-		},
-		mosta: {
-			name: "Garage",
-			address: "Vjal Il-25 Novembru, Mosta, Malta",
-			mapSrc:
-				"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248.69393882937254!2d14.524665593205865!3d35.853644799951276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e5b3e0628b271%3A0x705b09517ef44cfa!2sRenAuto%20Garage!5e1!3m2!1sde!2sus!4v1729684105982!5m2!1sde!2sus",
-		},
-	};
-
 	return (
 		<section
 			id="locations"
-			className="py-16 bg-gradient-to-br from-gray-50 to-gray-100"
+			className="py-16 bg-transparent"
 		>
 			<div className="container mx-auto px-6 lg:px-12">
 				<motion.div

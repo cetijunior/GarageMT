@@ -89,7 +89,7 @@ function ServicesSection() {
 	};
 
 	return (
-		<section id="services" className="bg-gray-100 py-16 px-6">
+		<section id="services" className="bg-transparent py-16 px-6">
 			<div className="container mx-auto text-center">
 				<div className="flex flex-row items-center space-x-3 mb-12 justify-center">
 					{/* Services Section */}
@@ -104,7 +104,7 @@ function ServicesSection() {
 					{/* Toggle Button */}
 					<motion.button
 						onClick={() => setShowAll(!showAll)}
-						className="px-6 py-3 mt-2 bg-red-500 text-white font-semibold rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all"
+						className="px-6 py-3 mt-2 bg-red-500 text-white font-semibold rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all du"
 						whileHover="hover"
 						variants={buttonVariants}
 					>
@@ -151,8 +151,10 @@ function ServicesSection() {
 					<motion.button
 						className="px-6 py-3 mt-2 bg-red-500 text-white font-semibold rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all"
 						whileHover="hover"
+						variants={buttonVariants}
+
 					>
-						<Link to="/gallery">Gallery</Link>
+						<a href="/gallery" className="scroll-smooth">Gallery</a>
 					</motion.button>
 				</div>
 
