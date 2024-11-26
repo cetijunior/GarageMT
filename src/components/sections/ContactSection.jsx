@@ -160,7 +160,7 @@ function ContactSection() {
 									<p>{businessLocations[selectedLocation].address}</p>
 								</div>
 								{/* Embedded Google Map */}
-								<div className="mt-4 sm:mr-32 md:mr-2 mr-2">
+								<div className="mt-4 sm:mr-32 md:mr-2 mr-2 rounded-lg overflow-hidden">
 									<iframe
 										src={businessLocations[selectedLocation].mapSrc}
 										width="100%"

@@ -88,7 +88,7 @@ function AboutUsSection() {
 	return (
 		<section
 			id="about"
-			className="relative py-20 bg-gradient-to-br from-gray-100 to-gray-50 overflow-hidden"
+			className="relative py-20 bg-transparent overflow-hidden"
 		>
 			{/* Background Particle Animation */}
 			<CanvasAnimation />
