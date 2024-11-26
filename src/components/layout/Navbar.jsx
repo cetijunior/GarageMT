@@ -68,9 +68,8 @@ function Navbar() {
 				} border-b-4 sm:rounded-b-full rounded-b-2xl border-red-900`}
 		>
 			<div className="container mx-auto flex items-center justify-between px-10 py-3">
-				<Link
+				<button
 					onClick={() => handleNavigation("hero")}
-					to="/#hero"
 					smooth
 					scroll={(el) =>
 						el.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -84,7 +83,7 @@ function Navbar() {
 							className="h-16 md:h-12 lg:h-14 object-contain"
 						/>
 					</div>
-				</Link>
+				</button>
 				<div className="md:hidden">
 					<button
 						onClick={() => setNavOpen(!navOpen)}
