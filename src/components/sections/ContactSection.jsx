@@ -16,7 +16,7 @@ const businessLocations = {
 	},
 	mosta: {
 		name: "Garage",
-		address: "Vjal Il-25 Novembru",
+		address: "Vjal Il-25 Novembru, Mosta, Malta",
 		mapSrc:
 			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248.69393882937254!2d14.524665593205865!3d35.853644799951276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e5b3e0628b271%3A0x705b09517ef44cfa!2sRenAuto%20Garage!5e1!3m2!1sde!2sus!4v1729684105982!5m2!1sde!2sus",
 	},
@@ -180,9 +180,8 @@ function ContactSection() {
 								value={user_name}
 								onChange={handleChange}
 								placeholder="John Doe"
-								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${
-									errors.user_name ? "border-red-500" : "border-gray-300"
-								}`}
+								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${errors.user_name ? "border-red-500" : "border-gray-300"
+									}`}
 							/>
 							{errors.user_name && (
 								<p className="text-red-500 text-xs mt-1">{errors.user_name}</p>
@@ -203,9 +202,8 @@ function ContactSection() {
 								value={user_phone}
 								onChange={handleChange}
 								placeholder="(123) 456-7890"
-								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${
-									errors.user_phone ? "border-red-500" : "border-gray-300"
-								}`}
+								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${errors.user_phone ? "border-red-500" : "border-gray-300"
+									}`}
 							/>
 							{errors.user_phone && (
 								<p className="text-red-500 text-xs mt-1">{errors.user_phone}</p>
@@ -226,9 +224,8 @@ function ContactSection() {
 								value={user_email}
 								onChange={handleChange}
 								placeholder="you@example.com"
-								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${
-									errors.user_email ? "border-red-500" : "border-gray-300"
-								}`}
+								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${errors.user_email ? "border-red-500" : "border-gray-300"
+									}`}
 							/>
 							{errors.user_email && (
 								<p className="text-red-500 text-xs mt-1">{errors.user_email}</p>
@@ -248,9 +245,8 @@ function ContactSection() {
 								value={message}
 								onChange={handleChange}
 								placeholder="Describe your issue..."
-								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${
-									errors.message ? "border-red-500" : "border-gray-300"
-								}`}
+								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${errors.message ? "border-red-500" : "border-gray-300"
+									}`}
 								rows="4"
 							></textarea>
 							{errors.message && (

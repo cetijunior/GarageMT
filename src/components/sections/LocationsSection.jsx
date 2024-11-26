@@ -54,7 +54,7 @@ function LocationsSection() {
 							<p className="text-gray-700 mb-4">{location.address}</p>
 
 							{/* Map Embed */}
-							<div className="w-full h-64 overflow-hidden rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105">
+							<div className="w-full h-64 overflow-hidden rounded-lg shadow-md transform transition-transform duration-300">
 								<iframe
 									src={location.mapSrc}
 									width="100%"

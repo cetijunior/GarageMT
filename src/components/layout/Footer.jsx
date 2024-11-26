@@ -1,4 +1,5 @@
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import { HiOutlineLocationMarker, HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 import { HashLink as Link } from "react-router-hash-link";
 
 function Footer() {
@@ -54,15 +55,24 @@ function Footer() {
 				</div>
 
 				{/* Contact Info */}
-				<div className="text-center lg:text-right space-y-2">
-					<h3 className="text-xl font-semibold text-gray-100">Contact Us</h3>
-					<p className="text-sm text-gray-300">123 Main St, Cityville, ST 12345</p>
-					<p className="text-sm text-gray-300">Email: info@garage.mt</p>
-					<p className="text-sm text-gray-300">Phone: +356 770 88 222</p>
+				<div className="text-center lg:text-start space-y-2">
+					<h3 className="text-xl items-center font-semibold text-gray-100">Contact Us</h3>
+					<div className="flex items-center justify-start space-x-2">
+						<HiOutlineLocationMarker size={20} />
+						<p className="text-sm text-gray-300">Vjal Il-25 Novembru, Mosta, Malta</p>
+					</div>
+					<div className="flex items-center justify-start space-x-2">
+						<HiOutlineMail size={20} />
+						<p className="text-sm text-gray-300">Email: info@garage.mt</p>
+					</div>
+					<div className="flex items-center justify-start space-x-2">
+						<HiOutlinePhone size={20} />
+						<p className="text-sm text-gray-300">Phone: +356 770 88 222</p>
+					</div>
 				</div>
 
 				{/* Social Media Links */}
-				<div className="flex justify-center lg:justify-start space-x-4 flex-wrap">
+				<div className="flex justify-center space-y-4 flex-col">
 					<a
 						href="#"
 						className="p-2 bg-blue-600 rounded-full hover:bg-blue-500 transition duration-300 ease-in-out"
@@ -72,30 +82,24 @@ function Footer() {
 					</a>
 					<a
 						href="#"
-						className="p-2 bg-pink-500 rounded-full hover:bg-pink-400 transition duration-300 ease-in-out"
+						className="p-2 bg-pink-700 rounded-full hover:bg-pink-600 transition duration-300 ease-in-out"
 						aria-label="Instagram"
 					>
 						<FaInstagram size={20} />
 					</a>
-					<a
-						href="#"
-						className="p-2 bg-blue-400 rounded-full hover:bg-blue-300 transition duration-300 ease-in-out"
-						aria-label="Twitter"
-					>
-						<FaTwitter size={20} />
-					</a>
+
 				</div>
 			</div>
 
 			{/* Footer Divider and Additional Info */}
-			<div className="border-t border-gray-800 mt-10 pt-6">
+			<div className="flex flex-row items-center justify-evenly border-t border-gray-800 mt-10 pt-6">
 				<p className="text-center text-sm text-white">
-					&copy; {new Date().getFullYear()} Brother&apos;s Garage. All rights reserved.
-					| Designed by Brother&apos;s Garage - Built with Passion
+					<p>&copy; {new Date().getFullYear()} GarageMT. All rights reserved.</p>
 				</p>
-				<p className="text-center text-xs text-gray-300 mt-2">
-					Follow us on social media for the latest updates and exclusive offers!
-				</p>
+				{/* <a href="https://ca-services.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-center text-xs text-gray-300 ">
+					Designed by {" "}
+					<span className="underline">CA-WebsiteServices </span> - Built with Passion
+				</a> */}
 			</div>
 		</footer>
 	);

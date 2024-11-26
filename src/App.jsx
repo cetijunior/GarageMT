@@ -13,6 +13,10 @@ function App() {
 				<main className="flex-grow pt-16">
 					<Routes>
 						<Route path="/" element={<HomePage />} />
+						<Route path="/about" element={<HomePage section="about" />} />
+						<Route path="/services" element={<HomePage section="services" />} />
+						<Route path="/locations" element={<HomePage section="locations" />} />
+						<Route path="/contact" element={<HomePage section="contact" />} />
 						<Route path="/gallery" element={<GalleryPage />} />
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>

@@ -69,7 +69,7 @@ function HeroSection() {
 				</motion.p>
 
 				{/* Red Section visible only on large screens */}
-				<motion.div className="hidden lg:flex absolute bottom-0 w-screen bg-red-700 h-28 items-center justify-evenly">
+				<motion.div className="hidden lg:flex absolute bottom-0 w-screen bg-red-700 h-24 items-center justify-evenly">
 					<div className="flex flex-row items-center space-x-4">
 						<img src="/assets/images/hands.png" alt="Best Prices Icon" />
 						<div className="flex flex-col space-y-1 items-start">

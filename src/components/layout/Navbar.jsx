@@ -1,39 +1,34 @@
 /* eslint-disable no-undef */
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom"; // Import useLocation
+import { useLocation, useNavigate } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX, FiHome, FiInfo, FiTool, FiMapPin, FiImage, FiMail } from "react-icons/fi";
 import { motion } from "framer-motion";
 
 function Navbar() {
 	const [navOpen, setNavOpen] = useState(false);
 	const [navbarBg, setNavbarBg] = useState(false);
-	const location = useLocation(); // Get the current route
+	const location = useLocation();
+	const navigate = useNavigate();
 
-	// Function to handle scroll
 	useEffect(() => {
 		const handleScroll = () => {
 			const heroHeight = document.getElementById("hero")?.offsetHeight || 0;
 			if (window.scrollY > heroHeight || location.pathname === "/gallery") {
-				setNavbarBg(true); // Apply background if scrolled past hero or on /gallery page
+				setNavbarBg(true);
 			} else {
-				setNavbarBg(false); // Remove background if not scrolled and not on /gallery
+				setNavbarBg(false);
 			}
 		};
 
-		// Add scroll event listener
 		window.addEventListener("scroll", handleScroll);
-
-		// Initial check to apply background if on /gallery without scroll
 		handleScroll();
 
-		// Clean up event listener on component unmount
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
 		};
 	}, [location.pathname]);
 
-	// Variants for the mobile menu
 	const menuVariants = {
 		open: {
 			opacity: 1,
@@ -54,21 +49,27 @@ function Navbar() {
 	const handleNavigation = (sectionId) => {
 		if (window.location.pathname !== "/") {
 			navigate("/");
-			setTimeout(() => scrollToSection(sectionId), 300); // Delay scroll to ensure page has loaded
+			setTimeout(() => scrollToSection(sectionId), 300);
 		} else {
 			scrollToSection(sectionId);
 		}
 	};
 
+	const scrollToSection = (sectionId) => {
+		const section = document.getElementById(sectionId);
+		if (section) {
+			section.scrollIntoView({ behavior: "smooth" });
+		}
+	};
+
 	return (
 		<nav
-			className={`fixed w-full z-20 top-0 left-0 shadow-lg transition-colors duration-300 ${
-				navbarBg ? "bg-red-700" : "bg-transparent"
-			} border-b-4 sm:rounded-b-full rounded-b-2xl border-red-500`}
+			className={`fixed w-full z-20 top-0 sm:border-t-0 border-t-4 left-0 shadow-lg transition-colors duration-300 ${navbarBg ? "bg-red-700" : "bg-transparent"
+				} border-b-4 sm:rounded-b-full rounded-b-2xl border-red-900`}
 		>
 			<div className="container mx-auto flex items-center justify-between px-10 py-3">
 				<Link
-					onClick={() => handleNavigation("top")}
+					onClick={() => handleNavigation("hero")}
 					to="/#hero"
 					smooth
 					scroll={(el) =>
@@ -76,12 +77,11 @@ function Navbar() {
 					}
 					className="flex items-center"
 				>
-					{/* Logo with gradient background and rounded shape */}
-					<div className="h-12 w-36 md:h-12 lg:h-14 lg:w-44 lg:ml-10 bg-white border-2 border-red-600 rounded-lg flex items-center justify-center">
+					<div className="h-12 w-36 md:h-12 lg:h-14 lg:w-44 lg:ml-10 bg-white  border-2 border-red-900 rounded-lg flex items-center justify-center">
 						<img
-							src="/assets/icons/logo.png"
-							alt="Brother's Garage Logo"
-							className="h-10 md:h-12 lg:h-14 object-contain" // Ensure proper scaling for responsiveness
+							src="/assets/icons/logo3.png"
+							alt="Garage MT Logo"
+							className="h-16 md:h-12 lg:h-14 object-contain"
 						/>
 					</div>
 				</Link>
@@ -93,101 +93,107 @@ function Navbar() {
 						{navOpen ? <FiX size={24} /> : <FiMenu size={24} />}
 					</button>
 				</div>
+
 				<div className="hidden md:flex space-x-6 items-center">
-					<Link to="/#hero" smooth className="text-white hover:text-yellow-500">
-						Home
-					</Link>
-					<Link
-						to="/#about"
-						smooth
-						className="text-white hover:text-yellow-500"
+					<button
+						onClick={() => handleNavigation("hero")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						About Us
-					</Link>
-					<Link
-						to="/#services"
-						smooth
-						className="text-white hover:text-yellow-500"
+						<FiHome size={24} />
+						<span className="ml-2">Home</span>
+					</button>
+					<button
+						onClick={() => navigate("/about")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						Services
-					</Link>
-					{/* <Link
-						to="/#locations"
-						smooth
-						className="text-white hover:text-yellow-500"
+						<FiInfo size={24} />
+						<span className="ml-2">About Us</span>
+					</button>
+					<button
+						onClick={() => navigate("/services")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						Locations
-					</Link> */}
-					<Link to="/gallery" className="text-white hover:text-yellow-500">
-						Gallery
-					</Link>
-					<Link
-						to="/#contact"
-						smooth
-						className="text-white hover:text-yellow-500"
+						<FiTool size={24} />
+						<span className="ml-2">Services</span>
+					</button>
+					<button
+						onClick={() => navigate("/locations")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						Contact
-					</Link>
+						<FiMapPin size={24} />
+						<span className="ml-2">Locations</span>
+					</button>
+					<button
+						onClick={() => {
+							navigate("/gallery");
+							window.scrollTo({ top: 0, behavior: 'smooth' });
+						}}
+						className="text-white flex flex-row items-center hover:text-gray-800"
+					>
+						<FiImage size={24} />
+						<span className="ml-2">Gallery</span>
+					</button>
+					<button
+						onClick={() => navigate("/contact")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
+					>
+						<FiMail size={24} />
+						<span className="ml-2">Contact</span>
+					</button>
 				</div>
 			</div>
-			{/* Mobile Menu */}
 			<motion.div
-				className="md:hidden rounded-2xl backdrop-blur-md bg-red-900 border-t-4 border-red-500 bg-opacity-20 text-white overflow-hidden"
+				className="md:hidden rounded-2xl backdrop-blur-md bg-black border-t-4 border-red-900 bg-opacity-20 text-white overflow-hidden"
 				animate={navOpen ? "open" : "closed"}
 				variants={menuVariants}
 				initial={false}
 			>
 				<div className="flex flex-col space-y-4 px-4 py-4">
-					<Link
-						to="/"
-						smooth
-						scroll={(el) =>
-							el.scrollIntoView({ behavior: "smooth", block: "start" })
-						}
-						className="hover:text-yellow-500"
-						onClick={() => setNavOpen(false)}
+					<button
+						onClick={() => handleNavigation("hero")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						Home
-					</Link>
-					<Link
-						to="/#about"
-						smooth
-						className="hover:text-yellow-500"
-						onClick={() => setNavOpen(false)}
+						<FiHome size={24} />
+						<span className="ml-2">Home</span>
+					</button>
+					<button
+						onClick={() => navigate("/about")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						About Us
-					</Link>
-					<Link
-						to="/#services"
-						smooth
-						className="hover:text-yellow-500"
-						onClick={() => setNavOpen(false)}
+						<FiInfo size={24} />
+						<span className="ml-2">About Us</span>
+					</button>
+					<button
+						onClick={() => navigate("/services")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						Services
-					</Link>
-					<Link
-						to="/#locations"
-						smooth
-						className="hover:text-yellow-500"
-						onClick={() => setNavOpen(false)}
+						<FiTool size={24} />
+						<span className="ml-2">Services</span>
+					</button>
+					<button
+						onClick={() => navigate("/locations")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						Locations
-					</Link>
-					<Link
-						to="/gallery"
-						className="hover:text-yellow-500"
-						onClick={() => setNavOpen(false)}
+						<FiMapPin size={24} />
+						<span className="ml-2">Locations</span>
+					</button>
+					<button
+						onClick={() => {
+							navigate("/gallery");
+							window.scrollTo({ top: 0, behavior: 'smooth' });
+						}}
+						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						Gallery
-					</Link>
-					<Link
-						to="/#contact"
-						smooth
-						className="hover:text-yellow-500"
-						onClick={() => setNavOpen(false)}
+						<FiImage size={24} />
+						<span className="ml-2">Gallery</span>
+					</button>
+					<button
+						onClick={() => navigate("/contact")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						Contact
-					</Link>
+						<FiMail size={24} />
+						<span className="ml-2">Contact</span>
+					</button>
 				</div>
 			</motion.div>
 		</nav>

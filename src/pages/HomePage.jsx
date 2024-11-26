@@ -1,23 +1,33 @@
+import { useEffect } from "react";
 import HeroSection from "../components/sections/HeroSection";
 import ServicesSection from "../components/sections/ServicesSection";
 import AboutUsSection from "../components/sections/AboutUsSection";
 import TestimonialsSection from "../components/sections/TestimonialsSection";
-//import LocationsSection from "../components/sections/LocationsSection";
 import ContactSection from "../components/sections/ContactSection";
+import LocationsSection from "../components/sections/LocationsSection";
 import { Helmet } from "react-helmet";
 import ParticlesBackground from "../components/layout/ParticlesBackground";
-function HomePage() {
+
+function HomePage({ section }) {
+	useEffect(() => {
+		if (section) {
+			const sectionElement = document.getElementById(section);
+			if (sectionElement) {
+				sectionElement.scrollIntoView({ behavior: "smooth" });
+			}
+		}
+	}, [section]);
+
 	return (
-		<div className="relative w-screen ">
+		<div className="relative w-screen">
 			<Helmet>
-				<title>Garage MT| Quality Automotive Services</title>
+				<title>Garage MT | Quality Automotive Services</title>
 				<meta
 					name="description"
 					content="Top-notch automotive services at Brother's Garage. Serving you at two convenient locations."
 				/>
 			</Helmet>
 
-			{/* Global Particle Effect */}
 			<ParticlesBackground />
 
 			<div className="relative w-full z-10">
@@ -25,8 +35,7 @@ function HomePage() {
 			</div>
 			<ServicesSection />
 			<AboutUsSection />
-			<TestimonialsSection />
-			{/* <LocationsSection /> */}
+			<LocationsSection />
 			<ContactSection />
 		</div>
 	);
