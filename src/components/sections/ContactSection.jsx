@@ -9,17 +9,17 @@ import { MapIcon, MapPinIcon } from "@heroicons/react/20/solid";
 
 // Business locations as constants
 const businessLocations = {
-	valletta: {
+	garage_1: {
 		name: "Garage 1",
-		address: "12 Triq Sant' Ursola, Valletta, Malta",
+		address: "1, Birżebbuġa, Malta",
 		mapSrc:
-			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.121492949705!2d14.511999725601962!3d35.89703242251843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e452b73df5997%3A0x5f6e73f9cbd0877d!2s272%20St%20Paul%20St%2C%20Valletta%2C%20Malta!5e1!3m2!1sde!2sus!4v1729021463779!5m2!1sen!2sus",
+			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d430.71315598264846!2d14.518804705763193!3d35.8157334542468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e5b522c15549b%3A0x82174cca8e4c099b!2sGARAGE%20MT!5e1!3m2!1sde!2sde!4v1732807341130!5m2!1sde!2sde",
 	},
-	mosta: {
+	garage_2: {
 		name: "Garage 2",
-		address: "Vjal Il-25 Novembru, Mosta, Malta",
+		address: "Vjal Il-25 Novembru, Iż-Żejtun, Malta",
 		mapSrc:
-			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248.69393882937254!2d14.524665593205865!3d35.853644799951276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e5b3e0628b271%3A0x705b09517ef44cfa!2sRenAuto%20Garage!5e1!3m2!1sde!2sus!4v1729684105982!5m2!1sen!2sus",
+			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248.69393882937254!2d14.524665593205865!3dVjal Il-25 Novembru, Iż-Żejtun, Malta35.853644799951276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e5b3e0628b271%3A0x705b09517ef44cfa!2sRenAuto%20Garage!5e1!3m2!1sde!2sus!4v1729684105982!5m2!1sen!2sus",
 	},
 };
 
@@ -32,7 +32,7 @@ function ContactSection() {
 	});
 	const [errors, setErrors] = useState({});
 	const [isLoaded, setIsLoaded] = useState(false); // Track when the animations are done loading
-	const [selectedLocation, setSelectedLocation] = useState("mosta"); // Track the selected location and set Mosta as default
+	const [selectedLocation, setSelectedLocation] = useState("garage_1"); // Track the selected location and set garage_2 as default
 
 	const { user_name, user_phone, user_email, message } = formData;
 
@@ -134,15 +134,15 @@ function ContactSection() {
 						{/* Location Selection */}
 						<div className="mt-6 flex space-x-4">
 							<button
-								onClick={() => setSelectedLocation("valletta")}
-								className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === "valletta" ? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black" : ""}`}
+								onClick={() => setSelectedLocation("garage_1")}
+								className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === "garage_1" ? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black" : ""}`}
 							>
 								Garage 1
 								<MapPinIcon className="w-4 h-4" />
 							</button>
 							<button
-								onClick={() => setSelectedLocation("mosta")}
-								className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === "mosta" ? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black" : ""}`}
+								onClick={() => setSelectedLocation("garage_2")}
+								className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === "garage_2" ? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black" : ""}`}
 							>
 								Garage 2
 								<MapPinIcon className="w-4 h-4" />
@@ -201,7 +201,7 @@ function ContactSection() {
 								id="user_name"
 								value={user_name}
 								onChange={handleChange}
-								placeholder="John Doe"
+								placeholder="eg. John Doe"
 								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${errors.user_name ? "border-red-500" : "border-gray-300"
 									}`}
 							/>
@@ -223,7 +223,7 @@ function ContactSection() {
 								id="user_phone"
 								value={user_phone}
 								onChange={handleChange}
-								placeholder="(123) 456-7890"
+								placeholder="eg. +356 99 123456"
 								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${errors.user_phone ? "border-red-500" : "border-gray-300"
 									}`}
 							/>
@@ -245,7 +245,7 @@ function ContactSection() {
 								id="user_email"
 								value={user_email}
 								onChange={handleChange}
-								placeholder="you@example.com"
+								placeholder="eg. you@example.com"
 								className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm ${errors.user_email ? "border-red-500" : "border-gray-300"
 									}`}
 							/>

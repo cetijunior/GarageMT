@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
+import { useEffect } from 'react';
 
 function NotFoundPage() {
+	useEffect(() => {
+		window.scrollTo(0, 20);
+	}, []);
+
 	return (
-		<div className="flex flex-col mt-4 items-center justify-center h-screen text-center bg-white">
+		<div className="flex flex-col mt-4 items-center justify-center h-screen text-center bg-transparent">
 			<h1 className="text-6xl font-bold mb-4">404</h1>
 			<p className="text-2xl mb-6">Oops! Page not found.</p>
 			<Link

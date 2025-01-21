@@ -46,6 +46,12 @@ function Footer() {
 							Contact
 						</Link>
 						<Link
+							to="/booking"
+							className="text-white hover:text-yellow-500"
+						>
+							Booking (Demo)
+						</Link>
+						<Link
 							to="/gallery"
 							className="hover:text-yellow-400 transition duration-200"
 						>
@@ -57,15 +63,15 @@ function Footer() {
 				{/* Contact Info */}
 				<div className="text-center lg:text-start space-y-2">
 					<h3 className="text-xl items-center font-semibold text-gray-100">Contact Us</h3>
-					<div className="flex items-center justify-start space-x-2">
+					{/* <div className="flex items-center sm:justify-start justify-center space-x-2">
 						<HiOutlineLocationMarker size={20} />
 						<p className="text-sm text-gray-300">Vjal Il-25 Novembru, Mosta, Malta</p>
-					</div>
-					<div className="flex items-center justify-start space-x-2">
+					</div> */}
+					<div className="flex items-center sm:justify-start justify-center space-x-2">
 						<HiOutlineMail size={20} />
 						<p className="text-sm text-gray-300">Email: info@garage.mt</p>
 					</div>
-					<div className="flex items-center justify-start space-x-2">
+					<div className="flex items-center sm:justify-start justify-center space-x-2">
 						<HiOutlinePhone size={20} />
 						<p className="text-sm text-gray-300">Phone: +356 770 88 222</p>
 					</div>
@@ -93,9 +99,9 @@ function Footer() {
 
 			{/* Footer Divider and Additional Info */}
 			<div className="flex flex-row items-center justify-evenly border-t border-gray-800 mt-10 pt-6">
-				<p className="text-center text-sm text-white">
+				<a className="text-center text-sm text-white">
 					<p>&copy; {new Date().getFullYear()} GarageMT. All rights reserved.</p>
-				</p>
+				</a>
 				{/* <a href="https://ca-services.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-center text-xs text-gray-300 ">
 					Designed by {" "}
 					<span className="underline">CA-WebsiteServices </span> - Built with Passion

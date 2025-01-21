@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
-import { FiMenu, FiX, FiHome, FiInfo, FiTool, FiMapPin, FiImage, FiMail } from "react-icons/fi";
+import { FiMenu, FiX, FiHome, FiInfo, FiTool, FiMapPin, FiImage, FiMail, FiCalendar } from "react-icons/fi";
 import { motion } from "framer-motion";
 
 function Navbar() {
@@ -14,7 +14,7 @@ function Navbar() {
 	useEffect(() => {
 		const handleScroll = () => {
 			const heroHeight = document.getElementById("hero")?.offsetHeight || 0;
-			if (window.scrollY > heroHeight || location.pathname === "/gallery") {
+			if (window.scrollY > heroHeight || location.pathname === "/gallery" || location.pathname === "/booking" || location.pathname === "/*") {
 				setNavbarBg(true);
 			} else {
 				setNavbarBg(false);
@@ -70,10 +70,7 @@ function Navbar() {
 			<div className="container mx-auto flex items-center justify-between px-10 py-3">
 				<button
 					onClick={() => handleNavigation("hero")}
-					smooth
-					scroll={(el) =>
-						el.scrollIntoView({ behavior: "smooth", block: "start" })
-					}
+
 					className="flex items-center"
 				>
 					<div className="h-12 w-36 md:h-12 lg:h-14 lg:w-44 lg:ml-10 bg-white  border-2 border-red-900 rounded-lg flex items-center justify-center">
@@ -122,6 +119,21 @@ function Navbar() {
 						<FiMapPin size={24} />
 						<span className="ml-2">Locations</span>
 					</button>
+
+					<button
+						onClick={() => navigate("/contact")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
+					>
+						<FiMail size={24} />
+						<span className="ml-2">Contact</span>
+					</button>
+					<button
+						onClick={() => navigate("/booking")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
+					>
+						<FiCalendar size={24} />
+						<span className="ml-2">Booking (Beta)</span>
+					</button>
 					<button
 						onClick={() => {
 							navigate("/gallery");
@@ -131,13 +143,6 @@ function Navbar() {
 					>
 						<FiImage size={24} />
 						<span className="ml-2">Gallery</span>
-					</button>
-					<button
-						onClick={() => navigate("/contact")}
-						className="text-white flex flex-row items-center hover:text-gray-800"
-					>
-						<FiMail size={24} />
-						<span className="ml-2">Contact</span>
 					</button>
 				</div>
 			</div>
@@ -192,6 +197,12 @@ function Navbar() {
 					>
 						<FiMail size={24} />
 						<span className="ml-2">Contact</span>
+					</button>
+					<button
+						onClick={() => navigate("/booking")}
+						className="text-white flex flex-row items-center hover:text-gray-800"
+					>
+						<span className="ml-2">Book a Consultation</span>
 					</button>
 				</div>
 			</motion.div>

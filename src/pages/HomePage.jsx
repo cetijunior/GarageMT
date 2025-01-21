@@ -7,6 +7,7 @@ import ContactSection from "../components/sections/ContactSection";
 import LocationsSection from "../components/sections/LocationsSection";
 import { Helmet } from "react-helmet";
 import ParticlesBackground from "../components/layout/ParticlesBackground";
+import BookingSection from "../components/sections/BookingSection";
 
 function HomePage({ section }) {
 	useEffect(() => {
@@ -37,6 +38,7 @@ function HomePage({ section }) {
 			<AboutUsSection />
 			<LocationsSection />
 			<ContactSection />
+			<BookingSection />
 		</div>
 	);
 }
