@@ -11,7 +11,7 @@ function HeroSection() {
 			className="relative flex flex-col w-full mt-16 min-h-screen bg-gradient-to-br from-red-800 to-red-600"
 		>
 			{/* Top Section */}
-			<div className="flex flex-col mt-16 lg:flex-row w-full h-1/2 lg:h-screen/2 items-center justify-between p-6 lg:py-32">
+			<div className="flex flex-col mt-16 lg:mt-0 lg:flex-row w-full h-1/2 lg:h-screen/2 items-center justify-between p-6 lg:py-32">
 				{/* Top Left: Text Section */}
 				<motion.div
 					className="flex-1 text-center lg:text-left space-y-6 max-w-2xl"
