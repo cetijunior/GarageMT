@@ -1,111 +1,117 @@
 import { motion } from "framer-motion";
-import { ArrowDownCircleIcon } from "@heroicons/react/20/solid";
+import { useNavigate } from "react-router-dom";
+import { GARAGE_LOCATIONS } from "../../content/locations"; // Ensure this is imported correctly
 
 function HeroSection() {
+	const navigate = useNavigate();
+
 	return (
 		<section
 			id="hero"
-			className="relative w-screen h-screen bottom-16 bg-cover bg-center overflow-x-hidden"
-			style={{ backgroundImage: "url(/assets/images/entry3.jpg)" }}
+			className="relative flex flex-col w-full mt-16 min-h-screen bg-gradient-to-br from-red-800 to-red-600"
 		>
-			{/* Background Overlay for better text readability */}
-			<div className="absolute inset-0 bg-black bg-opacity-60"></div>
-
-			<div className="container mx-auto h-full flex flex-col justify-center items-center text-center relative z-10 space-y-8 px-4">
-				{/* Hero Heading */}
-				<motion.h1
-					className="text-4xl md:text-6xl sm:mt-16 mt-32 text-white font-extrabold leading-tight tracking-wide"
-					initial={{ opacity: 0, y: -50 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 1 }}
-				>
-					<span className="text-red-500">Stuck </span>
-					on the Road
-					<span className="text-red-500">?</span>
-					<br />{" "}
-					Contact<span className="text-red-500"> Garage MT</span> Today
-					<span className="text-red-500">!</span>
-				</motion.h1>
-
-				{/* Subheading */}
-				<motion.p
-					className="text-lg md:text-xl text-gray-200 mb-8 px-4"
-					initial={{ opacity: 0, y: 50 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 1, delay: 0.5 }}
-				>
-					For all your vehicle issues, we are just a call away. Let us help you
-					get back on the road quickly and safely.
-				</motion.p>
-
-				{/* Contact Button - With Arrow Icon */}
+			{/* Top Section */}
+			<div className="flex flex-col lg:flex-row w-full h-1/2 lg:h-screen/2 items-center justify-between p-6 lg:py-32">
+				{/* Top Left: Text Section */}
 				<motion.div
-					initial={{ scale: 0 }}
-					animate={{ scale: 1 }}
-					className="relative flex items-center justify-center bg-red-500 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition duration-300"
+					className="flex-1 text-center lg:text-left space-y-6 max-w-2xl"
+					initial={{ opacity: 0, x: -50 }}
+					animate={{ opacity: 1, x: 0 }}
+					transition={{ duration: 0.8 }}
 				>
-					<motion.a href="#contact">Contact Us Now</motion.a>
-					<motion.a
-						href="#contact"
-						className="relative flex items-center ml-3 -mr-3 transition duration-300"
-						initial={{ scale: 0 }}
-						animate={{ scale: 1 }}
-						whileHover={{ scale: 1.3 }}
-					>
-						<ArrowDownCircleIcon className="h-6 w-6 mr-2" />
-					</motion.a>
+					<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+						<span className="text-shadow">Vehicle Rescue Experts</span> <br />
+						at Garage MT
+					</h1>
+					<p className="text-base md:text-lg text-white/90">
+						Swift, professional repairs that get you back on the road. Your trusted automotive partner in Malta.
+					</p>
+					<div className="flex flex-wrap justify-center lg:justify-start gap-4">
+						<button
+							onClick={() => navigate('/contact')}
+							className="px-6 md:px-8 py-2 md:py-3 bg-white text-red-900 rounded-full font-semibold hover:bg-gray-100 shadow-md transition text-sm md:text-base"
+						>
+							Emergency Help
+						</button>
+						<button
+							onClick={() => navigate('/services')}
+							className="px-6 md:px-8 py-2 md:py-3 border-2 border-white text-white rounded-full hover:bg-white/20 shadow-md transition text-sm md:text-base"
+						>
+							Our Services
+						</button>
+					</div>
 				</motion.div>
 
-				{/* Services Button */}
-				<motion.p
-					className="text-lg md:text-xl cursor-pointer text-gray-200 font-semibold"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					transition={{ duration: 1, delay: 1.2 }}
+				{/* Top Right: Garage Images */}
+				<motion.div
+					className="flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-8 mt-8 lg:mt-0 w-full lg:w-1/2"
+					initial={{ opacity: 0, x: 50 }}
+					animate={{ opacity: 1, x: 0 }}
+					transition={{ duration: 0.8, delay: 0.3 }}
 				>
-					<a href="#services">
-						Explore <span className="text-red-500">Our Services</span>
-					</a>
-				</motion.p>
-
-				{/* Red Section visible only on large screens */}
-				<motion.div className="hidden lg:flex absolute bottom-0 w-screen bg-red-700 h-24 items-center justify-evenly">
-					<div className="flex flex-row items-center space-x-4">
-						<img src="/assets/images/hands.png" alt="Best Prices Icon" />
-						<div className="flex flex-col space-y-1 items-start">
-							<h1 className="text-xl text-white font-bold">Best Prices</h1>
-							<p className="text-gray-300 w-[250px]">
-								All repairs and services are available at competitive rates.
-							</p>
-						</div>
-					</div>
-
-					<div className="flex flex-row items-center space-x-4">
-						<img src="/assets/images/thumbs-up.png" alt="100% Guarantee Icon" />
-						<div className="flex flex-col space-y-1 items-start">
-							<h1 className="text-xl text-white font-bold">100% Guarantee</h1>
-							<p className="text-gray-300 w-[250px]">
-								Our repairs come with a full guarantee.
-							</p>
-						</div>
-					</div>
-
-					<div className="flex flex-row items-center space-x-4">
-						<img
-							src="/assets/images/certificate.png"
-							alt="Certified Mechanics Icon"
-						/>
-						<div className="flex flex-col space-y-1 items-start">
-							<h1 className="text-xl text-white font-bold">
-								Certified Mechanics
-							</h1>
-							<p className="text-gray-300 w-[250px]">
-								Our mechanics are certified and regularly trained.
-							</p>
-						</div>
-					</div>
+					{/* Garage 1 Card */}
+					{Object.keys(GARAGE_LOCATIONS).map((locationKey, index) => {
+						const location = GARAGE_LOCATIONS[locationKey];
+						return (
+							<div
+								key={index}
+								className="w-full lg:w-1/2 bg-white rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300"
+							>
+								<div
+									className="h-48 md:h-64 bg-cover bg-center rounded-t-2xl"
+									style={{ backgroundImage: `url(${location.image})` }}
+								/>
+								<div className="p-4 text-center">
+									<h3 className="text-xl font-bold text-red-900">{location.name}</h3>
+									<p className="text-sm text-gray-600">{location.address}</p>
+									<a
+										href={location.link}
+										className="mt-2 text-red-600 hover:font-semibold transition"
+									>
+										View Location
+									</a>
+								</div>
+							</div>
+						);
+					})}
 				</motion.div>
 			</div>
+
+			{/* Bottom Section */}
+			<motion.div className="absolute bottom-0 hidden lg:flex flex-col md:flex-row justify-evenly items-center lg:items-start w-full h-auto lg:h-1/4 bg-gradient-to-l from-red-700 to-red-800 p-6 md:p-8">
+				{[
+					{
+						icon: "/assets/images/hands.png",
+						title: "Best Prices",
+						description: "Competitive rates for all repairs and services.",
+					},
+					{
+						icon: "/assets/images/thumbs-up.png",
+						title: "100% Guarantee",
+						description: "Full guarantee on all our repair work.",
+					},
+					{
+						icon: "/assets/images/certificate.png",
+						title: "Certified Mechanics",
+						description: "Highly trained and certified automotive experts.",
+					},
+				].map((item, index) => (
+					<div
+						key={index}
+						className="flex flex-col items-center text-center w-full lg:w-auto px-4"
+					>
+						<img
+							src={item.icon}
+							alt={`${item.title} Icon`}
+							className="w-12 h-12 lg:w-16 lg:h-16 mb-2"
+						/>
+						<div>
+							<h3 className="text-base lg:text-lg font-bold text-white">{item.title}</h3>
+							<p className="text-xs lg:text-sm text-white/70">{item.description}</p>
+						</div>
+					</div>
+				))}
+			</motion.div>
 		</section>
 	);
 }

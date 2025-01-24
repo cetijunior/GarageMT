@@ -3,6 +3,8 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import HomePage from "./pages/HomePage";
 import GalleryPage from "./pages/GalleryPage";
+import GarageLocation1 from "./pages/GarageLocation1";
+import GarageLocation2 from "./pages/GarageLocation2";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
@@ -10,7 +12,7 @@ function App() {
 		<Router>
 			<div className="flex flex-col min-h-screen">
 				<Navbar />
-				<main className="flex-grow pt-16">
+				<main className="">
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/about" element={<HomePage section="about" />} />
@@ -18,12 +20,14 @@ function App() {
 						<Route path="/locations" element={<HomePage section="locations" />} />
 						<Route path="/contact" element={<HomePage section="contact" />} />
 						<Route path="/gallery" element={<GalleryPage />} />
+						<Route path="/garage-location-1" element={<GarageLocation1 />} />
+						<Route path="/garage-location-2" element={<GarageLocation2 />} />
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
 				</main>
-				<Footer />
 			</div>
-		</Router>
+			<Footer />
+		</Router >
 	);
 }
 

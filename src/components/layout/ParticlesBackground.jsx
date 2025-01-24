@@ -13,9 +13,10 @@ const ParticlesBackground = () => {
 
         // Set canvas size
         const setCanvasSize = () => {
-            canvas.width = Math.min(window.innerWidth, 800) - 20; // Set max width
-            canvas.height = Math.min(window.innerHeight, 600); // Set max height
+            canvas.width = window.innerWidth - 20; // Automatically responsive
+            canvas.height = window.innerHeight;
         };
+
         setCanvasSize(); // Initial size setting
 
         // Resize canvas when window size changes

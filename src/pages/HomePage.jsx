@@ -19,7 +19,7 @@ function HomePage({ section }) {
 	}, [section]);
 
 	return (
-		<div className="relative w-screen">
+		<div className="relative w-screen -mt-16">
 			<Helmet>
 				<title>Garage MT | Quality Automotive Services</title>
 				<meta

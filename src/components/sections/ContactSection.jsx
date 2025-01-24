@@ -5,23 +5,10 @@ import {
 	HiOutlineMail,
 	HiOutlinePhone,
 } from "react-icons/hi";
-import { MapIcon, MapPinIcon } from "@heroicons/react/20/solid";
+import { MapPinIcon } from "@heroicons/react/20/solid";
 
-// Business locations as constants
-const businessLocations = {
-	valletta: {
-		name: "Garage 1",
-		address: "12 Triq Sant' Ursola, Valletta, Malta",
-		mapSrc:
-			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.121492949705!2d14.511999725601962!3d35.89703242251843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e452b73df5997%3A0x5f6e73f9cbd0877d!2s272%20St%20Paul%20St%2C%20Valletta%2C%20Malta!5e1!3m2!1sde!2sus!4v1729021463779!5m2!1sen!2sus",
-	},
-	mosta: {
-		name: "Garage 2",
-		address: "Vjal Il-25 Novembru, Mosta, Malta",
-		mapSrc:
-			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248.69393882937254!2d14.524665593205865!3d35.853644799951276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e5b3e0628b271%3A0x705b09517ef44cfa!2sRenAuto%20Garage!5e1!3m2!1sde!2sus!4v1729684105982!5m2!1sen!2sus",
-	},
-};
+// Import the reusable garage locations
+import { GARAGE_LOCATIONS } from "../../content/locations";
 
 function ContactSection() {
 	const [formData, setFormData] = useState({
@@ -32,7 +19,7 @@ function ContactSection() {
 	});
 	const [errors, setErrors] = useState({});
 	const [isLoaded, setIsLoaded] = useState(false); // Track when the animations are done loading
-	const [selectedLocation, setSelectedLocation] = useState("mosta"); // Track the selected location and set Mosta as default
+	const [selectedLocation, setSelectedLocation] = useState("LOCATION_2"); // Match the keys in GARAGE_LOCATIONS
 
 	const { user_name, user_phone, user_email, message } = formData;
 
@@ -75,10 +62,24 @@ function ContactSection() {
 		e.preventDefault();
 
 		if (validateForm()) {
-			const mailtoLink = `mailto:info@garage.mt?subject=Appointment Request from ${user_name}&body=Name: ${user_name}%0APhone: ${user_phone}%0AEmail: ${user_email}%0AMessage: ${message}`;
+			// Dynamically create the mailto link with better formatting
+			const mailtoLink = `mailto:info@garage.mt?subject=Appointment Request from ${user_name}&body=
+			Appointment Request Details:%0A%0A
+			-----------------------------------------%0A
+			Name: ${user_name}%0A
+			Phone: ${user_phone}%0A
+			Email: ${user_email}%0A
+			Preferred Location: ${GARAGE_LOCATIONS[selectedLocation].name}%0A%0A
+			-----------------------------------------%0A
+			Message:%0A
+			${message}%0A%0A
+			-----------------------------------------%0A`;
+
+			// Open mail client with the data pre-filled
 			window.location.href = mailtoLink;
 		}
 	};
+
 
 	useEffect(() => {
 		// Disable body overflow during the load
@@ -134,15 +135,21 @@ function ContactSection() {
 						{/* Location Selection */}
 						<div className="mt-6 flex space-x-4">
 							<button
-								onClick={() => setSelectedLocation("valletta")}
-								className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === "valletta" ? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black" : ""}`}
+								onClick={() => setSelectedLocation("LOCATION_1")}
+								className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === "LOCATION_1"
+									? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black"
+									: ""
+									}`}
 							>
 								Garage 1
 								<MapPinIcon className="w-4 h-4" />
 							</button>
 							<button
-								onClick={() => setSelectedLocation("mosta")}
-								className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === "mosta" ? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black" : ""}`}
+								onClick={() => setSelectedLocation("LOCATION_2")}
+								className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === "LOCATION_2"
+									? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black"
+									: ""
+									}`}
 							>
 								Garage 2
 								<MapPinIcon className="w-4 h-4" />
@@ -153,16 +160,16 @@ function ContactSection() {
 						{selectedLocation && (
 							<div className="mt-4 sm:mr-32 md:mr-2 mr-2">
 								<h4 className="text-xl font-semibold text-yellow-300 mb-4">
-									{businessLocations[selectedLocation].name}
+									{GARAGE_LOCATIONS[selectedLocation].name}
 								</h4>
 								<div className="flex items-center space-x-4">
 									<HiOutlineLocationMarker className="text-3xl text-yellow-300" />
-									<p>{businessLocations[selectedLocation].address}</p>
+									<p>{GARAGE_LOCATIONS[selectedLocation].address}</p>
 								</div>
 								{/* Embedded Google Map */}
 								<div className="mt-4 sm:mr-32 md:mr-2 mr-2 rounded-lg overflow-hidden">
 									<iframe
-										src={businessLocations[selectedLocation].mapSrc}
+										src={GARAGE_LOCATIONS[selectedLocation].mapEmbedSrc}
 										width="100%"
 										height="200"
 										style={{ border: 0 }}

@@ -64,8 +64,10 @@ function Navbar() {
 
 	return (
 		<nav
-			className={`fixed w-full z-20 top-0 sm:border-t-0 border-t-4 left-0 shadow-lg transition-colors duration-300 ${navbarBg ? "bg-red-700" : "bg-transparent"
-				} border-b-4 sm:rounded-b-full rounded-b-2xl border-red-900`}
+			className={`fixed w-full top-0 left-0 z-50 shadow-lg transition-colors duration-300 bg-gradient-to-br from-red-900 to-red-600 border-b-4 border-red-900 ${
+				// Add margin-bottom only on small screens
+				"mb-36 lg:mb-0"
+				}`}
 		>
 			<div className="container mx-auto flex items-center justify-between px-10 py-3">
 				<button
@@ -76,7 +78,7 @@ function Navbar() {
 					}
 					className="flex items-center"
 				>
-					<div className="h-12 w-36 md:h-12 lg:h-14 lg:w-44 lg:ml-10 bg-white  border-2 border-red-900 rounded-lg flex items-center justify-center">
+					<div className="h-12 w-36 md:h-12 lg:h-14 lg:w-44 lg:ml-10 bg-white  border-2 border-red-900 rounded-lg flex items-center justify-center">
 						<img
 							src="/assets/icons/logo3.png"
 							alt="Garage MT Logo"
@@ -99,28 +101,28 @@ function Navbar() {
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
 						<FiHome size={24} />
-						<span className="ml-2">Home</span>
+						<span className="ml-2 hidden  lg:inline-block">Home</span>
 					</button>
 					<button
 						onClick={() => navigate("/about")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
 						<FiInfo size={24} />
-						<span className="ml-2">About Us</span>
+						<span className="ml-2 hidden lg:inline-block">About Us</span>
 					</button>
 					<button
 						onClick={() => navigate("/services")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
 						<FiTool size={24} />
-						<span className="ml-2">Services</span>
+						<span className="ml-2 hidden lg:inline-block">Services</span>
 					</button>
 					<button
 						onClick={() => navigate("/locations")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
 						<FiMapPin size={24} />
-						<span className="ml-2">Locations</span>
+						<span className="ml-2 hidden lg:inline-block ">Locations</span>
 					</button>
 					<button
 						onClick={() => {
@@ -130,17 +132,20 @@ function Navbar() {
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
 						<FiImage size={24} />
-						<span className="ml-2">Gallery</span>
+						<span className="ml-2 hidden  lg:inline-block">Gallery</span>
 					</button>
 					<button
 						onClick={() => navigate("/contact")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
 						<FiMail size={24} />
-						<span className="ml-2">Contact</span>
+						<span className="ml-2 hidden  lg:inline-block">Contact</span>
 					</button>
 				</div>
 			</div>
+
+
+			{/* SM Screen Menu */}
 			<motion.div
 				className="md:hidden rounded-2xl backdrop-blur-md bg-black border-t-4 border-red-900 bg-opacity-20 text-white overflow-hidden"
 				animate={navOpen ? "open" : "closed"}

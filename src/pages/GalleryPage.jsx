@@ -41,7 +41,7 @@ function GalleryPage() {
 	};
 
 	return (
-		<div className="container mx-auto py-16">
+		<div className="container mx-auto pb-16">
 			<div className="z-0">
 				<ParticlesBackground />
 			</div>
@@ -52,11 +52,10 @@ function GalleryPage() {
 				{Object.keys(categories).map((category) => (
 					<button
 						key={category}
-						className={`px-6 py-2 rounded-full font-semibold text-white ${
-							selectedCategory === category
-								? "bg-red-500"
-								: "bg-gray-400 hover:bg-gray-500"
-						}`}
+						className={`px-6 py-2 rounded-full font-semibold text-white ${selectedCategory === category
+							? "bg-red-500"
+							: "bg-gray-400 hover:bg-gray-500"
+							}`}
 						onClick={() => setSelectedCategory(category)}
 					>
 						{category}
