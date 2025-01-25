@@ -1,105 +1,81 @@
-import { motion } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/autoplay";
+import { Autoplay } from "swiper/modules"; // Import Autoplay module
+import { FaHandshake, FaThumbsUp, FaCertificate, FaTools, FaCalendarAlt, FaHistory, FaRocket, FaCheck } from "react-icons/fa"; // Import icons from React Icons
 
 const ScrollingFeatures = () => {
     const features = [
         {
-            icon: "/assets/images/hands.png",
+            icon: <FaHandshake />,
             title: "Best Prices",
             description: "Competitive rates for all repairs and services.",
         },
         {
-            icon: "/assets/images/thumbs-up.png",
+            icon: <FaThumbsUp />,
             title: "100% Guarantee",
             description: "Full guarantee on all our repair work.",
         },
         {
-            icon: "/assets/images/certificate.png",
+            icon: <FaCertificate />,
             title: "Certified Mechanics",
             description: "Highly trained and certified automotive experts.",
         },
         {
-            icon: "/assets/images/hands.png",
+            icon: <FaTools />,
             title: "Latest Tools",
             description: "State-of-the-art equipment for precision repairs.",
         },
         {
-            icon: "/assets/images/hands.png",
+            icon: <FaCalendarAlt />,
             title: "Flexible Scheduling",
             description: "Book repairs at your convenience.",
         },
         {
-            icon: "/assets/images/hands.png",
+            icon: <FaHistory />,
             title: "20+ Years Experience",
             description: "Trusted expertise in automotive repair.",
         },
         {
-            icon: "/assets/images/hands.png",
+            icon: <FaRocket />,
             title: "Fast Turnaround",
             description: "Quick and efficient service.",
         },
+        {
+            icon: <FaCheck />,
+            title: "High Quality Service",
+            description: "Exceptional service that meets the highest standards.",
+        },
     ];
 
-    const containerRef = useRef(null);
-
-    useEffect(() => {
-        const container = containerRef.current;
-
-        const updateScroll = () => {
-            if (!container) return;
-            container.scrollLeft += 1; // Adjust speed as necessary
-            if (container.scrollLeft >= container.scrollWidth / 2) {
-                container.scrollLeft = 0; // Reset for seamless loop
-            }
-        };
-
-        const intervalId = setInterval(updateScroll, 20); // Adjust interval for smoothness
-
-        return () => clearInterval(intervalId);
-    }, []);
-
     return (
-        <div
-            className="hidden lg:flex absolute bottom-0 overflow-hidden w-full 
-            bg-gradient-to-l from-red-700 to-red-800 py-6 
-            h-1/4 laptop:h-1/4 desktop:h-1/3"
-        >
-            <div
-                ref={containerRef}
-                className="flex space-x-8 items-center justify-start"
-                style={{
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
+        <div className="hidden lg:flex relative bg-gradient-to-l from-red-700 to-red-800 py-6">
+            <Swiper
+                modules={[Autoplay]} // Enable Autoplay module
+                spaceBetween={30}
+                slidesPerView="3"
+                loop={true} // Infinite loop
+                autoplay={{
+                    delay: 0, // No delay
+                    disableOnInteraction: false, // Keep autoplay running on interaction
                 }}
+                speed={3000} // Smooth sliding speed
+                className="w-full"
             >
-                {/* Duplicate features for seamless looping */}
-                {[...features, ...features].map((item, index) => (
-                    <motion.div
+                {features.map((feature, index) => (
+                    <SwiperSlide
                         key={index}
-                        className="flex flex-col items-center text-center min-w-[150px] md:min-w-[200px] px-4"
-                        animate={{
-                            opacity: [0.8, 1, 0.8],
-                        }}
-                        transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "linear",
-                        }}
+                        className="flex flex-col items-center text-center px-4"
+                        style={{ minWidth: "150px" }} // Ensure a consistent minimum width
                     >
-                        <img
-                            src={item.icon}
-                            alt={`${item.title} Icon`}
-                            className="w-12 h-12 lg:w-16 lg:h-16 laptop:h-20 laptop:w-20 laptop:mb-2 desktop:h-28 desktop:w-28 desktop:mb-10"
-                        />
-                        <h3 className="text-base lg:text-md font-bold text-white">
-                            {item.title}
-                        </h3>
-                        <p className="text-xs lg:text-sm text-white/70">
-                            {item.description}
-                        </p>
-                    </motion.div>
+                        <div className="text-white text-4xl lg:text-6xl desktop:text-7xl mb-8">
+                            {feature.icon}
+                        </div>
+                        <h3 className="text-md lg:text-lg font-bold text-white">{feature.title}</h3>
+                        <p className="text-xs lg:text-sm text-white/70">{feature.description}</p>
+                    </SwiperSlide>
                 ))}
-            </div>
+            </Swiper>
         </div>
     );
 };

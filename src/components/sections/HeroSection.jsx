@@ -9,7 +9,7 @@ function HeroSection() {
 	return (
 		<section
 			id="hero"
-			className="relative flex flex-col w-full mt-16 min-h-screen bg-gradient-to-br from-red-800 to-red-600"
+			className="relative flex flex-col w-full mt-16 bg-gradient-to-br from-red-800 to-red-600"
 		>
 			{/* Top Section */}
 			<div className="flex flex-col mt-16 lg:-mt-10 lg:flex-row w-full h-5/6 items-center justify-between p-6 lg:py-32 xl:py-40">
@@ -24,10 +24,10 @@ function HeroSection() {
 						<span className="text-shadow">Vehicle Rescue Experts</span> <br />
 						at Garage MT
 					</h1>
-					<p className="text-base md:text-lg xl:text-xl text-white/90">
+					<p className="text-base md:text-lg xl:text-xl text-white/90 lg:pr-4">
 						Swift, professional repairs that get you back on the road. Your trusted automotive partner in Malta.
 					</p>
-					<div className="flex flex-wrap justify-center lg:justify-start gap-4">
+					<div className="flex flex-row-reverse w-full mx-auto lg:pr-4 justify-center lg:justify-between gap-4">
 						<button
 							onClick={() => navigate('/contact')}
 							className="px-6 md:px-8 py-2 md:py-3 bg-white text-red-900 rounded-full font-semibold hover:bg-gray-100 shadow-md transition text-sm md:text-base xl:text-lg"
@@ -76,8 +76,9 @@ function HeroSection() {
 					})}
 				</motion.div>
 			</div>
-
-			<ScrollingFeatures />
+			<div className="lg:-mt-32">
+				<ScrollingFeatures />
+			</div>
 		</section>
 	);
 }
