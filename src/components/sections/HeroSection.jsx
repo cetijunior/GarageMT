@@ -6,6 +6,24 @@ import ScrollingFeatures from "../layout/ScrollingFeatures";
 function HeroSection() {
 	const navigate = useNavigate();
 
+	// Navigation and scroll logic
+	const handleScrollNavigation = (path, sectionId) => {
+		if (window.location.pathname !== path) {
+			navigate(path);
+			setTimeout(() => scrollToSection(sectionId), 300);
+		} else {
+			scrollToSection(sectionId);
+		}
+	};
+
+	// Scroll to specific section
+	const scrollToSection = (sectionId) => {
+		const section = document.getElementById(sectionId);
+		if (section) {
+			section.scrollIntoView({ behavior: "smooth", block: "start" });
+		}
+	};
+
 	return (
 		<section
 			id="hero"
@@ -29,13 +47,13 @@ function HeroSection() {
 					</p>
 					<div className="flex flex-row-reverse w-full mx-auto lg:pr-4 justify-center lg:justify-between gap-4">
 						<button
-							onClick={() => navigate('/contact')}
+							onClick={() => handleScrollNavigation("/", "contact")}
 							className="px-6 md:px-8 py-2 md:py-3 bg-white text-red-900 rounded-full font-semibold hover:bg-gray-100 shadow-md transition text-sm md:text-base xl:text-lg"
 						>
 							Emergency Help
 						</button>
 						<button
-							onClick={() => navigate('/services')}
+							onClick={() => handleScrollNavigation("/", "services")}
 							className="px-6 md:px-8 py-2 md:py-3 border-2 border-white text-white rounded-full hover:bg-white/20 shadow-md transition text-sm md:text-base xl:text-lg"
 						>
 							Our Services
@@ -55,31 +73,42 @@ function HeroSection() {
 						return (
 							<div
 								key={index}
-								className="w-full lg:w-1/2 bg-white rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300"
+								className="w-full lg:w-1/2 group"
 							>
-								<div
-									className="h-48 md:h-64 xl:h-72 bg-cover bg-center rounded-t-2xl"
-									style={{ backgroundImage: `url(${location.image})` }}
-								/>
-								<div className="p-4 text-center">
-									<h3 className="text-xl font-bold text-red-900">{location.name}</h3>
-									<p className="text-sm text-gray-600">{location.address}</p>
-									<a
-										href={location.link}
-										className="mt-2 text-red-600 hover:font-semibold transition"
+								<div className="bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group-hover:shadow-2xl transform group-hover:-translate-y-2">
+									<div
+										className="h-48 md:h-64 xl:h-72 bg-cover bg-center relative overflow-hidden"
+										style={{ backgroundImage: `url(${location.image})` }}
 									>
-										View Location
-									</a>
+										<div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+											<a
+												href={location.link}
+												className="px-6 py-3 bg-white text-red-900 rounded-full font-semibold hover:bg-gray-100 transition"
+											>
+												View Location
+											</a>
+										</div>
+									</div>
+									<div className="p-4 text-center">
+										<h3 className="text-xl font-bold text-red-900">{location.name}</h3>
+										<p className="text-sm text-gray-600 mb-1">{location.address}</p>
+										<div className="flex items-center justify-center space-x-2 text-sm text-gray-700">
+											<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+												<path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+											</svg>
+											<span>{location.phone}</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						);
 					})}
 				</motion.div>
-			</div>
+			</div >
 			<div className="lg:-mt-32">
 				<ScrollingFeatures />
 			</div>
-		</section>
+		</section >
 	);
 }
 

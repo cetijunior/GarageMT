@@ -1,9 +1,10 @@
 export const GARAGE_LOCATIONS = {
   LOCATION_1: {
     name: "Garage MT Limited",
-    address: "35 Triq San Tumas, Qormi, Malta",
+    address: "1, Barbra, Triq Ħal Far, Birżebbuġa BBG 9034, Malta",
     link: "garage-location-1",
     image: "assets/images/entry3.jpg",
+    phone: "+356 770 88 222",
     coordinates: {
       latitude: 35.8158039,
       longitude: 14.5188193,
@@ -14,9 +15,10 @@ export const GARAGE_LOCATIONS = {
   },
   LOCATION_2: {
     name: "Garage MT",
-    address: "Vjal Il-25 Novembru, Mosta, Malta",
+    address: "Vjal 25 Ta Novembru, Żejtun, Malta",
     link: "garage-location-2",
     image: "assets/images/hero.jpg",
+    phone: " +356 774 98 675",
     coordinates: {
       latitude: 35.853702,
       longitude: 14.5248849,

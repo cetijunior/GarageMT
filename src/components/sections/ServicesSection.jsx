@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { servicesData } from "../../content/servicesContent";
+import React from "react";
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
 	FaWrench,
 	FaOilCan,
@@ -8,182 +9,235 @@ import {
 	FaCarCrash,
 	FaSearch,
 } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 
-// Work Gallery Data (Add this below)
-const workData = [
+const servicesData = [
 	{
-		title: "Engine Repair",
-		description: "A comprehensive engine repair for a vintage car.",
-		image: "/assets/images/work1.jpg", // Replace with actual image paths
+		title: "General Repairs",
+		description: "Comprehensive repairs for all vehicle makes and models.",
+		icon: <FaWrench />,
+		garage: ["Garage 1", "Garage 2"],
+		garageLinks: ["garage-location-1", "garage-location-2"],
 	},
 	{
-		title: "Brake Service",
-		description: "Brake replacement and inspection.",
-		image: "/assets/images/work6.jpg",
+		title: "Oil Changes",
+		description: "Quick and efficient oil changes to keep your engine healthy.",
+		icon: <FaOilCan />,
+		garage: ["Garage 2"],
+		garageLinks: ["garage-location-2"],
 	},
 	{
 		title: "Battery Replacement",
-		description: "Quick and efficient battery replacement service.",
-		image: "/assets/images/work3.jpg",
+		description: "Fast battery replacement for uninterrupted driving.",
+		icon: <FaCarBattery />,
+		garage: ["Garage 1"],
+		garageLinks: ["garage-location-1"],
 	},
-	// Add more works as necessary
+	{
+		title: "Tire Rotation",
+		description: "Expert tire rotation for even wear and better handling.",
+		icon: <FaSyncAlt />,
+		garage: ["Garage 1", "Garage 2"],
+		garageLinks: ["garage-location-1", "garage-location-2"],
+	},
+	{
+		title: "Brake Inspection",
+		description: "Ensure safety with professional brake inspections.",
+		icon: <FaCarCrash />,
+		garage: ["Garage 2"],
+		garageLinks: ["garage-location-2"],
+	},
+	{
+		title: "Diagnostic Services",
+		description: "Accurate diagnostics to identify and resolve vehicle issues.",
+		icon: <FaSearch />,
+		garage: ["Garage 1"],
+		garageLinks: ["garage-location-1"],
+	},
+	{
+		title: "Auto Repair",
+		description: "Expert repairs for all types of vehicles.",
+		icon: <FaWrench />,
+		garage: ["Garage 1"],
+		garageLinks: ["garage-location-1"],
+	},
+	{
+		title: "Electrical Repairs",
+		description: "Reliable electrical diagnostics and repairs.",
+		icon: <FaWrench />,
+		garage: ["Garage 1"],
+		garageLinks: ["garage-location-1"],
+	},
+	{
+		title: "Mechanical Repairs",
+		description: "Professional mechanical repair services.",
+		icon: <FaWrench />,
+		garage: ["Garage 1", "Garage 2"],
+		garageLinks: ["garage-location-1", "garage-location-2"],
+	},
+	{
+		title: "AC Repair & Refill",
+		description: "AC repair and refrigerant refills for a comfortable ride.",
+		icon: <FaOilCan />,
+		garage: ["Garage 1"],
+		garageLinks: ["garage-location-1"],
+	},
+	{
+		title: "ECU Programming",
+		description: "Advanced ECU programming for optimal vehicle performance.",
+		icon: <FaSearch />,
+		garage: ["Garage 2"],
+		garageLinks: ["garage-location-2"],
+	},
+	{
+		title: "Electronic Repairs",
+		description: "Expert repairs for electronic components in your vehicle.",
+		icon: <FaSearch />,
+		garage: ["Garage 2"],
+		garageLinks: ["garage-location-2"],
+	},
 ];
+
+
+function useScreenSize() {
+	const [screenSize, setScreenSize] = useState("lg");
+
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth >= 1024) {
+				setScreenSize("lg");
+			} else if (window.innerWidth >= 768) {
+				setScreenSize("md");
+			} else {
+				setScreenSize("sm");
+			}
+		};
+
+		handleResize();
+		window.addEventListener("resize", handleResize);
+
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
+	return screenSize;
+}
 
 function ServicesSection() {
 	const [showAll, setShowAll] = useState(false);
+	const sectionRef = useRef(null);
+	const screenSize = useScreenSize();
 
-	// Assign icons to servicesData
-	const servicesWithIcons = servicesData.map((service) => {
-		let icon;
-		switch (service.title) {
-			case "General Repairs":
-				icon = <FaWrench size={50} className="text-red-500" />;
-				break;
-			case "Oil Changes":
-				icon = <FaOilCan size={50} className="text-red-500" />;
-				break;
-			case "Battery Replacement":
-				icon = <FaCarBattery size={50} className="text-red-500" />;
-				break;
-			case "Tire Rotation":
-				icon = <FaSyncAlt size={50} className="text-red-500" />;
-				break;
-			case "Brake Inspection":
-				icon = <FaCarCrash size={50} className="text-red-500" />;
-				break;
-			case "Diagnostic Services":
-				icon = <FaSearch size={50} className="text-red-500" />;
-				break;
-			default:
-				icon = <FaWrench size={50} className="text-red-500" />;
+	const toggleShowMore = () => {
+		setShowAll(!showAll);
+		if (sectionRef.current) {
+			sectionRef.current.scrollIntoView({
+				behavior: "smooth",
+				block: showAll ? "start" : "end",
+			});
 		}
-		return { ...service, icon };
-	});
+	};
 
-	// Show only the first three services initially
-	const servicesToDisplay = showAll
-		? servicesWithIcons
-		: servicesWithIcons.slice(0, 3);
+	// Determine the number of services to display
+	const getDisplayedServices = () => {
+		if (showAll) return servicesData;
+		switch (screenSize) {
+			case "md":
+				return servicesData.slice(0, 4);
+			case "sm":
+			case "lg":
+			default:
+				return servicesData.slice(0, 3);
+		}
+	};
 
-	// Motion variants for services cards
+	const displayedServices = getDisplayedServices();
+
 	const cardVariants = {
 		hidden: { opacity: 0, y: 30 },
-		visible: {
-			opacity: 1,
-			y: 0,
-			transition: { duration: 0.5, ease: "easeOut" },
-		},
+		visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 		hover: { scale: 1.05, transition: { duration: 0.3, ease: "easeInOut" } },
 	};
 
-	// Motion variants for the button
-	const buttonVariants = {
-		hover: {
-			scale: 1.1,
-			backgroundColor: "#FF6347",
-			color: "#FFF",
-			transition: { duration: 0.3 },
-		},
-	};
-
 	return (
-		<section id="services" className="bg-transparent py-16 px-6">
-			<div className="container mx-auto text-center">
-				<div className="flex flex-row items-center space-x-3 mb-12 justify-center">
-					{/* Services Section */}
-					<motion.h2
-						className="text-4xl font-extrabold text-gray-800"
-						initial={{ opacity: 0, y: -30 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6 }}
-					>
-						Our Services
-					</motion.h2>
-					{/* Toggle Button */}
-					<motion.button
-						onClick={() => setShowAll(!showAll)}
-						className="px-6 py-3 mt-2 bg-red-500 text-white font-semibold rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all du"
-						whileHover="hover"
-						variants={buttonVariants}
-					>
-						{showAll ? "Show Less" : "Show More"}
-					</motion.button>
-				</div>
-				<div className="grid md:grid-cols-3 gap-8">
-					{servicesToDisplay.map((service, index) => (
+		<section id="services" className="bg-gray-100 py-16 px-6" ref={sectionRef}>
+			<div className="container mx-auto">
+				{/* Header Section */}
+				<motion.div
+					className="text-center mb-12"
+					initial={{ opacity: 0, y: -20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6 }}
+				>
+					<div className="flex lg:flex-row flex-col items-center w-full mx-auto justify-evenly">
+						<div>
+							<h2 className="text-4xl font-extrabold text-red-700">
+								Premium Services Across Our Garages
+							</h2>
+							<p className="mt-4 text-lg text-gray-600">
+								Offering a wide range of professional automotive services to keep your vehicle in top condition.
+							</p>
+						</div>
+
+						<motion.button
+							onClick={toggleShowMore}
+							className="lg:mt-0 mt-8 px-6 py-3 bg-red-500 text-white font-semibold text-center rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all"
+							whileHover={{ scale: 1.1 }}
+						>
+							{showAll ? "Show Less" : "Show More"}
+						</motion.button>
+					</div>
+				</motion.div>
+
+				{/* Services Section */}
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+					{displayedServices.map((service, index) => (
 						<motion.div
 							key={index}
-							className="bg-white p-6 rounded-lg shadow-lg transition-all"
+							className="group relative bg-white rounded-2xl shadow-xl ring-1 ring-gray-900/5 overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
 							variants={cardVariants}
 							initial="hidden"
 							animate="visible"
 							whileHover="hover"
 						>
-							<div className="text-red-500 mb-4 flex justify-center">
-								{service.icon}
-							</div>
-							<h3 className="text-2xl font-semibold mb-2 text-gray-800">
-								{service.title}
-							</h3>
-							<p className="text-gray-600 leading-relaxed">
-								{service.description}
-							</p>
-						</motion.div>
-					))}
-				</div>
-			</div>
+							<div className="flex flex-col h-full justify-between p-6 space-y-4">
+								<div className="flex items-center justify-between">
+									<div className="p-3 bg-red-50 rounded-xl text-red-600">
+										{React.cloneElement(service.icon, { className: "w-8 h-8" })}
+									</div>
+									<span className="text-sm text-gray-500 font-medium">
+										{service.garage.join(" & ")}
+									</span>
+								</div>
 
-			{/* Our Work Section */}
-			<div className="container mx-auto mt-20 text-center">
-				<div className="flex flex-row items-center space-x-3 mb-12 justify-center">
-					<motion.h2
-						className="text-4xl font-extrabold text-gray-800"
-						initial={{ opacity: 0, y: -30 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6 }}
-					>
-						Our Work
-					</motion.h2>
-					{/* Toggle Button */}
+								<div>
+									<h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
+									<p className="text-gray-600 max-w-72 text-sm leading-relaxed">
+										{service.description}
+									</p>
+								</div>
 
-					<motion.button
-						className="px-6 py-3 mt-2 bg-red-500 text-white font-semibold rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all"
-						whileHover="hover"
-						variants={buttonVariants}
-
-					>
-						<a href="/gallery" className="scroll-smooth">Gallery</a>
-					</motion.button>
-				</div>
-
-				<div className="grid md:grid-cols-3 gap-8">
-					{workData.map((work, index) => (
-						<motion.div
-							key={index}
-							className="bg-white p-6 rounded-lg shadow-lg transition-all group relative overflow-hidden"
-							initial={{ opacity: 0, y: 30 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.5, ease: "easeOut" }}
-							whileHover={{ scale: 1.05 }}
-						>
-							<img
-								src={work.image}
-								alt={work.title}
-								className="rounded-lg shadow-md w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
-							/>
-							<div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-								<div className="text-center text-white p-4">
-									<h3 className="text-2xl font-bold mb-2">{work.title}</h3>
-									<p>{work.description}</p>
+								<div className="flex justify-center items-center my-auto pt-4 border-t border-gray-100 space-x-3">
+									{service.garageLinks.map((link, idx) => (
+										<a
+											key={idx}
+											href={link}
+											className="flex-1 text-center px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
+										>
+											{service.garage[idx]}
+										</a>
+									))}
+									<a
+										href="#contact"
+										className="flex-1 text-center px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+									>
+										Contact
+									</a>
 								</div>
 							</div>
 						</motion.div>
 					))}
 				</div>
-			</div>
-		</section>
+			</div >
+		</section >
 	);
 }
 
