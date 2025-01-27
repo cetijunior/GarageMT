@@ -12,6 +12,9 @@ import {
 } from "react-icons/fi";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import { motion } from "framer-motion";
+import { HiOutlineLocationMarker, HiOutlinePhone, HiOutlineMail } from "react-icons/hi";
+import { GARAGE_LOCATIONS } from "../../content/locations";
+import { FaInstagram, FaFacebookF } from "react-icons/fa";
 
 function Navbar() {
 	const [navOpen, setNavOpen] = useState(false);
@@ -75,9 +78,9 @@ function Navbar() {
 
 	return (
 		<nav
-			className={`fixed w-full top-0 left-0 z-50 shadow-lg transition-colors duration-300 bg-gradient-to-br from-red-900 to-red-600 border-b-4 border-red-900`}
+			className={`fixed w-full top-0 left-0 z-50 shadow-lg transition-colors duration-300 bg-gradient-to-br from-red-900 to-red-600 border-b-2 border-red-900`}
 		>
-			<div className="container mx-auto flex items-center justify-between px-10 py-3">
+			<div className="flex flex-row items-center justify-between px-6  pb-1 pt-4 md:py-4">
 				{/* Logo */}
 				<button
 					onClick={() => handleNavigation("/", "hero")}
@@ -151,14 +154,16 @@ function Navbar() {
 				</div>
 			</div>
 
+
+
 			{/* Mobile Menu */}
 			<motion.div
-				className="md:hidden rounded-2xl backdrop-blur-md bg-black border-t-4 border-red-900 bg-opacity-20 text-white overflow-hidden"
+				className="md:hidden w-full flex justify-start mt-2 rounded-2xl backdrop-blur-md bg-black border-t-8 border-red-950 bg-opacity-20 text-white overflow-hidden"
 				animate={navOpen ? "open" : "closed"}
 				variants={menuVariants}
 				initial={false}
 			>
-				<div className="flex flex-col space-y-4 px-4 py-4">
+				<div className="flex flex-col w-full space-y-4 px-4 py-4">
 					<button
 						onClick={() => handleNavigation("/", "hero")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
@@ -204,9 +209,85 @@ function Navbar() {
 						<FiMail size={24} />
 						<span className="ml-2">Contact</span>
 					</button>
+
+
+
+
+
+					<div className="flex border-2 w-full"></div>
+
+
+
+
+
+
+					{/* Contact Info for Both Garages */}
+					<div className="text-start space-y-6">
+						<h3 className="text-xl font-semibold text-gray-100">Locations: </h3>
+
+						{/* Garage 1 Info */}
+						<div>
+							<h4 className="font-bold text-lg">GarageMT Limited</h4>
+							<div className="flex items-center justify-start space-x-2">
+								<HiOutlineLocationMarker size={20} />
+								<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_1.address}</p>
+							</div>
+							<div className="flex items-center justify-start space-x-2">
+								<HiOutlinePhone size={20} />
+								<p className="flex space-x-2">  <span className="flex mr-2"> | </span> Whatsapp </p>
+								<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_1.phone}</p>
+							</div>
+						</div>
+
+						{/* Garage 2 Info */}
+						<div>
+							<h4 className="font-bold text-lg">Garage MT</h4>
+							<div className="flex items-center justify-start space-x-2">
+								<HiOutlineLocationMarker size={20} />
+								<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_2.address}</p>
+							</div>
+							<div className="flex items-center justify- space-x-2">
+								<HiOutlinePhone size={20} />
+								<p className="flex space-x-2">  <span className="flex mr-2"> | </span> Whatsapp </p>
+								<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_2.phone}</p>
+							</div>
+						</div>
+					</div>
+
+					{/* Social Media Links */}
+					<div className="flex w-full justify-between items-center space-x-6 ">
+
+						{/* Email */}
+						<div className="flex items-center justify-start space-x-2">
+							<HiOutlineMail size={20} />
+							<p className="text-lg text-gray-300">info@garage.mt</p>
+						</div>
+
+
+						<div className="flex w-full justify-end items-center space-x-6 ">
+							<a
+								href="https://www.instagram.com/garagemt.ltd/"
+								className="p-3 bg-pink-700 rounded-full hover:bg-pink-600 transition duration-300 ease-in-out"
+								aria-label="Instagram"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<FaInstagram size={20} />
+							</a>
+							<a
+								href="https://www.facebook.com/garagemt.ltd"
+								className="p-3 bg-blue-600 rounded-full hover:bg-blue-500 transition duration-300 ease-in-out"
+								aria-label="Facebook"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<FaFacebookF size={20} />
+							</a>
+						</div>
+					</div>
 				</div>
 			</motion.div>
-		</nav>
+		</nav >
 	);
 }
 

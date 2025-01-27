@@ -9,6 +9,7 @@ import {
 	FaCarCrash,
 	FaSearch,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const servicesData = [
 	{
@@ -98,6 +99,11 @@ const servicesData = [
 ];
 
 
+
+
+
+
+
 function useScreenSize() {
 	const [screenSize, setScreenSize] = useState("lg");
 
@@ -121,10 +127,40 @@ function useScreenSize() {
 	return screenSize;
 }
 
+
+
+
+
 function ServicesSection() {
 	const [showAll, setShowAll] = useState(false);
 	const sectionRef = useRef(null);
 	const screenSize = useScreenSize();
+
+
+
+	const navigate = useNavigate();
+
+	// Navigation and scroll logic
+	const handleScrollNavigation = (path, sectionId) => {
+		if (window.location.pathname !== path) {
+			navigate(path);
+			setTimeout(() => scrollToSection(sectionId), 300);
+		} else {
+			scrollToSection(sectionId);
+		}
+	};
+
+	// Scroll to specific section
+	const scrollToSection = (sectionId) => {
+		const section = document.getElementById(sectionId);
+		if (section) {
+			section.scrollIntoView({ behavior: "smooth", block: "start" });
+		}
+	};
+
+
+
+
 
 	const toggleShowMore = () => {
 		setShowAll(!showAll);
@@ -135,6 +171,7 @@ function ServicesSection() {
 			});
 		}
 	};
+
 
 	// Determine the number of services to display
 	const getDisplayedServices = () => {
@@ -220,17 +257,17 @@ function ServicesSection() {
 										<a
 											key={idx}
 											href={link}
-											className="flex-1 text-center px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
+											className="flex w-1/2 text-center  h-10 px-4 items-center justify-center text-sm font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
 										>
 											{service.garage[idx]}
 										</a>
 									))}
-									<a
-										href="#contact"
-										className="flex-1 text-center px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+									<button
+										onClick={() => handleScrollNavigation("/", "contact")}
+										className="flex w-1/2 items-center justify-center text-center h-10 px-4 border-2 py-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
 									>
 										Contact
-									</a>
+									</button>
 								</div>
 							</div>
 						</motion.div>

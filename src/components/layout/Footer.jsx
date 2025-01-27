@@ -86,6 +86,8 @@ function Footer() {
 						</div>
 						<div className="flex items-center justify-center space-x-2">
 							<HiOutlinePhone size={20} />
+							<p> | Whatsapp </p>
+
 							<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_1.phone}</p>
 						</div>
 					</div>
@@ -99,6 +101,7 @@ function Footer() {
 						</div>
 						<div className="flex items-center justify-center space-x-2">
 							<HiOutlinePhone size={20} />
+							<p> | Whatsapp </p>
 							<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_2.phone}</p>
 						</div>
 					</div>
