@@ -52,8 +52,8 @@ function App() {
 						<Route path="/gallery" element={<GalleryPage />} />
 						<Route path="/privacy-policy" element={<PrivacyPolicy />} />
 						<Route path="/terms-of-service" element={<TermsOfService />} />
-						<Route path="/garage-location-1" element={<GarageLocation1 />} />
-						<Route path="/garage-location-2" element={<GarageLocation2 />} />
+						<Route path="/location-1" element={<GarageLocation1 />} />
+						<Route path="/location-2" element={<GarageLocation2 />} />
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
 				</main>

@@ -16,91 +16,81 @@ import {
 	FaLaptopCode,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { GARAGE_LOCATIONS } from "../../content/locations";
+
 
 const servicesData = [
 	{
 		title: "General Repairs",
 		description: "Comprehensive repairs for all vehicle makes and models.",
-		icon: <FaTools />, // General repair icon
-		garage: ["Garage 1", "Garage 2"],
-		garageLinks: ["garage-location-1", "garage-location-2"],
+		icon: <FaTools />,
+		garages: ["LOCATION_1", "LOCATION_2"], // Use keys from GARAGE_LOCATIONS
 	},
 	{
 		title: "Oil Changes",
 		description: "Quick and efficient oil changes to keep your engine healthy.",
-		icon: <FaOilCan />, // Oil change icon
-		garage: ["Garage 2"],
-		garageLinks: ["garage-location-2"],
+		icon: <FaOilCan />,
+		garages: ["LOCATION_2"],
 	},
 	{
 		title: "Battery Replacement",
 		description: "Fast battery replacement for uninterrupted driving.",
-		icon: <FaBatteryFull />, // Battery replacement icon
-		garage: ["Garage 1"],
-		garageLinks: ["garage-location-1"],
+		icon: <FaBatteryFull />,
+		garages: ["LOCATION_1"],
 	},
 	{
 		title: "Tire Rotation",
 		description: "Expert tire rotation for even wear and better handling.",
-		icon: <FaSyncAlt />, // Tire rotation icon
-		garage: ["Garage 1", "Garage 2"],
-		garageLinks: ["garage-location-1", "garage-location-2"],
+		icon: <FaSyncAlt />,
+		garages: ["LOCATION_1", "LOCATION_2"],
 	},
 	{
 		title: "Brake Inspection",
 		description: "Ensure safety with professional brake inspections.",
-		icon: <FaCarCrash />, // Brake inspection icon
-		garage: ["Garage 2"],
-		garageLinks: ["garage-location-2"],
+		icon: <FaCarCrash />,
+		garages: ["LOCATION_2"],
 	},
 	{
 		title: "Diagnostic Services",
 		description: "Accurate diagnostics to identify and resolve vehicle issues.",
-		icon: <FaDiagnoses />, // Diagnostics icon
-		garage: ["Garage 1"],
-		garageLinks: ["garage-location-1"],
+		icon: <FaDiagnoses />,
+		garages: ["LOCATION_1"],
 	},
 	{
 		title: "Auto Repair",
 		description: "Expert repairs for all types of vehicles.",
-		icon: <FaCarSide />, // Auto repair icon
-		garage: ["Garage 1"],
-		garageLinks: ["garage-location-1"],
+		icon: <FaCarSide />,
+		garages: ["LOCATION_1"],
 	},
 	{
 		title: "Electrical Repairs",
 		description: "Reliable electrical diagnostics and repairs.",
-		icon: <FaBolt />, // Electrical repair icon
-		garage: ["Garage 1"],
-		garageLinks: ["garage-location-1"],
+		icon: <FaBolt />,
+		garages: ["LOCATION_1"],
 	},
 	{
 		title: "Mechanical Repairs",
 		description: "Professional mechanical repair services.",
-		icon: <FaCogs />, // Mechanical repair icon
-		garage: ["Garage 1", "Garage 2"],
-		garageLinks: ["garage-location-1", "garage-location-2"],
+		icon: <FaCogs />,
+		garages: ["LOCATION_1", "LOCATION_2"],
 	},
 	{
 		title: "AC Repair & Refill",
 		description: "AC repair and refrigerant refills for a comfortable ride.",
-		icon: <FaSnowflake />, // AC repair icon
-		garage: ["Garage 1"],
-		garageLinks: ["garage-location-1"],
+		icon: <FaSnowflake />,
+		garages: ["LOCATION_1"],
 	},
 	{
 		title: "ECU Programming",
 		description: "Advanced ECU programming for optimal vehicle performance.",
-		icon: <FaMicrochip />, // ECU programming icon
-		garage: ["Garage 2"],
-		garageLinks: ["garage-location-2"],
+		icon: <FaMicrochip />,
+		garages: ["LOCATION_2"],
 	},
 	{
 		title: "Electronic Repairs",
 		description: "Expert repairs for electronic components in your vehicle.",
-		icon: <FaLaptopCode />, // Electronic repairs icon
-		garage: ["Garage 2"],
-		garageLinks: ["garage-location-2"],
+		icon: <FaLaptopCode />,
+		garages: ["LOCATION_2"],
 	},
 ];
 
@@ -246,7 +236,9 @@ function ServicesSection() {
 										{React.cloneElement(service.icon, { className: "w-8 h-8" })}
 									</div>
 									<span className="text-sm text-gray-500 font-medium">
-										{service.garage.join(" & ")}
+										{service.garages
+											.map((garageKey) => GARAGE_LOCATIONS[garageKey].name)
+											.join(" & ")}
 									</span>
 								</div>
 
@@ -258,15 +250,25 @@ function ServicesSection() {
 								</div>
 
 								<div className="flex justify-center items-center my-auto pt-4 border-t border-gray-100 space-x-3">
-									{service.garageLinks.map((link, idx) => (
-										<a
-											key={idx}
-											href={link}
-											className="flex w-1/2 text-center  h-10 px-4 items-center justify-center text-sm font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
-										>
-											{service.garage[idx]}
-										</a>
-									))}
+									{service.garages.map((garageKey) => {
+										const garage = GARAGE_LOCATIONS[garageKey];
+
+										// Define custom display names
+										const displayName = garage.name === "Garage MT Limited" ? "Garage 1" :
+											garage.name === "Garage MT" ? "Garage 2" :
+												garage.name; // Default to the original name if no match
+
+
+										return (
+											<a
+												key={garageKey}
+												href={garage.link}
+												className="w-5/6 text-center h-10 px-3 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
+											>
+												{displayName}
+											</a>
+										);
+									})}
 									<button
 										onClick={() => handleScrollNavigation("/", "contact")}
 										className="flex w-1/2 items-center justify-center text-center h-10 px-4 border-2 py-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
