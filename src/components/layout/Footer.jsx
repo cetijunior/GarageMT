@@ -167,7 +167,7 @@ function Footer({ onCookieSettingsClick }) {
 					className="flex mx-auto mt-4 items-center justify-center h-auto"
 				>
 					<img
-						className="animate-spin hover:animate-none mr-4 w-32 h-auto"
+						className="animate-spin hover:animate-none mr-4 w-20 md:w-32 h-auto"
 						src="/assets/icons/ca/logo.png"
 					/>
 					<a className=" flex w-fulll text-3xl font-extrabold font-serif hover:text-red-600 transition duration-200"

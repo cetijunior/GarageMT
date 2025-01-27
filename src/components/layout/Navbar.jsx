@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import { HiOutlineLocationMarker, HiOutlinePhone, HiOutlineMail } from "react-icons/hi";
 import { GARAGE_LOCATIONS } from "../../content/locations";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
 function Navbar() {
 	const [navOpen, setNavOpen] = useState(false);
@@ -158,7 +159,7 @@ function Navbar() {
 
 			{/* Mobile Menu */}
 			<motion.div
-				className="md:hidden w-full flex justify-start mt-0 rounded-2xl backdrop-blur-md bg-black border-t-8 border-red-950 bg-opacity-20 text-white overflow-hidden"
+				className={`md:hidden w-full flex justify-start ${navOpen ? "my-2" : 'my-0'} rounded-2xl backdrop-blur-md bg-black border-t-8 border-b-8 border-red-950 bg-opacity-20 text-white overflow-hidden`}
 				animate={navOpen ? "open" : "closed"}
 				variants={menuVariants}
 				initial={false}
@@ -195,6 +196,7 @@ function Navbar() {
 					<button
 						onClick={() => {
 							navigate("/gallery");
+							scrollToSection(0, 0);
 							setNavOpen(false);
 						}}
 						className="text-white flex flex-row items-center hover:text-gray-800"
@@ -215,14 +217,27 @@ function Navbar() {
 
 
 
-					<div className="flex border-2 w-full"></div>
+					<div className="flex border-2 border-red-950 w-full"></div>
 
 					{/* Contact Info for Both Garages */}
 					<div className="text-start space-y-6">
 
 						{/* Garage 1 Info */}
 						<div>
-							<h4 className="font-bold text-lg">GarageMT Limited</h4>
+							<div className="flex w-full">
+								<button
+									className="flex w-full items-center justify-between"
+									onClick={() => {
+										navigate("/location-1");
+										scrollToSection(0, 0);
+										setNavOpen(false);
+									}}
+								>
+									<h4 className="font-bold text-lg">GarageMT Limited</h4>
+
+									<FaArrowRightLong size={24} />
+								</button>
+							</div>
 							<div className="flex items-center justify-start space-x-2">
 								<HiOutlineLocationMarker size={20} />
 								<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_1.address}</p>
@@ -236,7 +251,18 @@ function Navbar() {
 
 						{/* Garage 2 Info */}
 						<div>
-							<h4 className="font-bold text-lg">Garage MT</h4>
+							<button
+								className="flex w-full items-center justify-between"
+								onClick={() => {
+									navigate("/location-2");
+									scrollToSection(0, 0);
+									setNavOpen(false);
+								}}
+							>
+								<h4 className="font-bold text-lg">Garage MT</h4>
+
+								<FaArrowRightLong size={24} />
+							</button>
 							<div className="flex items-center justify-start space-x-2">
 								<HiOutlineLocationMarker size={20} />
 								<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_2.address}</p>
