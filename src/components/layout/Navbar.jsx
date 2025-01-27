@@ -214,16 +214,11 @@ function Navbar() {
 
 
 
+
 					<div className="flex border-2 w-full"></div>
-
-
-
-
-
 
 					{/* Contact Info for Both Garages */}
 					<div className="text-start space-y-6">
-						<h3 className="text-xl font-semibold text-gray-100">Locations: </h3>
 
 						{/* Garage 1 Info */}
 						<div>
