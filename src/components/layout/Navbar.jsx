@@ -158,7 +158,7 @@ function Navbar() {
 
 			{/* Mobile Menu */}
 			<motion.div
-				className="md:hidden w-full flex justify-start mt-2 rounded-2xl backdrop-blur-md bg-black border-t-8 border-red-950 bg-opacity-20 text-white overflow-hidden"
+				className="md:hidden w-full flex justify-start mt-0 rounded-2xl backdrop-blur-md bg-black border-t-8 border-red-950 bg-opacity-20 text-white overflow-hidden"
 				animate={navOpen ? "open" : "closed"}
 				variants={menuVariants}
 				initial={false}
