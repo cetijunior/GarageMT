@@ -40,14 +40,14 @@ paths:
                   example: Garage A
                 note:
                   type: string
-                  example: Engine not starting
+                  example: Engine making noise
                 date:
                   type: string
-                  example: 2025-01-25
+                  example: 2025-01-30
                 time:
                   type: string
-                  example: 10:30 AM
-                consent:
+                  example: 10:00 AM
+                consentForMarketing:
                   type: boolean
                   example: true
       responses:
@@ -124,7 +124,7 @@ paths:
           required: false
           schema:
             type: string
-            example: "Garage A"
+            example: Garage A
           description: Filter bookings by garage.
       responses:
         200:
@@ -189,3 +189,29 @@ paths:
                     example: Booking not found.
         500:
           description: Internal server error
+  /api/marketing:
+    get:
+      summary: Fetch marketing consents
+      description: Retrieve all users who have agreed to marketing.
+      responses:
+        200:
+          description: List of marketing consents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  consents:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        email:
+                          type: string
+                        phone:
+                          type: string
+                        consentDate:
+                          type: string
+                          format: date-time

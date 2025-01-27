@@ -1,54 +1,44 @@
 const Booking = require('../models/Booking');
+const MarketingConsent = require('../models/MarketingConsent')
 const moment = require('moment'); // Install moment.js for date handling
+const sendEmail = require('../services/emailService');
+
 // Create a new booking
 exports.createBooking = async (req, res) => {
-    try {
-      const { name, email, phone, garage, note, date, time, consent } = req.body;
-  
-      // Check if all required fields are provided
-      if (!name || !garage || !date || !time || consent === undefined) {
-        return res.status(400).json({ message: 'All required fields, including consent, must be provided.' });
-      }
-  
-      // Validate garage type
-      if (!['Garage A', 'Garage B'].includes(garage)) {
-        return res.status(400).json({ message: 'Invalid garage selected.' });
-      }
+  try {
+    const { name, email, phone, garage, note, date, time, consentForMarketing } = req.body;
 
-       // Send a confirmation email if consent is true
-    if (consent) {
-        await sendEmail(
-          email,
-          'Booking Confirmation',
-          `Dear ${name},\n\nYour booking at ${garage} has been confirmed for ${date} at ${time}.\n\nThank you!`
-        );
-      }
-  
-      // If consent is false, anonymize the booking
-      const bookingData = consent
-        ? { name, email, phone, garage, note, date, time, consent }
-        : { name: 'Anonymous', email: '', phone: '', garage, note, date, time, consent };
-  
-      // Check if the slot is already booked
-      const existingBooking = await Booking.findOne({ date, time, garage });
-      if (existingBooking) {
-        return res.status(400).json({ message: 'This time slot is already booked.' });
-      }
-  
-      // Save the booking
-      const newBooking = new Booking(bookingData);
-      await newBooking.save();
-      res.status(201).json({ message: 'Booking created successfully!', booking: newBooking });
-    } catch (error) {
-      if (error.code === 11000) {
-        return res.status(400).json({
-          message: 'This time slot is already booked. Please select a different time.',
-        });
-      }
-      console.error('Error creating booking:', error);
-      res.status(500).json({ message: 'Internal server error.', error });
+    // Check required fields
+    if (!name || !email || !phone || !garage || !date || !time) {
+      return res.status(400).json({ message: 'All required fields must be provided.' });
     }
-  };
+
+    // Check for existing booking
+    const existingBooking = await Booking.findOne({ date, time, garage });
+    if (existingBooking) {
+      return res.status(400).json({ message: 'This time slot is already booked.' });
+    }
+
+    // Save booking
+    const newBooking = new Booking({ name, email, phone, garage, note, date, time });
+    await newBooking.save();
+
+    // Save to marketing consent if user agrees
+    if (consentForMarketing) {
+      const existingConsent = await MarketingConsent.findOne({ email });
+      if (!existingConsent) {
+        const marketingData = new MarketingConsent({ name, email, phone });
+        await marketingData.save();
+        console.log(`Marketing consent saved for ${email}`);
+      }
+    }
+
+    res.status(201).json({ message: 'Booking created successfully!', booking: newBooking });
+  } catch (error) {
+    console.error('Error creating booking:', error);
+    res.status(500).json({ message: 'Internal server error.', error });
+  }
+};
   
 // Check availability
 exports.checkAvailability = async (req, res) => {
@@ -81,7 +71,7 @@ exports.getDailyBookings = async (req, res) => {
    // Calculate summary data
    const totalBookings = bookings.length;
    const availableSlots = 24 - totalBookings; // Assuming 24 slots per d
-   res.json({ date: today, tot  alBookings, availableSlots, bookings });
+   res.json({ date: today, totalBookings, availableSlots, bookings });
     } catch (error) {
       console.error('Error fetching daily bookings:', error);
       res.status(500).json({ message: 'Internal server error.', error });
@@ -89,7 +79,7 @@ exports.getDailyBookings = async (req, res) => {
   };
 
 // Fetch all bookings
-exports.getAllBookings = async (req, res) => {
+exports.getAllBookings = async (req, res) => { 
   try {
     const { date, garage, page = 1, limit = 10, sortBy = 'date', order = 'asc' } = req.query;
 
@@ -171,3 +161,12 @@ exports.cancelBooking = async (req, res) => {
     }
   };
   
+  exports.getMarketingConsents = async (req, res) => {
+    try {
+      const consents = await MarketingConsent.find();
+      res.json({ consents });
+    } catch (error) {
+      console.error('Error fetching marketing consents:', error);
+      res.status(500).json({ message: 'Internal server error.', error });
+    }
+  };
