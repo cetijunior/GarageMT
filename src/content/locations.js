@@ -1,7 +1,7 @@
 export const GARAGE_LOCATIONS = {
   LOCATION_1: {
     name: "Garage MT Limited",
-    address: "1, Birżebbuġa, Malta",
+    address: "1, Barbra, Triq Ħal Far",
     link: "location-1",
     image: "assets/images/entry3.jpg",
     phone: "+356 770 88 222",
@@ -15,7 +15,7 @@ export const GARAGE_LOCATIONS = {
   },
   LOCATION_2: {
     name: "Garage MT",
-    address: "Vjal 25 Ta Novembru, Żejtun, Malta",
+    address: "Vjal 25 Ta Novembru, Żejtun",
     link: "location-2",
     image: "assets/images/hero.jpg",
     phone: " +356 774 98 675",

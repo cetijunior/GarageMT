@@ -1,6 +1,6 @@
 import React from "react";
 
-function GarageServices({ services }) {
+function GarageServices1({ services }) {
     return (
         <section className="py-16 bg-white">
             <div className="max-w-6xl mx-auto">
@@ -26,4 +26,4 @@ function GarageServices({ services }) {
     );
 }
 
-export default GarageServices;
+export default GarageServices1;

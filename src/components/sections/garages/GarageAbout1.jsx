@@ -1,6 +1,6 @@
 import React from "react";
 
-function GarageAbout({ details }) {
+function GarageAbout1({ details }) {
     return (
         <section className="py-16 px-8 bg-gray-100 text-gray-800">
             <div className="max-w-5xl mx-auto">
@@ -11,4 +11,4 @@ function GarageAbout({ details }) {
     );
 }
 
-export default GarageAbout;
+export default GarageAbout1;

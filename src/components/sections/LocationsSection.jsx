@@ -64,7 +64,7 @@ function LocationsSection() {
 							{/* Navigation Button */}
 							<button
 								onClick={() => navigate(location.link)}
-								className="flex px-6 items-center justify-center lg:w-1/2 w-full mx-auto py-3 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition duration-300"
+								className="flex px-6 items-center justify-center w-3/4 mx-auto py-3 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition duration-300"
 							>
 								View {location.name}
 							</button>

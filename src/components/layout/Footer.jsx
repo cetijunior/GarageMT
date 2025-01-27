@@ -73,6 +73,12 @@ function Footer({ onCookieSettingsClick }) {
 					</div>
 				</div>
 
+
+
+				<div className="text-center border-t border-gray-800 mt-10 pt-6"></div>
+
+
+
 				{/* Contact Info for Both Garages */}
 				<div className="text-center space-y-6">
 					<h3 className="text-xl font-semibold text-gray-100">Contact Us</h3>

@@ -1,7 +1,6 @@
 import React from "react";
-import GarageHero from "../components/sections/garages/GarageHero";
-import GarageAbout from "../components/sections/garages/GarageAbout";
-import GarageServices from "../components/sections/garages/GarageServices";
+import GarageHero1 from "../components/sections/garages/GarageHero1";
+import GarageServices from "../components/sections/garages/GarageServices1";
 import ContactSection from "../components/sections/ContactSection";
 import { GARAGE_LOCATIONS } from "../content/locations";
 import {
@@ -10,6 +9,7 @@ import {
     FaCarCrash,
     FaWrench,
 } from "react-icons/fa";
+import GarageAbout1 from "../components/sections/garages/GarageAbout1";
 
 const services = [
     {
@@ -41,25 +41,14 @@ function GarageLocation2() {
         <>
             <section
                 id="hero"
-                className="relative mt-20 flex items-center justify-center bg-gradient-to-br from-red-800 to-red-600 text-white h-[80vh] w-full"
-                style={{
-                    backgroundImage: `url(/assets/images/entry3.jpg)`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                }}
+                className="flex h-full w-full items-center justify-center bg-gradient-to-br from-red-800 to-red-600 text-white"
+
             >
-                <div className="bg-black bg-opacity-50 p-8 rounded-xl text-center max-w-6xl animate-fade-in-down">
-                    <h1 className="text-4xl lg:text-6xl font-extrabold mb-4">
-                        Welcome to {name}
-                    </h1>
-                    <p className="text-lg lg:text-xl">
-                        Providing trusted and reliable automotive services in Mosta.
-                    </p>
-                    <p className="mt-4 text-sm lg:text-base">Located at {address}</p>
-                </div>
+                <GarageHero1 />
             </section>
 
-            <GarageAbout
+
+            <GarageAbout1
                 details="Garage MT in Mosta specializes in modern automotive solutions, offering customers a wide range of professional services. With state-of-the-art equipment and a team of certified mechanics, we ensure your vehicle gets the best care."
             />
 

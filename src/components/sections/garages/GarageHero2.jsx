@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-function GarageHero({ name, description, image, address }) {
+function GarageHero1({ name, description, image, address }) {
     return (
         <section
             className="relative flex flex-col justify-center items-center h-[80vh] w-full bg-cover bg-center"
@@ -31,4 +31,4 @@ function GarageHero({ name, description, image, address }) {
     );
 }
 
-export default GarageHero;
+export default GarageHero1;

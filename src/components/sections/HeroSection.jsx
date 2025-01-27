@@ -6,24 +6,6 @@ import ScrollingFeatures from "../layout/ScrollingFeatures";
 function HeroSection() {
 	const navigate = useNavigate();
 
-	// Navigation and scroll logic
-	const handleScrollNavigation = (path, sectionId) => {
-		if (window.location.pathname !== path) {
-			navigate(path);
-			setTimeout(() => scrollToSection(sectionId), 300);
-		} else {
-			scrollToSection(sectionId);
-		}
-	};
-
-	// Scroll to specific section
-	const scrollToSection = (sectionId) => {
-		const section = document.getElementById(sectionId);
-		if (section) {
-			section.scrollIntoView({ behavior: "smooth", block: "start" });
-		}
-	};
-
 	return (
 		<section
 			id="hero"
@@ -47,13 +29,13 @@ function HeroSection() {
 					</p>
 					<div className="flex flex-row-reverse w-full mx-auto lg:pr-4 justify-center lg:justify-between gap-4">
 						<button
-							onClick={() => handleScrollNavigation("/", "contact")}
+							onClick={() => navigate('/contact')}
 							className="px-6 md:px-8 py-2 md:py-3 bg-white text-red-900 rounded-full font-semibold hover:bg-gray-100 shadow-md transition text-sm md:text-base xl:text-lg"
 						>
 							Emergency Help
 						</button>
 						<button
-							onClick={() => handleScrollNavigation("/", "services")}
+							onClick={() => navigate('/#services')}
 							className="px-6 md:px-8 py-2 md:py-3 border-2 border-white text-white rounded-full hover:bg-white/20 shadow-md transition text-sm md:text-base xl:text-lg"
 						>
 							Our Services
@@ -75,7 +57,7 @@ function HeroSection() {
 								key={index}
 								className="w-full lg:w-1/2 group"
 							>
-								<div className="bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group-hover:shadow-2xl transform group-hover:-translate-y-2">
+								<div className="bg-white md:2 lg:my-4 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 group-hover:shadow-2xl transform group-hover:-translate-y-2">
 									<div
 										className="h-48 md:h-64 xl:h-72 bg-cover bg-center relative overflow-hidden"
 										style={{ backgroundImage: `url(${location.image})` }}
@@ -105,7 +87,7 @@ function HeroSection() {
 					})}
 				</motion.div>
 			</div >
-			<div className="lg:-mt-32">
+			<div className="relative mt-8 lg:bottom-40 lg:-mb-40 md:bottom-20">
 				<ScrollingFeatures />
 			</div>
 		</section >

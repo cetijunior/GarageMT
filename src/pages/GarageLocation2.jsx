@@ -1,7 +1,7 @@
 import React from "react";
-import GarageHero from "../components/sections/garages/GarageHero";
-import GarageAbout from "../components/sections/garages/GarageAbout";
-import GarageServices from "../components/sections/garages/GarageServices";
+import GarageHero from "../components/sections/garages/GarageHero1";
+import GarageAbout from "../components/sections/garages/GarageAbout1";
+import GarageServices from "../components/sections/garages/GarageServices1";
 import ContactSection from "../components/sections/ContactSection";
 import { GARAGE_LOCATIONS } from "../content/locations";
 import {

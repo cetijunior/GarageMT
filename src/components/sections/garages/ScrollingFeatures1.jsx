@@ -4,7 +4,7 @@ import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules"; // Import Autoplay module
 import { FaHandshake, FaThumbsUp, FaCertificate, FaTools, FaCalendarAlt, FaHistory, FaRocket, FaCheck } from "react-icons/fa"; // Import icons from React Icons
 
-const ScrollingFeatures = () => {
+const ScrollingFeatures1 = () => {
     const features = [
         {
             icon: <FaHandshake />,
@@ -49,7 +49,7 @@ const ScrollingFeatures = () => {
     ];
 
     return (
-        <div className="hidden lg:flex relative bg-gradient-to-l from-red-700 to-red-800 -mt-3 py-4">
+        <div className="flex relative bg-gradient-to-l from-red-700 to-red-800 py-6">
             <Swiper
                 modules={[Autoplay]} // Enable Autoplay module
                 spaceBetween={30}
@@ -80,4 +80,4 @@ const ScrollingFeatures = () => {
     );
 };
 
-export default ScrollingFeatures;
+export default ScrollingFeatures1;
