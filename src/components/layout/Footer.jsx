@@ -3,7 +3,7 @@ import { HiOutlineLocationMarker, HiOutlineMail, HiOutlinePhone } from "react-ic
 import { useNavigate } from "react-router-dom";
 import { GARAGE_LOCATIONS } from "../../content/locations";
 
-function Footer() {
+function Footer({ onCookieSettingsClick }) {
 	const navigate = useNavigate();
 
 	// Handle navigation and scroll logic
@@ -137,7 +137,21 @@ function Footer() {
 
 			{/* Footer Divider and Additional Info */}
 			<div className="text-center border-t border-gray-800 mt-10 pt-6">
-				<p className="text-sm text-white">&copy; {new Date().getFullYear()} GarageMT. All rights reserved.</p>
+
+
+				<div className="flex flex-col items-center justify-center">
+					<p className="text-sm text-white">&copy; {new Date().getFullYear()} GarageMT. All rights reserved.</p>
+
+					<button
+						onClick={onCookieSettingsClick}
+						className="flex text-sm my-3 items-end justify-end bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg transition"
+					>
+						Cookie Preferences
+					</button>
+
+
+
+				</div>
 				<p className="text-sm mt-2 text-white">
 					Designed by{" "}
 					<a
