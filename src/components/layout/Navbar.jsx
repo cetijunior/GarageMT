@@ -168,28 +168,28 @@ function Navbar() {
 						onClick={() => handleNavigation("/", "hero")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiHome size={24} />
+						<FiHome size={20} />
 						<span className="ml-2">Home</span>
 					</button>
 					<button
 						onClick={() => handleNavigation("/", "about")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiInfo size={24} />
+						<FiInfo size={20} />
 						<span className="ml-2">About Us</span>
 					</button>
 					<button
 						onClick={() => handleNavigation("/", "services")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiTool size={24} />
+						<FiTool size={20} />
 						<span className="ml-2">Services</span>
 					</button>
 					<button
 						onClick={() => handleNavigation("/", "locations")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiMapPin size={24} />
+						<FiMapPin size={20} />
 						<span className="ml-2">Locations</span>
 					</button>
 					<button
@@ -199,14 +199,14 @@ function Navbar() {
 						}}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiImage size={24} />
+						<FiImage size={20} />
 						<span className="ml-2">Gallery</span>
 					</button>
 					<button
 						onClick={() => handleNavigation("/", "contact")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiMail size={24} />
+						<FiMail size={20} />
 						<span className="ml-2">Contact</span>
 					</button>
 
