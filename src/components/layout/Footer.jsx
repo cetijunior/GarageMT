@@ -87,7 +87,6 @@ function Footer() {
 						<div className="flex items-center justify-center space-x-2">
 							<HiOutlinePhone size={20} />
 							<p> | Whatsapp </p>
-
 							<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_1.phone}</p>
 						</div>
 					</div>
@@ -147,9 +146,24 @@ function Footer() {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						CA WEB SERVICES
+						CA Web Services
 					</a>
 				</p>
+				<div
+					className="flex mx-auto mt-4 items-center justify-center h-auto"
+				>
+					<img
+						className="animate-spin hover:animate-none mr-4 w-32 h-auto"
+						src="/assets/icons/ca/logo.png"
+					/>
+					<a className=" flex w-fulll text-3xl font-extrabold font-serif hover:text-red-600 transition duration-200"
+						href="https://www.ca-webservices.com"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						CA Web Services
+					</a>
+				</div>
 			</div>
 		</footer>
 	);

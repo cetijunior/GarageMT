@@ -263,16 +263,19 @@ function AboutUsSection() {
 								/>
 							</svg>
 						</Link>
-						<p className="text-sm text-gray-300 mt-2 text-center lg:text-right">
-							Website designed by{" "}
+						<p className="flex flex-row items-center text-sm text-gray-300 mt-2 text-center lg:text-right">
+							Website designed by:
 							<a
 								href="https://www.ca-webservices.com"
-								className="underline hover:text-yellow-400 transition-colors"
+								className="underline ml-2 hover:text-yellow-400 transition-colors"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
 								CA Web Services
 							</a>
+							<img
+								className="w-10 h-auto hover:animate-none animate-spin ml-2"
+								src="/assets/icons/ca/Logo3.png" />
 						</p>
 					</div>
 				</motion.div>
