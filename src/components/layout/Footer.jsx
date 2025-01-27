@@ -108,7 +108,7 @@ function Footer() {
 					{/* Email */}
 					<div className="flex items-center justify-center space-x-2">
 						<HiOutlineMail size={20} />
-						<p className="text-sm text-gray-300">Email: info@garage.mt</p>
+						<p className="text-lg text-gray-300">Email: info@garage.mt</p>
 					</div>
 				</div>
 

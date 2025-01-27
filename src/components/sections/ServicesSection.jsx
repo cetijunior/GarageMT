@@ -2,12 +2,18 @@ import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-	FaWrench,
+	FaTools,
 	FaOilCan,
-	FaCarBattery,
+	FaBatteryFull,
 	FaSyncAlt,
 	FaCarCrash,
-	FaSearch,
+	FaDiagnoses,
+	FaCarSide,
+	FaBolt,
+	FaCogs,
+	FaSnowflake,
+	FaMicrochip,
+	FaLaptopCode,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -15,89 +21,88 @@ const servicesData = [
 	{
 		title: "General Repairs",
 		description: "Comprehensive repairs for all vehicle makes and models.",
-		icon: <FaWrench />,
+		icon: <FaTools />, // General repair icon
 		garage: ["Garage 1", "Garage 2"],
 		garageLinks: ["garage-location-1", "garage-location-2"],
 	},
 	{
 		title: "Oil Changes",
 		description: "Quick and efficient oil changes to keep your engine healthy.",
-		icon: <FaOilCan />,
+		icon: <FaOilCan />, // Oil change icon
 		garage: ["Garage 2"],
 		garageLinks: ["garage-location-2"],
 	},
 	{
 		title: "Battery Replacement",
 		description: "Fast battery replacement for uninterrupted driving.",
-		icon: <FaCarBattery />,
+		icon: <FaBatteryFull />, // Battery replacement icon
 		garage: ["Garage 1"],
 		garageLinks: ["garage-location-1"],
 	},
 	{
 		title: "Tire Rotation",
 		description: "Expert tire rotation for even wear and better handling.",
-		icon: <FaSyncAlt />,
+		icon: <FaSyncAlt />, // Tire rotation icon
 		garage: ["Garage 1", "Garage 2"],
 		garageLinks: ["garage-location-1", "garage-location-2"],
 	},
 	{
 		title: "Brake Inspection",
 		description: "Ensure safety with professional brake inspections.",
-		icon: <FaCarCrash />,
+		icon: <FaCarCrash />, // Brake inspection icon
 		garage: ["Garage 2"],
 		garageLinks: ["garage-location-2"],
 	},
 	{
 		title: "Diagnostic Services",
 		description: "Accurate diagnostics to identify and resolve vehicle issues.",
-		icon: <FaSearch />,
+		icon: <FaDiagnoses />, // Diagnostics icon
 		garage: ["Garage 1"],
 		garageLinks: ["garage-location-1"],
 	},
 	{
 		title: "Auto Repair",
 		description: "Expert repairs for all types of vehicles.",
-		icon: <FaWrench />,
+		icon: <FaCarSide />, // Auto repair icon
 		garage: ["Garage 1"],
 		garageLinks: ["garage-location-1"],
 	},
 	{
 		title: "Electrical Repairs",
 		description: "Reliable electrical diagnostics and repairs.",
-		icon: <FaWrench />,
+		icon: <FaBolt />, // Electrical repair icon
 		garage: ["Garage 1"],
 		garageLinks: ["garage-location-1"],
 	},
 	{
 		title: "Mechanical Repairs",
 		description: "Professional mechanical repair services.",
-		icon: <FaWrench />,
+		icon: <FaCogs />, // Mechanical repair icon
 		garage: ["Garage 1", "Garage 2"],
 		garageLinks: ["garage-location-1", "garage-location-2"],
 	},
 	{
 		title: "AC Repair & Refill",
 		description: "AC repair and refrigerant refills for a comfortable ride.",
-		icon: <FaOilCan />,
+		icon: <FaSnowflake />, // AC repair icon
 		garage: ["Garage 1"],
 		garageLinks: ["garage-location-1"],
 	},
 	{
 		title: "ECU Programming",
 		description: "Advanced ECU programming for optimal vehicle performance.",
-		icon: <FaSearch />,
+		icon: <FaMicrochip />, // ECU programming icon
 		garage: ["Garage 2"],
 		garageLinks: ["garage-location-2"],
 	},
 	{
 		title: "Electronic Repairs",
 		description: "Expert repairs for electronic components in your vehicle.",
-		icon: <FaSearch />,
+		icon: <FaLaptopCode />, // Electronic repairs icon
 		garage: ["Garage 2"],
 		garageLinks: ["garage-location-2"],
 	},
 ];
-
 
 
 
