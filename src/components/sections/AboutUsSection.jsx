@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 // Canvas Animation Function
 const CanvasAnimation = () => {
@@ -156,7 +158,11 @@ function AboutUsSection() {
 							state-of-the-art tools to deliver precise and high-quality
 							results.
 						</motion.p>
+
 					</motion.div>
+
+
+
 
 					{/* Right Side */}
 					<motion.div
@@ -187,10 +193,96 @@ function AboutUsSection() {
 								className="rounded-xl shadow-2xl object-cover w-full h-auto max-h-[500px] transition-transform duration-500 ease-in-out hover:scale-105"
 							/>
 						</div>
-					</motion.div>
-				</div>
-			</div>
-		</section>
+
+
+
+					</motion.div >
+				</div >
+
+				{/* Social & Gallery Section */}
+				<motion.div
+					className="bg-red-800/100 rounded-xl p-8 mt-12 flex flex-col items-center justify-start gap-6"
+					initial={{ opacity: 0, x: 50 }}
+					whileInView={{ opacity: 1, x: 0 }}
+					transition={{ duration: 0.8, staggerChildren: 0.3 }}
+					viewport={{ once: true }}
+				>
+					{/* Left Section: About Us Summary */}
+					<div className="w-full flex flex-col lg:flex-row items-center justify-between">
+						<div className="flex flex-col text-center max-w-3xl lg:text-left">
+							<h3 className="text-2xl font-bold text-white mb-2">
+								Stay Connected with GarageMT
+							</h3>
+							<p className="text-gray-200 max-w-xl leading-relaxed">
+								Follow us on social media for updates, special offers, and a behind-the-scenes look at
+								our garage operations. Explore our gallery to see our expertise in action!
+							</p>
+						</div>
+						{/* Center Section: Social Media Links */}
+						<div className="flex space-x-6 mt-4 lg:mt-0">
+							<a
+								href="https://www.instagram.com/garagemt.ltd/"
+								className="flex items-center space-x-2 p-3 bg-red-600/20 text-red-100 rounded-full hover:bg-red-600 hover:text-white transition duration-300 ease-in-out"
+								aria-label="Instagram"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<FaInstagram size={24} />
+								<p className="text-sm hidden lg:inline-block">@garagemt.ltd</p>
+							</a>
+							<a
+								href="https://www.facebook.com/garagemt.ltd"
+								className="flex items-center space-x-2 p-3 bg-red-600/20 text-red-100 rounded-full hover:bg-red-600 hover:text-white transition duration-300 ease-in-out"
+								aria-label="Facebook"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<FaFacebookF size={24} />
+								<p className="text-sm hidden lg:inline-block">GarageMT</p>
+							</a>
+						</div>
+					</div>
+
+					{/* Right Section: Gallery Link */}
+					<div className="flex lg:flex-row flex-col items-center justify-center lg:justify-between w-full gap-4 mt-4">
+						<Link
+							to="/gallery"
+							className="px-6 py-3 bg-white text-red-800 hover:text-white font-semibold rounded-full hover:bg-red-600 shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2"
+						>
+							<span>Explore Our Gallery</span>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								className="h-5 w-5"
+								viewBox="0 0 20 20"
+								fill="currentColor"
+							>
+								<path
+									fillRule="evenodd"
+									d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+									clipRule="evenodd"
+								/>
+							</svg>
+						</Link>
+						<p className="flex flex-row items-center text-sm text-gray-300 mt-2 text-center lg:text-right">
+							Website designed by:
+							<a
+								href="https://www.ca-webservices.com"
+								className="underline ml-2 hover:text-yellow-400 transition-colors"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								CA Web Services
+							</a>
+							<img
+								className="w-10 h-auto hover:animate-none animate-spin ml-2"
+								src="/assets/icons/ca/Logo3.png" />
+						</p>
+					</div>
+				</motion.div>
+
+
+			</div >
+		</section >
 	);
 }
 

@@ -5,23 +5,8 @@ import {
 	HiOutlineMail,
 	HiOutlinePhone,
 } from "react-icons/hi";
-import { MapIcon, MapPinIcon } from "@heroicons/react/20/solid";
-
-// Business locations as constants
-const businessLocations = {
-	valletta: {
-		name: "Garage 1",
-		address: "12 Triq Sant' Ursola, Valletta, Malta",
-		mapSrc:
-			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.121492949705!2d14.511999725601962!3d35.89703242251843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e452b73df5997%3A0x5f6e73f9cbd0877d!2s272%20St%20Paul%20St%2C%20Valletta%2C%20Malta!5e1!3m2!1sde!2sus!4v1729021463779!5m2!1sen!2sus",
-	},
-	mosta: {
-		name: "Garage 2",
-		address: "Vjal Il-25 Novembru, Mosta, Malta",
-		mapSrc:
-			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248.69393882937254!2d14.524665593205865!3d35.853644799951276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130e5b3e0628b271%3A0x705b09517ef44cfa!2sRenAuto%20Garage!5e1!3m2!1sde!2sus!4v1729684105982!5m2!1sen!2sus",
-	},
-};
+import { MapPinIcon } from "@heroicons/react/20/solid";
+import { GARAGE_LOCATIONS } from "../../content/locations";
 
 function ContactSection() {
 	const [formData, setFormData] = useState({
@@ -31,17 +16,15 @@ function ContactSection() {
 		message: "",
 	});
 	const [errors, setErrors] = useState({});
-	const [isLoaded, setIsLoaded] = useState(false); // Track when the animations are done loading
-	const [selectedLocation, setSelectedLocation] = useState("mosta"); // Track the selected location and set Mosta as default
+	const [isLoaded, setIsLoaded] = useState(false);
+	const [selectedLocation, setSelectedLocation] = useState("LOCATION_2"); // Default location
 
 	const { user_name, user_phone, user_email, message } = formData;
 
-	// Handle input changes
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
-	// Validate form data
 	const validateForm = () => {
 		let formErrors = {};
 		let isValid = true;
@@ -50,17 +33,14 @@ function ContactSection() {
 			formErrors.user_name = "Name is required";
 			isValid = false;
 		}
-
 		if (user_phone.trim() === "") {
 			formErrors.user_phone = "Phone number is required";
 			isValid = false;
 		}
-
 		if (user_email.trim() === "") {
 			formErrors.user_email = "Email is required";
 			isValid = false;
 		}
-
 		if (message.trim() === "") {
 			formErrors.message = "Message is required";
 			isValid = false;
@@ -70,21 +50,18 @@ function ContactSection() {
 		return isValid;
 	};
 
-	// Handle form submission
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		if (validateForm()) {
-			const mailtoLink = `mailto:info@garage.mt?subject=Appointment Request from ${user_name}&body=Name: ${user_name}%0APhone: ${user_phone}%0AEmail: ${user_email}%0AMessage: ${message}`;
+			const mailtoLink = `mailto:info@garage.mt?subject=Appointment Request from ${user_name}&body=Appointment Request Details:%0A%0A-----------------------------------------%0AName: ${user_name}%0APhone: ${user_phone}%0AEmail: ${user_email}%0APreferred Location: ${GARAGE_LOCATIONS[selectedLocation].name}%0A%0A-----------------------------------------%0AMessage:%0A${message}%0A%0A-----------------------------------------`;
+
 			window.location.href = mailtoLink;
 		}
 	};
 
 	useEffect(() => {
-		// Disable body overflow during the load
 		document.body.style.overflowX = isLoaded ? "auto" : "hidden";
-
-		// Cleanup on unmount
 		return () => {
 			document.body.style.overflowX = "auto";
 		};
@@ -93,7 +70,7 @@ function ContactSection() {
 	return (
 		<section
 			id="contact"
-			className="py-20 bg-gradient-to-r  from-red-600 via-red-800 to-black text-white"
+			className="py-20 bg-gradient-to-r from-red-600 via-red-800 to-black text-white"
 		>
 			<div className="container mx-auto flex flex-col lg:flex-row items-start gap-12 px-6 lg:px-12">
 				{/* Left Side - Contact Details */}
@@ -102,7 +79,7 @@ function ContactSection() {
 					initial={{ opacity: 0, x: -50 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.8 }}
-					onAnimationComplete={() => setIsLoaded(true)} // Once animation is complete, mark loaded
+					onAnimationComplete={() => setIsLoaded(true)}
 				>
 					<h4 className="text-yellow-300 text-sm font-semibold tracking-widest uppercase mb-4">
 						Make an Appointment
@@ -128,41 +105,39 @@ function ContactSection() {
 						</div>
 						<div className="flex items-center space-x-4">
 							<HiOutlinePhone className="text-3xl text-yellow-300" />
-							<p>+356 770 88 222</p>
+							<p>{GARAGE_LOCATIONS[selectedLocation]?.phone || "+356 770 88 222"}</p>
 						</div>
 
 						{/* Location Selection */}
 						<div className="mt-6 flex space-x-4">
-							<button
-								onClick={() => setSelectedLocation("valletta")}
-								className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === "valletta" ? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black" : ""}`}
-							>
-								Garage 1
-								<MapPinIcon className="w-4 h-4" />
-							</button>
-							<button
-								onClick={() => setSelectedLocation("mosta")}
-								className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === "mosta" ? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black" : ""}`}
-							>
-								Garage 2
-								<MapPinIcon className="w-4 h-4" />
-							</button>
+							{Object.keys(GARAGE_LOCATIONS).map((key) => (
+								<button
+									key={key}
+									onClick={() => setSelectedLocation(key)}
+									className={`text-white flex items-center gap-2 hover:text-yellow-300 ${selectedLocation === key
+										? "rounded-lg p-1 px-2 border-2 border-yellow-300 text-black"
+										: ""
+										}`}
+								>
+									{GARAGE_LOCATIONS[key].name}
+									<MapPinIcon className="w-4 h-4" />
+								</button>
+							))}
 						</div>
 
 						{/* Display selected location */}
 						{selectedLocation && (
-							<div className="mt-4 sm:mr-32 md:mr-2 mr-2">
-								<h4 className="text-xl font-semibold text-yellow-300 mb-4">
-									{businessLocations[selectedLocation].name}
+							<div className="mt-4 w-full">
+								<h4 className="text-3xl font-semibold text-yellow-300 mb-4">
+									{GARAGE_LOCATIONS[selectedLocation].name}
 								</h4>
-								<div className="flex items-center space-x-4">
+								<div className="flex text-lg items-center space-x-4">
 									<HiOutlineLocationMarker className="text-3xl text-yellow-300" />
-									<p>{businessLocations[selectedLocation].address}</p>
+									<p>{GARAGE_LOCATIONS[selectedLocation].address}</p>
 								</div>
-								{/* Embedded Google Map */}
-								<div className="mt-4 sm:mr-32 md:mr-2 mr-2 rounded-lg overflow-hidden">
+								<div className="mt-4 mr-0 rounded-lg overflow-hidden">
 									<iframe
-										src={businessLocations[selectedLocation].mapSrc}
+										src={GARAGE_LOCATIONS[selectedLocation].mapEmbedSrc}
 										width="100%"
 										height="200"
 										style={{ border: 0 }}
@@ -181,18 +156,13 @@ function ContactSection() {
 					initial={{ opacity: 0, x: 50 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.8 }}
-					onAnimationComplete={() => setIsLoaded(true)} // Mark the form as loaded
 				>
 					<h3 className="text-2xl font-bold mb-6 text-center">
 						How Can We Help?
 					</h3>
 					<form onSubmit={handleSubmit}>
-						{/* Name Input */}
 						<div className="mb-4">
-							<label
-								htmlFor="user_name"
-								className="block text-sm font-medium mb-2"
-							>
+							<label htmlFor="user_name" className="block text-sm font-medium mb-2">
 								Your Name
 							</label>
 							<input
@@ -209,12 +179,8 @@ function ContactSection() {
 								<p className="text-red-500 text-xs mt-1">{errors.user_name}</p>
 							)}
 						</div>
-						{/* Phone Number Input */}
 						<div className="mb-4">
-							<label
-								htmlFor="user_phone"
-								className="block text-sm font-medium mb-2"
-							>
+							<label htmlFor="user_phone" className="block text-sm font-medium mb-2">
 								Phone Number
 							</label>
 							<input
@@ -231,12 +197,8 @@ function ContactSection() {
 								<p className="text-red-500 text-xs mt-1">{errors.user_phone}</p>
 							)}
 						</div>
-						{/* Email Input */}
 						<div className="mb-4">
-							<label
-								htmlFor="user_email"
-								className="block text-sm font-medium mb-2"
-							>
+							<label htmlFor="user_email" className="block text-sm font-medium mb-2">
 								Email Address
 							</label>
 							<input
@@ -253,12 +215,8 @@ function ContactSection() {
 								<p className="text-red-500 text-xs mt-1">{errors.user_email}</p>
 							)}
 						</div>
-						{/* Message Input */}
 						<div className="mb-6">
-							<label
-								htmlFor="message"
-								className="block text-sm font-medium mb-2"
-							>
+							<label htmlFor="message" className="block text-sm font-medium mb-2">
 								Your Message
 							</label>
 							<textarea
@@ -275,7 +233,6 @@ function ContactSection() {
 								<p className="text-red-500 text-xs mt-1">{errors.message}</p>
 							)}
 						</div>
-						{/* Submit Button */}
 						<button
 							type="submit"
 							className="w-full block text-center text-white bg-red-500 font-semibold text-lg py-3 rounded-lg hover:bg-red-700 transition duration-200"
