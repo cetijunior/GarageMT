@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  title: Garage Booking System API
+  description: API documentation for the Garage Booking System
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+    description: Local development server
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+security:
+  - ApiKeyAuth: []
+paths:
+  /api/bookings:
+    post:
+      summary: Create a new booking
+      description: Endpoint to create a new booking for a specific garage and time.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John Doe
+                email:
+                  type: string
+                  example: john.doe@example.com
+                phone:
+                  type: string
+                  example: 1234567890
+                garage:
+                  type: string
+                  example: Garage A
+                note:
+                  type: string
+                  example: Engine making noise
+                date:
+                  type: string
+                  example: 2025-01-30
+                time:
+                  type: string
+                  example: 10:00 AM
+                consentForMarketing:
+                  type: boolean
+                  example: true
+      responses:
+        201:
+          description: Booking created successfully
+        400:
+          description: Bad request (e.g., missing required fields or double booking)
+        500:
+          description: Internal server error
+  /api/bookings/availability:
+    get:
+      summary: Check booking availability
+      description: Returns a list of booked time slots for a specific date and garage.
+      parameters:
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+            example: 2025-01-25
+        - name: garage
+          in: query
+          required: true
+          schema:
+            type: string
+            example: Garage A
+      responses:
+        200:
+          description: List of booked times
+        400:
+          description: Missing or invalid parameters
+        500:
+          description: Internal server error
+  /api/bookings/daily:
+    get:
+      summary: Fetch daily bookings
+      description: Retrieve all bookings for the current day.
+      responses:
+        200:
+          description: List of daily bookings
+        500:
+          description: Internal server error
+  /api/bookings/emails:
+    get:
+      summary: Fetch all client emails
+      description: Retrieve all client emails or include full details if specified.
+      parameters:
+        - name: includeDetails
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "true"
+          description: Set to "true" to include full client details.
+      responses:
+        200:
+          description: List of client emails or details
+        500:
+          description: Internal server error
+  /api/bookings/all:
+    get:
+      summary: Fetch all bookings
+      description: Retrieve all bookings, with optional filters.
+      parameters:
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "2025-01-25"
+          description: Filter bookings by date.
+        - name: garage
+          in: query
+          required: false
+          schema:
+            type: string
+            example: Garage A
+          description: Filter bookings by garage.
+      responses:
+        200:
+          description: List of all bookings
+        500:
+          description: Internal server error
+  /api/bookings/{id}:
+    delete:
+      summary: Cancel a booking
+      description: Delete a booking by its ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the booking to cancel.
+      responses:
+        200:
+          description: Booking canceled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Booking canceled successfully.
+                  booking:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      phone:
+                        type: string
+                      garage:
+                        type: string
+                      note:
+                        type: string
+                      date:
+                        type: string
+                      time:
+                        type: string
+                      status:
+                        type: string
+                        example: confirmed
+                      consent:
+                        type: boolean
+        404:
+          description: Booking not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Booking not found.
+        500:
+          description: Internal server error
+  /api/marketing:
+    get:
+      summary: Fetch marketing consents
+      description: Retrieve all users who have agreed to marketing.
+      responses:
+        200:
+          description: List of marketing consents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  consents:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        email:
+                          type: string
+                        phone:
+                          type: string
+                        consentDate:
+                          type: string
+                          format: date-time
