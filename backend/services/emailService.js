@@ -1,15 +1,15 @@
 const nodemailer = require('nodemailer');
 
-// Create a transporter for email service
+// Email transporter
 const transporter = nodemailer.createTransport({
-  service: 'Gmail', // You can use another service like Outlook, SMTP, etc.
+  service: 'Gmail',
   auth: {
-    user: process.env.EMAIL_USER, // Your email address
-    pass: process.env.EMAIL_PASS, // Your email password or app password
+    user: process.env.EMAIL_USER, // Your email
+    pass: process.env.EMAIL_PASS, // Your app password
   },
 });
 
-// Function to send an email
+// Send email function
 const sendEmail = async (to, subject, text) => {
   try {
     const mailOptions = {
@@ -26,4 +26,4 @@ const sendEmail = async (to, subject, text) => {
   }
 };
 
-module.exports = sendEmail;
+module.exports = {sendEmail};

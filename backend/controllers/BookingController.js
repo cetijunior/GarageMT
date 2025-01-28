@@ -1,7 +1,10 @@
 const Booking = require('../models/Booking');
 const MarketingConsent = require('../models/MarketingConsent')
 const moment = require('moment'); // Install moment.js for date handling
-const sendEmail = require('../services/emailService');
+const { addEventToGoogleCalendar } = require('../services/googleCalendarService');
+const { sendEmail } = require('../services/emailService');
+const { google } = require('googleapis');
+
 
 // Create a new booking
 exports.createBooking = async (req, res) => {
@@ -19,7 +22,7 @@ exports.createBooking = async (req, res) => {
       return res.status(400).json({ message: 'This time slot is already booked.' });
     }
 
-    // Save booking
+    // Save booking to database
     const newBooking = new Booking({ name, email, phone, garage, note, date, time });
     await newBooking.save();
 
@@ -33,13 +36,63 @@ exports.createBooking = async (req, res) => {
       }
     }
 
-    res.status(201).json({ message: 'Booking created successfully!', booking: newBooking });
+    // Add booking to Google Calendar and get event link
+    let eventLink = null;
+    try {
+      eventLink = await addEventToGoogleCalendar(newBooking);
+    } catch (error) {
+      console.error('Failed to add event to Google Calendar:', error.message);
+    }
+
+    // Send confirmation email to the client
+    const clientMessage = `
+      Dear ${name},
+
+      Thank you for booking with us!
+
+      Here are your booking details:
+      - Garage: ${garage}
+      - Date: ${date}
+      - Time: ${time}
+      - Note: ${note || 'N/A'}
+
+      ${eventLink ? `You can view and manage your appointment here: ${eventLink}` : ''}
+
+      We look forward to serving you.
+
+      Best regards,
+      Garage Booking Team
+    `;
+    await sendEmail(email, 'Booking Confirmation', clientMessage);
+
+    // Send booking info to the admin
+    const adminMessage = `
+      New Booking Received:
+
+      - Name: ${name}
+      - Email: ${email}
+      - Phone: ${phone}
+      - Garage: ${garage}
+      - Date: ${date}
+      - Time: ${time}
+      - Note: ${note || 'N/A'}
+
+      ${eventLink ? `Google Calendar Event: ${eventLink}` : ''}
+    `;
+    const adminEmail = process.env.ADMIN_EMAIL;
+    await sendEmail(adminEmail, 'New Booking Notification', adminMessage);
+
+    res.status(201).json({
+      message: 'Booking created successfully!',
+      booking: newBooking,
+      calendarEvent: eventLink || 'Event not created',
+    });
   } catch (error) {
     console.error('Error creating booking:', error);
     res.status(500).json({ message: 'Internal server error.', error });
   }
 };
-  
+
 // Check availability
 exports.checkAvailability = async (req, res) => {
     try {
