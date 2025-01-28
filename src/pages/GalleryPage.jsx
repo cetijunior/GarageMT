@@ -4,7 +4,7 @@ import ParticlesBackground from "../components/layout/ParticlesBackground";
 
 // Image and video categories with respective media files
 const categories = {
-	Work: [
+	"Garage 1": [
 		"/assets/images/work1.jpg",
 		"/assets/images/work6.jpg",
 		"/assets/images/work.jpg",
@@ -14,20 +14,20 @@ const categories = {
 		"/assets/images/work2.jpg",
 		"/assets/images/work5.jpg",
 		"/assets/images/work4.jpg",
+		"/assets/videos/vid2.mp4",
+		"/assets/images/entry3.jpg",
+		"/assets/images/entry1.jpg",
 
 		// Add more "Work" images
 	],
-	Garage: [
-		"/assets/videos/vid2.mp4",
-		"/assets/images/entry3.jpg",
-		"/assets/images/entry2.jpg",
-		"/assets/images/entry1.jpg",
+	"Garage 2": [
+
 		// Add more "Garage" media files (images/videos)
 	],
 };
 
 function GalleryPage() {
-	const [selectedCategory, setSelectedCategory] = useState("Work"); // Default to "Work" category
+	const [selectedCategory, setSelectedCategory] = useState("Garage 1"); // Default to "Work" category
 	const [selectedMedia, setSelectedMedia] = useState(null);
 
 	// Get images and videos based on selected category
@@ -41,7 +41,7 @@ function GalleryPage() {
 	};
 
 	return (
-		<div className="container mx-auto py-16">
+		<div className="container mx-auto mt-6 pb-16">
 			<div className="z-0">
 				<ParticlesBackground />
 			</div>
@@ -52,11 +52,10 @@ function GalleryPage() {
 				{Object.keys(categories).map((category) => (
 					<button
 						key={category}
-						className={`px-6 py-2 rounded-full font-semibold text-white ${
-							selectedCategory === category
-								? "bg-red-500"
-								: "bg-gray-400 hover:bg-gray-500"
-						}`}
+						className={`px-6 py-2 rounded-full font-semibold text-white ${selectedCategory === category
+							? "bg-red-500"
+							: "bg-gray-400 hover:bg-gray-500"
+							}`}
 						onClick={() => setSelectedCategory(category)}
 					>
 						{category}
