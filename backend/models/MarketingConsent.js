@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const marketingConsentSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  phone: { type: String, required: true, unique: true },
-  consentDate: { type: Date, default: Date.now }, // Date when consent was given
+  email: { type: String, required: true, unique: true, index: true }, // Added index
+  phone: { type: String, required: true, unique: true, index: true }, // Added index
+  consentDate: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model('MarketingConsent', marketingConsentSchema);

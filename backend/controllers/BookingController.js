@@ -4,7 +4,7 @@ const moment = require('moment'); // Install moment.js for date handling
 const { addEventToGoogleCalendar } = require('../services/googleCalendarService');
 const { sendEmail } = require('../services/emailService');
 const { google } = require('googleapis');
-
+const CustomError = require('../utils/CustomError')
 
 // Create a new booking
 exports.createBooking = async (req, res) => {
@@ -13,15 +13,18 @@ exports.createBooking = async (req, res) => {
 
     // Check required fields
     if (!name || !email || !phone || !garage || !date || !time) {
-      return res.status(400).json({ message: 'All required fields must be provided.' });
+      throw new CustomError('All required fields must be provided.', 400);
     }
 
     // Check for existing booking
-    const existingBooking = await Booking.findOne({ date, time, garage });
+    const existingBooking = await Booking.findOne(
+      { date, time, garage },
+      { _id: 1 } // Fetch only the ID for performance
+    );
     if (existingBooking) {
-      return res.status(400).json({ message: 'This time slot is already booked.' });
+      throw new CustomError('This time slot is already booked.', 400);
     }
-
+    
     // Save booking to database
     const newBooking = new Booking({ name, email, phone, garage, note, date, time });
     await newBooking.save();
@@ -148,7 +151,8 @@ exports.getAllBookings = async (req, res) => {
     const bookings = await Booking.find(filter)
       .sort({ [sortBy]: sortOrder })
       .skip((pageNum - 1) * limitNum)
-      .limit(limitNum);
+      .limit(limitNum)
+      .select('name email phone garage date time'); // Limit returned fields
 
     const totalBookings = await Booking.countDocuments(filter);
 
