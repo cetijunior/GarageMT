@@ -2,9 +2,39 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { GARAGE_LOCATIONS } from "../../content/locations";
 import ScrollingFeatures from "../layout/ScrollingFeatures";
+import React from "react";
+import { FaChevronRight } from "react-icons/fa";
+import { GiTowTruck } from "react-icons/gi";
+
+
+
+
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 function HeroSection() {
 	const navigate = useNavigate();
+
+
+	const handleNavigation = (path, section) => {
+		if (location.pathname !== "/") {
+			navigate("/");
+			setTimeout(() => {
+				scrollToSection(section);
+			}, 300); // Add a slight delay to ensure navigation happens before scrolling
+		} else {
+			scrollToSection(section);
+		}
+		setNavOpen(false); // Close the navbar after clicking
+	};
+
+
+	const scrollToSection = (sectionId) => {
+		scroll.scrollTo(document.getElementById(sectionId)?.offsetTop - 80, {
+			duration: 10,
+			smooth: true,
+		});
+	};
+
 
 	return (
 		<section
@@ -27,18 +57,25 @@ function HeroSection() {
 					<p className="text-base md:text-lg xl:text-xl text-white/90 lg:pr-4">
 						Swift, professional repairs that get you back on the road. Your trusted automotive partner in Malta.
 					</p>
-					<div className="flex flex-row-reverse w-full mx-auto lg:pr-4 justify-center lg:justify-between gap-4">
+					<div className="flex flex-row w-full mx-auto lg:pr-4 justify-center lg:justify-between gap-4">
 						<button
-							onClick={() => navigate('/contact')}
-							className="px-6 md:px-8 py-2 md:py-3 bg-white text-red-900 rounded-full font-semibold hover:bg-gray-100 shadow-md transition text-sm md:text-base xl:text-lg"
-						>
-							Emergency Help
+							onClick={() => handleNavigation("/", "services")}
+							className="px-4 py-4 bg-transparent hover:bg-white/20 border-2 border-white group group-hover text-white rounded-full font-medium flex items-center justify-between gap-2 shadow-lg shadow-red-500/30 transition-all duration-300">
+
+							<p>Our Services</p>
+							<FaChevronRight
+								className="w-4 h-4 transform-all duration-300 group-hover:rotate-90"
+							/>
 						</button>
 						<button
-							onClick={() => navigate('/#services')}
-							className="px-6 md:px-8 py-2 md:py-3 border-2 border-white text-white rounded-full hover:bg-white/20 shadow-md transition text-sm md:text-base xl:text-lg"
+							onClick={() => handleNavigation("/", "contact")}
+							className="px-4 md:px-8 py-4 md:py-3 group group-hover bg-white hover:bg-red-600/90 hover:border-2 hover:border-white hover:text-white text-red-900 rounded-full font-semibold flex items-center justify-between gap-2 hover:bg-gray-100 shadow-md transition text-sm md:text-base xl:text-lg"
 						>
-							Our Services
+							Emergency Help
+							<GiTowTruck
+								className="size-4 lg:size-6 transform-all duration-300 group-hover:size-8"
+
+							/>
 						</button>
 					</div>
 				</motion.div>

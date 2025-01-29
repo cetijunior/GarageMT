@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
@@ -14,9 +13,12 @@ import {
 	FaSnowflake,
 	FaMicrochip,
 	FaLaptopCode,
+	FaChevronRight,
+	FaPhoneAlt,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { GARAGE_LOCATIONS } from "../../content/locations";
+import React from "react";
 
 
 const servicesData = [
@@ -186,11 +188,11 @@ function ServicesSection() {
 	const cardVariants = {
 		hidden: { opacity: 0, y: 30 },
 		visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-		hover: { scale: 1.05, transition: { duration: 0.3, ease: "easeInOut" } },
+		hover: { scale: 1.05, transition: { duration: 0.1, ease: "easeInOut" } },
 	};
 
 	return (
-		<section id="services" className="bg-gray-100 py-16 px-6" ref={sectionRef}>
+		<section id="services" className="bg-white py-16 px-6" ref={sectionRef}>
 			<div className="container mx-auto">
 				{/* Header Section */}
 				<motion.div
@@ -199,7 +201,7 @@ function ServicesSection() {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6 }}
 				>
-					<div className="flex lg:flex-row flex-col items-center w-full mx-auto justify-evenly">
+					<div className="flex flex-col space-y-4 items-center w-full mx-auto justify-evenly">
 						<div>
 							<h2 className="text-4xl font-extrabold text-red-700">
 								Premium Services Across Our Garages
@@ -211,10 +213,13 @@ function ServicesSection() {
 
 						<motion.button
 							onClick={toggleShowMore}
-							className="lg:mt-0 mt-8 px-6 py-3 bg-red-500 text-white font-semibold text-center rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all"
+							className="flex items-center gap-3 justify-between lg:mt-0 mt-8 px-6 py-3 bg-red-500 text-white font-semibold text-center rounded-full shadow-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 transition-all"
 							whileHover={{ scale: 1.1 }}
 						>
 							{showAll ? "Show Less" : "Show More"}
+							<FaChevronRight
+								className={`w-4 h-4 transform-all duration-300 ${showAll ? "rotate-90" : "rotate-0"}`}
+							/>
 						</motion.button>
 					</div>
 				</motion.div>
@@ -224,7 +229,7 @@ function ServicesSection() {
 					{displayedServices.map((service, index) => (
 						<motion.div
 							key={index}
-							className="group relative bg-white rounded-2xl shadow-xl ring-1 ring-gray-900/5 overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+							className=" relative bg-white rounded-2xl shadow-xl hover:shadow-red-600 ring-1 ring-gray-900/5 overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
 							variants={cardVariants}
 							initial="hidden"
 							animate="visible"
@@ -249,7 +254,7 @@ function ServicesSection() {
 									</p>
 								</div>
 
-								<div className="flex justify-center items-center my-auto pt-4 border-t border-gray-100 space-x-3">
+								<div className="flex flex-col md:flex-row justify-start md:justify-center space-y-2 md:space-y-0 md:items-center my-auto pt-4 border-t border-gray-100 md:space-x-3">
 									{service.garages.map((garageKey) => {
 										const garage = GARAGE_LOCATIONS[garageKey];
 
@@ -263,17 +268,27 @@ function ServicesSection() {
 											<a
 												key={garageKey}
 												href={garage.link}
-												className="w-5/6 text-center h-10 px-3 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
+												className="md:w-5/6 group group-hover flex items-center justify-between text-center h-10 px-3 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
 											>
-												{displayName}
+												<a className="">
+													{displayName}
+												</a>
+												<a>
+													<FaChevronRight
+														className="w-4 h-4 transform-all duration-300 group-hover:rotate-90"
+													/>
+												</a>
 											</a>
+
 										);
 									})}
 									<button
 										onClick={() => handleScrollNavigation("/", "contact")}
-										className="flex w-1/2 items-center justify-center text-center h-10 px-4 border-2 py-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+										className="flex md:w-20 items-center justify-between md:justify-center text-center h-10 px-4 border-2 py-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
 									>
-										Contact
+										<p className="lg:hidden ">Contact</p>
+										<FaPhoneAlt className="w-4 h-4" />
+
 									</button>
 								</div>
 							</div>

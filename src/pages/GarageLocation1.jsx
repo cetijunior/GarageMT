@@ -42,7 +42,6 @@ function GarageLocation2() {
             <section
                 id="hero"
                 className="flex h-full w-full items-center justify-center bg-gradient-to-br from-red-800 to-red-600 text-white"
-
             >
                 <GarageHero1 />
             </section>

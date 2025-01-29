@@ -2,13 +2,15 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { GARAGE_LOCATIONS } from "../../content/locations";
 import { HiOutlineLocationMarker, HiOutlineMail, HiPhone } from "react-icons/hi";
+import React from "react";
+import { FaChevronRight } from "react-icons/fa";
 
 function LocationsSection() {
 	const locations = Object.values(GARAGE_LOCATIONS);
 	const navigate = useNavigate();
 
 	return (
-		<section id="locations" className="py-16 bg-gray-100">
+		<section id="locations" className="py-16 bg-white">
 			<div className="container mx-auto px-6 lg:px-12">
 				{/* Section Header */}
 				<motion.div
@@ -28,7 +30,7 @@ function LocationsSection() {
 					{locations.map((location, index) => (
 						<motion.div
 							key={index}
-							className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-start transition-transform hover:scale-105"
+							className="rounded-lg shadow-red-200 shadow-lg hover:shadow-2xl hover:shadow-red-600 p-6 flex flex-col items-start transform-all duration-300 hover:scale-110"
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -64,10 +66,16 @@ function LocationsSection() {
 							{/* Navigation Button */}
 							<button
 								onClick={() => navigate(location.link)}
-								className="flex px-6 items-center justify-center w-3/4 mx-auto py-3 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition duration-300"
+								className="w-full lg:w-2/4 flex items-center justify-evenly gap-2 mx-auto px-8 py-4 bg-red-600 hover:bg-black group group-hover text-white rounded-lg font-medium  shadow-lg shadow-red-500/30 transition-all duration-300"
 							>
 								View {location.name}
+								<FaChevronRight
+									className="w-4 h-4 transform-all duration-300 group-hover:rotate-90"
+								/>
 							</button>
+
+
+
 						</motion.div>
 					))}
 				</div>

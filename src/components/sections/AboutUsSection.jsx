@@ -90,7 +90,7 @@ function AboutUsSection() {
 	return (
 		<section
 			id="about"
-			className="relative py-20 bg-transparent overflow-hidden"
+			className="relative bg-white py-20 bg-transparent overflow-hidden"
 		>
 			{/* Background Particle Animation */}
 			<CanvasAnimation />
@@ -201,7 +201,7 @@ function AboutUsSection() {
 
 				{/* Social & Gallery Section */}
 				<motion.div
-					className="bg-red-800/100 rounded-xl p-8 mt-12 flex flex-col items-center justify-start gap-6"
+					className="lg:w-3/4 lg:justify-center mx-auto bg-red-800/100 rounded-xl p-8 mt-12 flex flex-col items-center justify-start gap-6"
 					initial={{ opacity: 0, x: 50 }}
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.8, staggerChildren: 0.3 }}
@@ -267,15 +267,17 @@ function AboutUsSection() {
 							Website designed by:
 							<a
 								href="https://www.ca-webservices.com"
-								className="underline ml-2 hover:text-yellow-400 transition-colors"
+								className="flex items-center underline ml-2 hover:text-yellow-400 transition-colors"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
 								CA Web Services
+								<img
+									className="w-10 h-auto hover:animate-none animate-spin ml-2"
+									src="/assets/icons/ca/Logo3.png"
+								/>
 							</a>
-							<img
-								className="w-10 h-auto hover:animate-none animate-spin ml-2"
-								src="/assets/icons/ca/Logo3.png" />
+
 						</p>
 					</div>
 				</motion.div>
