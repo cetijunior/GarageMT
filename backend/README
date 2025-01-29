@@ -1,5 +1,37 @@
 Garage Booking System
 
+Table of Contents
+
+Overview
+
+Key Features
+
+Getting Started
+
+Prerequisites
+
+Installation
+
+Environment Variables
+
+Running the Application
+
+API Documentation
+
+API Endpoints
+
+Security & Best Practices
+
+Project Structure
+
+Deployment
+
+Contribution
+
+License
+
+Support
+
 Overview
 
 The Garage Booking System is a RESTful API that allows customers to schedule appointments at two different garages. The system manages bookings, sends confirmation emails, integrates with Google Calendar, and handles marketing consent for customers who opt-in.
@@ -197,31 +229,6 @@ Error Handling: Errors are properly caught and returned as structured JSON respo
 Data Encryption: Store sensitive information in an encrypted format where necessary.
 
 Environment Variables: Never expose API keys or sensitive information in the codebase.
-
-Project Structure
-
-📂 garage-booking
- ├── 📂 controllers
- │    ├── BookingController.js
- │    ├── MarketingController.js
- ├── 📂 models
- │    ├── Booking.js
- │    ├── MarketingConsent.js
- ├── 📂 services
- │    ├── emailService.js
- │    ├── googleCalendarService.js
- ├── 📂 routes
- │    ├── bookings.js
- │    ├── marketing.js
- ├── 📂 middleware
- │    ├── auth.js
- ├── 📂 config
- │    ├── config.js (for API keys and credentials)
- ├── app.js
- ├── server.js
- ├── .env
- ├── package.json
- ├── README.md
 
 Deployment
 
