@@ -66,7 +66,7 @@ function LocationsSection() {
 							{/* Navigation Button */}
 							<button
 								onClick={() => navigate(location.link)}
-								className="w-full lg:w-2/4 flex items-center justify-evenly gap-2 mx-auto px-8 py-4 bg-red-600 hover:bg-black group group-hover text-white rounded-lg font-medium  shadow-lg shadow-red-500/30 transition-all duration-300"
+								className="w-full lg:w-2/4 flex items-center justify-between gap-2 mx-auto px-8 py-4 bg-red-600 hover:bg-black group group-hover text-white rounded-lg font-medium  shadow-lg shadow-red-500/30 transition-all duration-300"
 							>
 								View {location.name}
 								<FaChevronRight

@@ -157,8 +157,6 @@ function ServicesSection() {
 
 
 
-
-
 	const toggleShowMore = () => {
 		setShowAll(!showAll);
 		if (sectionRef.current) {

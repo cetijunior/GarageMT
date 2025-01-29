@@ -10,6 +10,8 @@ import {
     FaWrench,
 } from "react-icons/fa";
 import GarageAbout1 from "../components/sections/garages/GarageAbout1";
+import ServicesSection from "../components/sections/ServicesSection";
+import AboutUsSection from "../components/sections/AboutUsSection";
 
 const services = [
     {
@@ -51,7 +53,11 @@ function GarageLocation2() {
                 details="Garage MT in Mosta specializes in modern automotive solutions, offering customers a wide range of professional services. With state-of-the-art equipment and a team of certified mechanics, we ensure your vehicle gets the best care."
             />
 
-            <GarageServices services={services} />
+            {/* <GarageServices services={services} /> */}
+            <ServicesSection />
+
+            <AboutUsSection />
+
 
             <ContactSection />
         </>
