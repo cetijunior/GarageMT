@@ -47,26 +47,45 @@ exports.createBooking = async (req, res) => {
       console.error('Failed to add event to Google Calendar:', error.message);
     }
 
-    // Send confirmation email to the client
-    const clientMessage = `
-      Dear ${name},
-
-      Thank you for booking with us!
-
-      Here are your booking details:
-      - Garage: ${garage}
-      - Date: ${date}
-      - Time: ${time}
-      - Note: ${note || 'N/A'}
-
-      ${eventLink ? `You can view and manage your appointment here: ${eventLink}` : ''}
-
-      We look forward to serving you.
-
-      Best regards,
-      Garage Booking Team
+    // **📩 Beautiful Confirmation Email for the Client**
+    const clientEmailHTML = `
+      <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
+        <h2 style="text-align: center; color: #1a73e8;">🚗 GarageMT - Booking Confirmation</h2>
+        <p style="font-size: 16px; text-align: center;">Dear <b>${name}</b>,</p>
+        <p style="font-size: 16px; text-align: center;">Thank you for scheduling your service with us! Here are the details of your appointment:</p>
+        <hr>
+        <table style="width: 100%; font-size: 16px; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 8px; font-weight: bold;">📍 Garage:</td>
+            <td style="padding: 8px;">${garage}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; font-weight: bold;">📅 Date:</td>
+            <td style="padding: 8px;">${date}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; font-weight: bold;">⏰ Time:</td>
+            <td style="padding: 8px;">${time}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; font-weight: bold;">📝 Notes:</td>
+            <td style="padding: 8px;">${note || 'N/A'}</td>
+          </tr>
+        </table>
+        <hr>
+        ${
+          eventLink
+            ? `<p style="text-align: center;"><a href="${eventLink}" style="display: inline-block; padding: 12px 20px; font-size: 16px; color: #ffffff; background-color: #1a73e8; border-radius: 5px; text-decoration: none;">📅 View in Google Calendar</a></p>`
+            : ''
+        }
+        <p style="text-align: center; font-size: 16px; color: #666;">If you have any questions, feel free to contact us.</p>
+        <p style="text-align: center; font-size: 16px; color: #1a73e8;">📞 +356 774 98 675 | 📞 +356 770 88 222 | ✉️ info@garage.mt</p>
+        <hr>
+        <p style="text-align: center; font-size: 14px; color: #999;">GarageMT © 2025 - All rights reserved.</p>
+      </div>
     `;
-    await sendEmail(email, 'Booking Confirmation', clientMessage);
+
+    await sendEmail(email, '🚗 GarageMT - Booking Confirmation', clientEmailHTML);
 
     // Send booking info to the admin
     const adminMessage = `
