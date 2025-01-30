@@ -57,7 +57,7 @@ const addEventToGoogleCalendar = async (booking) => {
     console.log('Event added to Google Calendar:', response.data.htmlLink);
 
     // Send confirmation email with event invite
-    await sendConfirmationEmail(booking, response.data.htmlLink);
+    //await sendConfirmationEmail(booking, response.data.htmlLink);
 
     return response.data.htmlLink; // Return event link
   } catch (error) {
