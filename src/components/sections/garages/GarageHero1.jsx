@@ -9,56 +9,52 @@ import {
 } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/autoplay";
+import { FaLocationDot, FaLocationPin } from 'react-icons/fa6';
+
+import { GARAGE_LOCATIONS } from "../../../content/locations"; // Import locations.js
+// Get first location from GARAGE_LOCATIONS
+const firstLocation = GARAGE_LOCATIONS.LOCATION_1;
+
+const features = [
+    {
+        icon: <FaLocationPin />,
+        title: "Location",
+        description: (
+            <a href={firstLocation.googleMapsLink} target="_blank" rel="noopener noreferrer" className="">
+                {firstLocation.address}
+            </a>
+        ),
+    },
+    {
+        icon: <FaPhoneAlt />,
+        title: "Phone",
+        description: (
+            <a href={`tel:${firstLocation.phone}`} className="underline">{firstLocation.phone}</a>
+        ),
+    },
+    {
+        icon: <FaClock />,
+        title: "Working Hours",
+        description: firstLocation.availability || "Mon-Sat: 8AM-6PM",
+    },
+    {
+        icon: <FaTools />,
+        title: "Latest Tools",
+        description: "State-of-the-art equipment for precision repairs.",
+    },
+    {
+        icon: <FaCalendarAlt />,
+        title: "Flexible Scheduling",
+        description: "Book repairs at your convenience.",
+    },
+    {
+        icon: <FaCheck />,
+        title: "High Quality Service",
+        description: "Exceptional service that meets the highest standards.",
+    },
+];
 
 const GarageHero1 = () => {
-    const stats = [
-        { icon: FaWrench, value: '15+', label: 'Years Experience' },
-        { icon: FaUserFriends, value: '2000+', label: 'Happy Clients' },
-        { icon: FaCar, value: '24/7', label: 'Service Available' },
-    ];
-
-    const features = [
-        {
-            icon: <FaHandshake />,
-            title: "Best Prices",
-            description: "Competitive rates for all repairs and services.",
-        },
-        {
-            icon: <FaThumbsUp />,
-            title: "100% Guarantee",
-            description: "Full guarantee on all our repair work.",
-        },
-        {
-            icon: <FaCertificate />,
-            title: "Certified Mechanics",
-            description: "Highly trained and certified automotive experts.",
-        },
-        {
-            icon: <FaTools />,
-            title: "Latest Tools",
-            description: "State-of-the-art equipment for precision repairs.",
-        },
-        {
-            icon: <FaCalendarAlt />,
-            title: "Flexible Scheduling",
-            description: "Book repairs at your convenience.",
-        },
-        {
-            icon: <FaHistory />,
-            title: "20+ Years Experience",
-            description: "Trusted expertise in automotive repair.",
-        },
-        {
-            icon: <FaRocket />,
-            title: "Fast Turnaround",
-            description: "Quick and efficient service.",
-        },
-        {
-            icon: <FaCheck />,
-            title: "High Quality Service",
-            description: "Exceptional service that meets the highest standards.",
-        },
-    ];
 
     const fadeInUp = {
         initial: { opacity: 0, y: 20 },

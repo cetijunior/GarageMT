@@ -50,9 +50,9 @@ const BookingForm = () => {
         if (!formData.garage) newErrors.garage = "Please select a garage.";
         if (!formData.date) newErrors.date = "Please select a date.";
         if (!formData.time) newErrors.time = "Please select a time.";
-        if (!formData.vehicleMake.trim()) newErrors.vehicleMake = "Vehicle make is required.";
-        if (!formData.vehicleModel.trim()) newErrors.vehicleModel = "Vehicle model is required.";
-        if (!formData.vehicleYear.trim()) newErrors.vehicleYear = "Vehicle year is required.";
+        // if (!formData.vehicleMake.trim()) newErrors.vehicleMake = "Vehicle make is required.";
+        // if (!formData.vehicleModel.trim()) newErrors.vehicleModel = "Vehicle model is required.";
+        // if (!formData.vehicleYear.trim()) newErrors.vehicleYear = "Vehicle year is required.";
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -68,8 +68,17 @@ const BookingForm = () => {
 
         setIsSubmitting(true);
 
+        console.log("📤 Sending data:", formData);  // Debugging: Log data before sending
+
         try {
-            const response = await axios.post("http://localhost:5000/api/bookings/", formData);
+            const response = await axios.post("https://garage-booking-backend.onrender.com/api/bookings", formData, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            console.log("✅ Server response:", response.data);
+
             if (response.status === 200) {
                 setMessage("✅ Booking confirmed! A confirmation email will be sent.");
                 setFormData({
@@ -83,17 +92,18 @@ const BookingForm = () => {
                     vehicleModel: "",
                     vehicleYear: "",
                     note: "",
-                    consentForMarketing: false,
+                    consentForMarketing: true,
                 });
                 setErrors({});
             }
         } catch (error) {
-            console.error("❌ Booking error:", error);
+            console.error("❌ Booking error:", error.response ? error.response.data : error.message);
             setMessage("❌ Something went wrong. Please try again.");
         }
 
         setIsSubmitting(false);
     };
+
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -104,7 +114,7 @@ const BookingForm = () => {
     };
 
     return (
-        <div className="lg:container mx-auto p-8 bg-white shadow-xl rounded-lg border border-gray-100">
+        <div className="lg:container mx-auto bg-white shadow-xl rounded-2xl ">
             <div className="flex items-center justify-center rounded-t-xl py-4 mb-4 border-b border-gray-200 bg-red-600 text-white text-center">
                 <FiMail className="size-6 inline-block mr-2 mt-[2px]" />
                 <h3 className="text-2xl font-bold inline-block">Book a Meeting!</h3>
@@ -119,7 +129,7 @@ const BookingForm = () => {
                 </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 shadow-xl p-6">
                 <div className="grid md:grid-cols-2 gap-6">
                     {/* Personal Information Section */}
                     <div className="space-y-6">

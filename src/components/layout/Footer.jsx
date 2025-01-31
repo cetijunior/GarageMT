@@ -81,34 +81,42 @@ function Footer({ onCookieSettingsClick }) {
 
 				{/* Contact Info for Both Garages */}
 				<div className="text-center space-y-6">
-					<h3 className="text-xl font-semibold text-gray-100">Contact Us</h3>
+					<h3 className="lg:text-2xl text-xl font-bold text-gray-100">
+						Contact Us:
+					</h3>
 
-					{/* Garage 1 Info */}
-					<div>
-						<h4 className="font-bold text-lg">GarageMT Limited</h4>
-						<div className="flex items-center justify-center space-x-2">
-							<HiOutlineLocationMarker size={20} />
-							<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_1.address}</p>
-						</div>
-						<div className="flex items-center justify-center space-x-2">
-							<HiOutlinePhone size={20} />
-							<p> | Whatsapp </p>
-							<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_1.phone}</p>
-						</div>
-					</div>
 
-					{/* Garage 2 Info */}
-					<div>
-						<h4 className="font-bold text-lg">Garage MT</h4>
-						<div className="flex items-center justify-center space-x-2">
-							<HiOutlineLocationMarker size={20} />
-							<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_2.address}</p>
+					<div className="flex lg:flex-col space-y-2 items-center justify-evenly">
+						{/* Garage 1 Info */}
+						<div className="flex flex-col items-start">
+							<h4 className="font-bold text-lg self-center">GarageMT Limited</h4>
+							<div className="flex items-center justify-center space-x-2">
+								<HiOutlineLocationMarker size={20} />
+								<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_1.address}</p>
+							</div>
+							<div className="flex items-center justify-center space-x-2">
+								<HiOutlinePhone size={20} />
+								<p> | Whatsapp </p>
+								<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_1.phone}</p>
+							</div>
 						</div>
-						<div className="flex items-center justify-center space-x-2">
-							<HiOutlinePhone size={20} />
-							<p> | Whatsapp </p>
-							<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_2.phone}</p>
+
+						<div className="border lg:h-0 lg:w-full h-20 border-red-900"></div>
+
+						{/* Garage 2 Info */}
+						<div className="flex flex-col items-start">
+							<h4 className="font-bold text-lg self-center">Garage MT</h4>
+							<div className="flex items-center justify-center space-x-2">
+								<HiOutlineLocationMarker size={20} />
+								<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_2.address}</p>
+							</div>
+							<div className="flex items-center justify-center space-x-2">
+								<HiOutlinePhone size={20} />
+								<p> | Whatsapp </p>
+								<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_2.phone}</p>
+							</div>
 						</div>
+
 					</div>
 
 					{/* Email */}

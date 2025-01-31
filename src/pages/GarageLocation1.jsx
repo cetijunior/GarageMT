@@ -49,14 +49,12 @@ function GarageLocation2() {
             </section>
 
 
-            <GarageAbout1
-                details="Garage MT in Mosta specializes in modern automotive solutions, offering customers a wide range of professional services. With state-of-the-art equipment and a team of certified mechanics, we ensure your vehicle gets the best care."
-            />
+
 
             {/* <GarageServices services={services} /> */}
             <ServicesSection />
 
-            <AboutUsSection />
+            {/* <AboutUsSection /> */}
 
 
             <ContactSection />
