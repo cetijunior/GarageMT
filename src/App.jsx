@@ -11,6 +11,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookieDialog from "./components/CookieDialog";
 import ScrollToTop from "./hooks/useScrollToTop";
+import Admin from "./pages/Admin";
 
 function App() {
 	const [cookiePreferences, setCookiePreferences] = useState({
@@ -54,6 +55,7 @@ function App() {
 						<Route path="/terms-of-service" element={<TermsOfService />} />
 						<Route path="/location-1" element={<GarageLocation1 />} />
 						<Route path="/location-2" element={<GarageLocation2 />} />
+						<Route path="/admin" element={<Admin />} />
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
 				</main>

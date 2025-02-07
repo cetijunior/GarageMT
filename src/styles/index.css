@@ -7,7 +7,7 @@
 
 /* Custom global styles */
 body {
-  @apply bg-white text-gray-800;
+  @apply bg-white;
 }
 
 

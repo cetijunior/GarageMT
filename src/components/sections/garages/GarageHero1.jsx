@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/autoplay";
-import { FaLocationDot, FaLocationPin } from 'react-icons/fa6';
+import { FaLocationPin } from 'react-icons/fa6';
 
 import { GARAGE_LOCATIONS } from "../../../content/locations"; // Import locations.js
 // Get first location from GARAGE_LOCATIONS

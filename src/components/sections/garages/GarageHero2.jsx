@@ -9,56 +9,52 @@ import {
 } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/autoplay";
+import { FaLocationPin } from 'react-icons/fa6';
+
+import { GARAGE_LOCATIONS } from "../../../content/locations"; // Import locations.js
+// Get first location from GARAGE_LOCATIONS
+const firstLocation = GARAGE_LOCATIONS.LOCATION_2;
+
+const features = [
+    {
+        icon: <FaLocationPin />,
+        title: "Location",
+        description: (
+            <a href={firstLocation.googleMapsLink} target="_blank" rel="noopener noreferrer" className="">
+                {firstLocation.address}
+            </a>
+        ),
+    },
+    {
+        icon: <FaPhoneAlt />,
+        title: "Phone",
+        description: (
+            <a href={`tel:${firstLocation.phone}`} className="underline">{firstLocation.phone}</a>
+        ),
+    },
+    {
+        icon: <FaClock />,
+        title: "Working Hours",
+        description: firstLocation.availability || "Mon-Sat: 8AM-6PM",
+    },
+    {
+        icon: <FaTools />,
+        title: "Latest Tools",
+        description: "State-of-the-art equipment for precision repairs.",
+    },
+    {
+        icon: <FaCalendarAlt />,
+        title: "Flexible Scheduling",
+        description: "Book repairs at your convenience.",
+    },
+    {
+        icon: <FaCheck />,
+        title: "High Quality Service",
+        description: "Exceptional service that meets the highest standards.",
+    },
+];
 
 const GarageHero2 = () => {
-    const stats = [
-        { icon: FaWrench, value: '15+', label: 'Years Experience' },
-        { icon: FaUserFriends, value: '2000+', label: 'Happy Clients' },
-        { icon: FaCar, value: '24/7', label: 'Service Available' },
-    ];
-
-    const features = [
-        {
-            icon: <FaHandshake />,
-            title: "Best Prices",
-            description: "Competitive rates for all repairs and services.",
-        },
-        {
-            icon: <FaThumbsUp />,
-            title: "100% Guarantee",
-            description: "Full guarantee on all our repair work.",
-        },
-        {
-            icon: <FaCertificate />,
-            title: "Certified Mechanics",
-            description: "Highly trained and certified automotive experts.",
-        },
-        {
-            icon: <FaTools />,
-            title: "Latest Tools",
-            description: "State-of-the-art equipment for precision repairs.",
-        },
-        {
-            icon: <FaCalendarAlt />,
-            title: "Flexible Scheduling",
-            description: "Book repairs at your convenience.",
-        },
-        {
-            icon: <FaHistory />,
-            title: "20+ Years Experience",
-            description: "Trusted expertise in automotive repair.",
-        },
-        {
-            icon: <FaRocket />,
-            title: "Fast Turnaround",
-            description: "Quick and efficient service.",
-        },
-        {
-            icon: <FaCheck />,
-            title: "High Quality Service",
-            description: "Exceptional service that meets the highest standards.",
-        },
-    ];
 
     const fadeInUp = {
         initial: { opacity: 0, y: 20 },
@@ -69,7 +65,7 @@ const GarageHero2 = () => {
     return (
         <section className="relative  bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
             {/* Background Elements */}
-            <div className="absolute inset-0 bg-[url('/assets/images/hero.jpg')] bg-cover bg-center opacity-10" />
+            <div className="absolute inset-0 bg-[url('/assets/images/entry3.jpg')] bg-cover bg-center opacity-10" />
             <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 to-orange-500/10" />
 
             {/* Content Container */}
@@ -88,7 +84,7 @@ const GarageHero2 = () => {
                             {...fadeInUp}
                         >
                             <FaShieldAlt className="w-4 h-4 text-red-400 mr-2" />
-                            <span className="text-white/90 text-sm">Garage MT</span>
+                            <span className="text-white/90 text-sm">GarageMT Limited</span>
                         </motion.div>
 
                         {/* Main Heading */}
@@ -115,12 +111,16 @@ const GarageHero2 = () => {
                             className="flex flex-wrap gap-4"
                             {...fadeInUp}
                         >
-                            <button className="px-8 py-4 bg-red-500 hover:bg-red-600 text-white rounded-lg font-medium flex items-center gap-2 shadow-lg shadow-red-500/30 transition-all duration-300">
+                            <button className="px-8 py-4 group group-hover: bg-red-500 hover:bg-red-600 text-white rounded-lg font-medium flex items-center gap-2 shadow-lg shadow-red-500/30 transition-all duration-300">
                                 Schedule Service
-                                <FaChevronRight className="w-4 h-4" />
+                                <FaChevronRight
+                                    className="w-4 h-4 transform-all duration-300 group-hover:rotate-90"
+                                />
                             </button>
-                            <button className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium backdrop-blur-md border border-white/20 flex items-center gap-2 transition-all duration-300">
-                                <FaPhoneAlt className="w-4 h-4" />
+                            <button className="px-8 py-4 group group-hover: bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium backdrop-blur-md border border-white/20 flex items-center gap-4 transition-all duration-300">
+                                <FaPhoneAlt
+                                    className="w-6 h-6 transform-all duration-300 group-hover:rotate-90"
+                                />
                                 Emergency Support
                             </button>
                         </motion.div>
@@ -152,7 +152,7 @@ const GarageHero2 = () => {
                         <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl">
                             <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl blur opacity-30" />
                             <img
-                                src="/assets/images/hero.jpg"
+                                src="/assets/images/entry3.jpg"
                                 alt="Professional Auto Service"
                                 className="relative rounded-2xl w-full shadow-2xl"
                             />
@@ -192,6 +192,7 @@ const GarageHero2 = () => {
                     </motion.div>
                 </div>
             </div>
+
 
 
 

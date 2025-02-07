@@ -73,7 +73,7 @@ function HeroSection() {
 						>
 							Emergency Help
 							<GiTowTruck
-								className="size-4 lg:size-6 transform-all duration-300 group-hover:size-8"
+								className="size-4 lg:size-6 transform-all duration-300 md:group-hover:size-8"
 
 							/>
 						</button>
@@ -110,12 +110,21 @@ function HeroSection() {
 									</div>
 									<div className="p-4 text-center">
 										<h3 className="text-xl font-bold text-red-900">{location.name}</h3>
-										<p className="text-sm text-gray-600 mb-1">{location.address}</p>
+
+										<a
+											href={location.googleMapsLink}
+											target="_blank" rel="noopener noreferrer"
+											className="hover:underline text-sm text-gray-600 mb-1">{location.address}</a>
 										<div className="flex items-center justify-center space-x-2 text-sm text-gray-700">
 											<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-500" viewBox="0 0 20 20" fill="currentColor">
 												<path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
 											</svg>
-											<span>{location.phone}</span>
+											<a
+												href={`tel:${location.phone}`}
+												className="hover:underline"
+											>
+												{location.phone}
+											</a>
 										</div>
 									</div>
 								</div>

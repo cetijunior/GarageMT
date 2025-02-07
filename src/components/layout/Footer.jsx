@@ -80,7 +80,7 @@ function Footer({ onCookieSettingsClick }) {
 
 
 				{/* Contact Info for Both Garages */}
-				<div className="text-center space-y-6">
+				<div className="flex lg:flex-row flex-col text-center space-y-6">
 					<h3 className="lg:text-2xl text-xl font-bold text-gray-100">
 						Contact Us:
 					</h3>

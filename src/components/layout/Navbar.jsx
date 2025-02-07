@@ -245,7 +245,7 @@ function Navbar() {
 							<div className="flex items-center justify-start space-x-2">
 								<HiOutlinePhone size={20} />
 								<p className="flex space-x-2">  <span className="flex mr-2"> | </span> Whatsapp </p>
-								<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_1.phone}</p>
+								<a href={`tel:${GARAGE_LOCATIONS.LOCATION_1.phone}`} className="text-sm underline text-gray-300">{GARAGE_LOCATIONS.LOCATION_1.phone}</a>
 							</div>
 						</div>
 
@@ -270,7 +270,7 @@ function Navbar() {
 							<div className="flex items-center justify- space-x-2">
 								<HiOutlinePhone size={20} />
 								<p className="flex space-x-2">  <span className="flex mr-2"> | </span> Whatsapp </p>
-								<p className="text-sm text-gray-300">{GARAGE_LOCATIONS.LOCATION_2.phone}</p>
+								<a href={`tel:${GARAGE_LOCATIONS.LOCATION_2.phone}`} className="text-sm underline text-gray-300">{GARAGE_LOCATIONS.LOCATION_2.phone}</a>
 							</div>
 						</div>
 					</div>
