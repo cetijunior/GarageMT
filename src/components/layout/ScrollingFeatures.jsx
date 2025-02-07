@@ -12,6 +12,16 @@ const ScrollingFeatures = () => {
             description: "Competitive rates for all repairs and services.",
         },
         {
+            icon: <FaCalendarAlt />,
+            title: "Flexible Scheduling",
+            description: "Book repairs at your convenience.",
+        },
+        {
+            icon: <FaHistory />,
+            title: "20+ Years Experience",
+            description: "Trusted expertise in automotive repair.",
+        },
+        {
             icon: <FaThumbsUp />,
             title: "100% Guarantee",
             description: "Full guarantee on all our repair work.",

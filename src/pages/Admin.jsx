@@ -87,6 +87,8 @@ const Dashboard = () => {
         fetchBookings();
     }, []);
 
+
+
     return (
         <div className="min-h-screen mt-20 bg-zinc-950 text-zinc-100 p-6">
             <div className="container mx-auto">
