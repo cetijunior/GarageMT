@@ -6,7 +6,7 @@ export const GARAGE_LOCATIONS = {
     phone: "+356 770 88 222",
     image: "/assets/images/entry3.jpg",
     availability: "Mon-Sat: 8AM-6PM",
-    link: "/location-1",
+    link: "/Garage-MT-Limited",
     operatingHours: { open: 8, close: 18 },
     coordinates: {
       latitude: 35.8158039,
@@ -23,7 +23,7 @@ export const GARAGE_LOCATIONS = {
     phone: "+356 774 98 675",
     image: "/assets/images/hero.jpg",
     availability: "Mon-Sat: 9AM-5PM",
-    link: "/location-2",
+    link: "/Garage-MT",
     operatingHours: { open: 9, close: 17 },
     coordinates: {
       latitude: 35.853702,

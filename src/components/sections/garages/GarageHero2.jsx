@@ -84,7 +84,7 @@ const GarageHero2 = () => {
                             {...fadeInUp}
                         >
                             <FaShieldAlt className="w-4 h-4 text-red-400 mr-2" />
-                            <span className="text-white/90 text-sm">GarageMT Limited</span>
+                            <span className="text-white/90 text-sm">Garage MT</span>
                         </motion.div>
 
                         {/* Main Heading */}
@@ -152,7 +152,7 @@ const GarageHero2 = () => {
                         <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl">
                             <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl blur opacity-30" />
                             <img
-                                src="/assets/images/entry3.jpg"
+                                src="/assets/images/hero.jpg"
                                 alt="Professional Auto Service"
                                 className="relative rounded-2xl w-full shadow-2xl"
                             />

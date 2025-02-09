@@ -36,7 +36,7 @@ const services = [
     },
 ];
 
-function GarageLocation2() {
+function GarageMTLimited() {
     const { name, address } = GARAGE_LOCATIONS.LOCATION_1;
 
     return (
@@ -62,4 +62,4 @@ function GarageLocation2() {
     );
 }
 
-export default GarageLocation2;
+export default GarageMTLimited;

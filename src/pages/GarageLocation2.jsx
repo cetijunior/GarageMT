@@ -10,7 +10,7 @@ import ServicesSection from "../components/sections/ServicesSection";
 import AboutUsSection from "../components/sections/AboutUsSection";
 
 
-function GarageLocation2() {
+function GarageMT() {
     const { name, address } = GARAGE_LOCATIONS.LOCATION_1;
 
     return (
@@ -24,7 +24,7 @@ function GarageLocation2() {
 
 
             <GarageAbout1
-                details="Garage MT in Mosta specializes in modern automotive solutions, offering customers a wide range of professional services. With state-of-the-art equipment and a team of certified mechanics, we ensure your vehicle gets the best care."
+                details="SPECIAL SECTION SPECIAL SECTION SPECIAL SECTION SPECIAL SECTION  SPECIAL SECTION  SPECIAL SECTION  SPECIAL SECTION  SPECIAL SECTION  SPECIAL SECTION  SPECIAL SECTION  SPECIAL SECTION  SPECIAL SECTION "
             />
 
             {/* <GarageServices services={services} /> */}
@@ -37,4 +37,4 @@ function GarageLocation2() {
     );
 }
 
-export default GarageLocation2;
+export default GarageMT;

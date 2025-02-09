@@ -4,8 +4,8 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import HomePage from "./pages/HomePage";
 import GalleryPage from "./pages/GalleryPage";
-import GarageLocation1 from "./pages/GarageLocation1";
-import GarageLocation2 from "./pages/GarageLocation2";
+import GarageMTLimited from "./pages/GarageLocation1";
+import GarageMT from "./pages/GarageLocation2";
 import NotFoundPage from "./pages/NotFoundPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -53,8 +53,8 @@ function App() {
 						<Route path="/gallery" element={<GalleryPage />} />
 						<Route path="/privacy-policy" element={<PrivacyPolicy />} />
 						<Route path="/terms-of-service" element={<TermsOfService />} />
-						<Route path="/location-1" element={<GarageLocation1 />} />
-						<Route path="/location-2" element={<GarageLocation2 />} />
+						<Route path="/Garage-MT-Limited" element={<GarageMTLimited />} />
+						<Route path="/Garage-MT" element={<GarageMT />} />
 						<Route path="/admin" element={<Admin />} />
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
