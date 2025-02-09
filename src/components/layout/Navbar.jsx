@@ -259,7 +259,7 @@ function Navbar() {
 								<button
 									className="flex w-full items-center justify-between"
 									onClick={() => {
-										navigate("/location-1");
+										navigate("/Garage-MT-Limited");
 										scrollToSection(0, 0);
 										setNavOpen(false);
 									}}
@@ -285,7 +285,7 @@ function Navbar() {
 							<button
 								className="flex w-full items-center justify-between"
 								onClick={() => {
-									navigate("/location-2");
+									navigate("/Garage-MT");
 									scrollToSection(0, 0);
 									setNavOpen(false);
 								}}
