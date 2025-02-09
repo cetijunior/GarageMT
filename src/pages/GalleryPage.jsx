@@ -76,7 +76,7 @@ function GalleryPage() {
 						{isVideo(media) ? (
 							<video
 								src={media}
-								className="rounded shadow-lg w-full h-64 object-cover"
+								className="rounded-xl p-2 shadow-xl hover:shadow-2xl hover:shadow-red-600 transition-all duration-300 w-full h-64 object-cover"
 								muted
 								loop
 								autoPlay
@@ -86,7 +86,7 @@ function GalleryPage() {
 							<img
 								src={media}
 								alt={`Gallery ${index + 1}`}
-								className="rounded shadow-lg w-full h-64 object-cover"
+								className="rounded-xl p-2 shadow-xl hover:shadow-2xl hover:shadow-red-600 transition-all duration-300 w-full h-64 object-cover"
 							/>
 						)}
 					</motion.div>
@@ -108,7 +108,7 @@ function GalleryPage() {
 							<motion.video
 								src={selectedMedia}
 								controls
-								className="max-w-full max-h-full"
+								className="max-w-full max-h-full lg:px-2 lg:py-2 md:px-2 md:py-2 px-2 py-2 rounded-[20px]"
 								initial={{ scale: 0.8 }}
 								animate={{ scale: 1 }}
 								exit={{ scale: 0.8 }}
@@ -118,7 +118,7 @@ function GalleryPage() {
 							<motion.img
 								src={selectedMedia}
 								alt="Enlarged"
-								className="max-w-full max-h-full"
+								className="max-w-full max-h-full lg:px-2 lg:py-2 md:px-2 md:py-2 px-2 py-2 rounded-[20px]"
 								initial={{ scale: 0.8 }}
 								animate={{ scale: 1 }}
 								exit={{ scale: 0.8 }}
