@@ -25,8 +25,8 @@ function Footer({ onCookieSettingsClick }) {
 	};
 
 	return (
-		<footer className="bg-gradient-to-br from-red-700 via-black to-gray-900 text-white py-12">
-			<div className="container mx-auto flex flex-col lg:flex-row justify-between lg:items-center px-6 space-y-10 lg:space-y-0">
+		<footer className="bg-gradient-to-br from-red-700 via-black to-gray-900 text-white py-6">
+			<div className="flex flex-col lg:flex-row justify-between lg:items-center px-6 space-y-10 lg:space-y-0">
 				{/* Footer Navigation */}
 				<div className="text-center lg:text-left space-y-4">
 					<h3 className="text-xl font-semibold text-gray-100">Quick Links:</h3>
@@ -83,8 +83,11 @@ function Footer({ onCookieSettingsClick }) {
 
 
 				{/* Contact Info for Both Garages */}
-				<div className="flex lg:flex-row flex-col text-center space-y-6">
-					<div className="flex flex-col space-y-2 items-center justify-evenly">
+				<div className="flex flex-col text-center items-center space-x-0">
+
+					<div className="flex lg:flex-row flex-col lg:space-y-0 space-y-12 lg:space-x-10 items-center">
+
+
 						{/* Garage 1 Info */}
 						<div className="flex flex-col items-start">
 							<h4 className="font-bold text-lg self-center">Garage MT Limited</h4>
@@ -100,8 +103,10 @@ function Footer({ onCookieSettingsClick }) {
 								</a>
 							</div>
 							<div className="flex items-center justify-center space-x-2">
-								<HiOutlinePhone size={20} />
-								<p> | Whatsapp</p>
+								<p className="flex items-center">
+									<HiOutlinePhone size={20} />
+									| Whatsapp
+								</p>
 								<a
 									href={`tel:${GARAGE_LOCATIONS.LOCATION_1.phone}`}
 									className="text-sm flex gap-2 text-gray-300 hover:underline hover:text-yellow-400 transition duration-200"
@@ -112,7 +117,7 @@ function Footer({ onCookieSettingsClick }) {
 							</div>
 						</div>
 
-						<div className="flex border w-full border-red-950"></div>
+						{/* <div className="flex border lg:mx-10  lg:w-fit lg:h-full h-fit w-full border-red-950"></div> */}
 
 						{/* Garage 2 Info */}
 						<div className="flex flex-col items-start">
@@ -129,8 +134,10 @@ function Footer({ onCookieSettingsClick }) {
 								</a>
 							</div>
 							<div className="flex items-center justify-center space-x-2">
-								<HiOutlinePhone size={20} />
-								<p> | Whatsapp</p>
+								<p className="flex items-center">
+									<HiOutlinePhone size={20} />
+									| Whatsapp
+								</p>
 								<a
 									href={`tel:${GARAGE_LOCATIONS.LOCATION_2.phone}`}
 									className="text-sm flex gap-2 text-gray-300 hover:underline hover:text-yellow-400 transition duration-200"
@@ -141,19 +148,19 @@ function Footer({ onCookieSettingsClick }) {
 							</div>
 						</div>
 
-						{/* Email */}
-						<div className="flex items-center justify-center space-x-2">
-							<HiOutlineMail size={20} />
-							<a
-								href="mailto:info@garage.mt"
-								className="text-lg text-gray-300 underline hover:text-yellow-400 transition duration-200"
-							>
-								info@garage.mt
-							</a>
-						</div>
+					</div>
+
+					{/* Email */}
+					<div className="flex items-center justify-center space-x-2">
+						<HiOutlineMail size={20} />
+						<a
+							href="mailto:info@garage.mt"
+							className="text-lg text-gray-300 underline hover:text-yellow-400 transition duration-200"
+						>
+							info@garage.mt
+						</a>
 					</div>
 				</div>
-
 
 
 
@@ -181,7 +188,7 @@ function Footer({ onCookieSettingsClick }) {
 			</div>
 
 			{/* Footer Divider and Additional Info */}
-			<div className="text-center border-t border-gray-800 mt-10 pt-6">
+			<div className="flex flex-col items-center justify-center w-full text-center border-t border-gray-800 mt-10 pt-6">
 
 
 				<div className="flex flex-col items-center justify-center">
@@ -197,32 +204,39 @@ function Footer({ onCookieSettingsClick }) {
 
 
 				</div>
-				<p className="text-sm mt-2 text-white">
-					Designed by{" "}
-					<a
-						className="underline hover:text-yellow-400 transition duration-200"
-						href="https://www.ca-webservices.com"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						CA Web Services
-					</a>
-				</p>
-				<div
-					className="flex mx-auto mt-4 items-center justify-center h-auto"
-				>
-					<img
-						className="animate-spin hover:animate-none mr-4 w-20 md:w-32 h-auto"
-						src="/assets/icons/ca/logo.png"
-					/>
-					<a className=" flex w-fulll text-3xl font-extrabold font-serif hover:text-yellow-400 transition duration-200"
-						href="https://www.ca-webservices.com"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						CA Web Services
-					</a>
+
+				<div className="flex ">
+
+					<p className="text-sm mt-2 text-white">
+						Designed by{" "}
+						<a
+							className="underline hover:text-yellow-400 transition duration-200"
+							href="https://www.ca-webservices.com"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							CA Web Services
+						</a>
+					</p>
 				</div>
+
+
+
+			</div>
+			<div
+				className="flex mx-auto mt-4 items-center justify-center h-auto"
+			>
+				<img
+					className="animate-spin hover:animate-none mr-4 w-14 h-auto"
+					src="/assets/icons/ca/logo.png"
+				/>
+				<a className=" flex w-fulll text-2xl font-extrabold font-serif hover:text-yellow-400 transition duration-200"
+					href="https://www.ca-webservices.com"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					CA Web Services
+				</a>
 			</div>
 		</footer>
 	);

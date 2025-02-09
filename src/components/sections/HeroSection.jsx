@@ -6,9 +6,6 @@ import React from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { GiTowTruck } from "react-icons/gi";
 
-
-
-
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 function HeroSection() {
@@ -24,7 +21,7 @@ function HeroSection() {
 		} else {
 			scrollToSection(section);
 		}
-		setNavOpen(false); // Close the navbar after clicking
+		// setNavOpen(false); // Close the navbar after clicking
 	};
 
 

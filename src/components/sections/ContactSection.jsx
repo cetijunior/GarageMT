@@ -155,7 +155,8 @@ function ContactSection() {
 			<div className="mx-auto flex flex-col-reverse md:gap-12 mt-12 px-6 lg:px-12">
 
 				{/* 📧 Bottom Left - Contact Form */}
-				<motion.div className="mx-auto bg-white mb-10 text-gray-800 rounded-xl shadow-lg p-10" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+
+				{/* <motion.div className="mx-auto bg-white mb-10 text-gray-800 rounded-xl shadow-lg p-10" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
 					<div className="rounded-t-xl py-4 mb-4 border-b border-gray-200 bg-red-600 text-white text-center">
 						<FiMail className="size-6 inline-block mr-2" />
 						<h3 className="text-2xl font-bold inline-block">Email Us!</h3>
@@ -168,6 +169,7 @@ function ContactSection() {
 						<button type="submit" className="w-full py-3 bg-red-500 text-white rounded-lg hover:bg-red-700 transition">Send Message</button>
 					</form>
 				</motion.div>
+	 */}
 				{/* 📅 Bottom Right - Booking Form */}
 				<motion.div
 					className="mx-auto w-full pb-10"

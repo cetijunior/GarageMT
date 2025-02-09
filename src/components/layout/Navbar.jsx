@@ -17,6 +17,24 @@ import { GARAGE_LOCATIONS } from "../../content/locations";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
+
+import UseAnimations from "react-useanimations";
+import menu3 from "react-useanimations/lib/menu3";
+import home from "react-useanimations/lib/home";
+import info from "react-useanimations/lib/info";
+import explore from "react-useanimations/lib/explore";
+import settings from "react-useanimations/lib/settings";
+import folder from "react-useanimations/lib/folder";
+import calendar from "react-useanimations/lib/calendar";
+
+import arrowRightCircle from "react-useanimations/lib/arrowRightCircle";  // Animated Right Arrow
+
+
+
+
+
+
+
 function Navbar() {
 	const [navOpen, setNavOpen] = useState(false);
 	const [navbarBg, setNavbarBg] = useState(false);
@@ -87,7 +105,7 @@ function Navbar() {
 					onClick={() => handleNavigation("/", "hero")}
 					className="flex items-center cursor-pointer"
 				>
-					<div className="h-12 w-36 md:h-12 lg:h-14 lg:w-44 lg:ml-10 bg-white border-2 border-red-900 rounded-lg flex items-center justify-center">
+					<div className="h-12 w-36 md:h-12 lg:h-14 lg:w-44 lg:ml-10 bg-white shadow-xl shadow-black/20 border-2 border-red-900 rounded-lg flex items-center justify-center">
 						<img
 							src="/assets/icons/logo3.png"
 							alt="Garage MT Logo"
@@ -100,9 +118,10 @@ function Navbar() {
 				<div className="md:hidden">
 					<button
 						onClick={() => setNavOpen(!navOpen)}
-						className="text-white focus:outline-none"
+						className="text-white bg-white rounded-2xl shadow-xl shadow-black/30 focus:outline-none"
 					>
-						{navOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+						<UseAnimations animation={menu3} speed={2} size={40} />
+						{/* {navOpen ? <FiX size={24} /> : <FiMenu size={24} />} */}
 					</button>
 				</div>
 
@@ -112,28 +131,36 @@ function Navbar() {
 						onClick={() => handleNavigation("/", "hero")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiHome size={24} />
+						<UseAnimations animation={home} strokeColor="white" speed={2} size={40} />
+
+						{/* <FiHome size={24} /> */}
 						<span className="ml-2 hidden lg:inline-block">Home</span>
 					</button>
 					<button
 						onClick={() => handleNavigation("/", "about")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiInfo size={24} />
+						<UseAnimations animation={info} strokeColor="white" speed={2} size={40} />
+
+						{/* <FiInfo size={24} /> */}
 						<span className="ml-2 hidden lg:inline-block">About Us</span>
 					</button>
 					<button
 						onClick={() => handleNavigation("/", "services")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiTool size={24} />
+						<UseAnimations animation={settings} strokeColor="white" speed={2} size={40} />
+
+						{/* <FiTool size={24} /> */}
 						<span className="ml-2 hidden lg:inline-block">Services</span>
 					</button>
 					<button
 						onClick={() => handleNavigation("/", "locations")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiMapPin size={24} />
+						<UseAnimations animation={explore} strokeColor="white" speed={2} size={40} />
+
+						{/* <FiMapPin size={24} /> */}
 						<span className="ml-2 hidden lg:inline-block">Locations</span>
 					</button>
 					<button
@@ -142,14 +169,18 @@ function Navbar() {
 						}}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiImage size={24} />
+						<UseAnimations animation={folder} strokeColor="white" speed={2} size={40} />
+
+						{/* <FiImage size={24} /> */}
 						<span className="ml-2 hidden lg:inline-block">Gallery</span>
 					</button>
 					<button
 						onClick={() => handleNavigation("/", "contact")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiMail size={24} />
+						<UseAnimations animation={calendar} strokeColor="white" speed={2} size={40} />
+
+						{/* <FiMail size={24} /> */}
 						<span className="ml-2 hidden lg:inline-block">Contact</span>
 					</button>
 				</div>
@@ -169,28 +200,28 @@ function Navbar() {
 						onClick={() => handleNavigation("/", "hero")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiHome size={20} />
+						<FiHome size={26} />
 						<span className="ml-2">Home</span>
 					</button>
 					<button
 						onClick={() => handleNavigation("/", "about")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiInfo size={20} />
+						<FiInfo size={26} />
 						<span className="ml-2">About Us</span>
 					</button>
 					<button
 						onClick={() => handleNavigation("/", "services")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiTool size={20} />
+						<FiTool size={26} />
 						<span className="ml-2">Services</span>
 					</button>
 					<button
 						onClick={() => handleNavigation("/", "locations")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiMapPin size={20} />
+						<FiMapPin size={26} />
 						<span className="ml-2">Locations</span>
 					</button>
 					<button
@@ -201,14 +232,14 @@ function Navbar() {
 						}}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiImage size={20} />
+						<FiImage size={26} />
 						<span className="ml-2">Gallery</span>
 					</button>
 					<button
 						onClick={() => handleNavigation("/", "contact")}
 						className="text-white flex flex-row items-center hover:text-gray-800"
 					>
-						<FiMail size={20} />
+						<FiMail size={26} />
 						<span className="ml-2">Contact</span>
 					</button>
 
@@ -235,7 +266,7 @@ function Navbar() {
 								>
 									<h4 className="font-bold text-lg">GarageMT Limited</h4>
 
-									<FaArrowRightLong size={24} />
+									<UseAnimations animation={arrowRightCircle} loop="true" strokeColor="white" speed={2} size={40} />
 								</button>
 							</div>
 							<div className="flex items-center justify-start space-x-2">
@@ -261,7 +292,8 @@ function Navbar() {
 							>
 								<h4 className="font-bold text-lg">Garage MT</h4>
 
-								<FaArrowRightLong size={24} />
+								<UseAnimations animation={arrowRightCircle} loop="true" strokeColor="white" speed={2} size={40} />
+
 							</button>
 							<div className="flex items-center justify-start space-x-2">
 								<HiOutlineLocationMarker size={20} />

@@ -7,6 +7,9 @@ import { toast } from "react-toastify"; // Import toast notification
 import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 
 
+import { useRef } from "react";
+import VariableProximityText from "../../components/VariableProximityText";
+
 import {
     FaCalendarAlt,
     FaClock,
@@ -22,6 +25,7 @@ import {
 } from "react-icons/fa";
 
 const BookingForm = () => {
+    const containerRef = useRef(null);
 
 
     const [formData, setFormData] = useState({
@@ -264,6 +268,17 @@ const BookingForm = () => {
 
     return (
         <div className="bg-white py-12 rounded-2xl px-4 sm:px-6 lg:px-8">
+            <div className="flex cursor-default items-center justify-center" ref={containerRef} style={{ position: "relative", padding: "50px" }}>
+                <VariableProximityText
+                    text="Book a Meeting!"
+                    fromSettings="'wght' 400, 'opsz' 9"
+                    toSettings="'wght' 1000, 'opsz' 40"
+                    containerRef={containerRef}
+                    radius={120}
+                    falloff="gaussian"
+                    className="text-red-600 lg:text-8xl text-6xl md:mt-0 -mt-10"
+                />
+            </div>
             <div className="max-w-8xl mx-auto">
                 {/* Progress Steps */}
                 <div className="mb-12">
@@ -275,8 +290,9 @@ const BookingForm = () => {
                                 className={`flex flex-col items-center ${step >= num ? "text-red-600" : "text-gray-400"
                                     }`}
                             >
+
                                 <div
-                                    className={`w-12 h-12 rounded-full flex items-center justify-center border-2 bg-white
+                                    className={`w-12 h-12 rounded-full cursor-default flex items-center justify-center border-2 bg-white
                                         ${step >= num
                                             ? "border-red-600 text-red-600"
                                             : "border-gray-300"
